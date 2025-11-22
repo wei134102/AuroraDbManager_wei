@@ -1,4 +1,4 @@
-﻿// 
+// 
 // 	ContentItem.cs
 // 	AuroraDbManager
 // 

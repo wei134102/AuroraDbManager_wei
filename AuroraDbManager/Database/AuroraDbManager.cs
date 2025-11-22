@@ -468,6 +468,12 @@ namespace AuroraDbManager.Database {
                 quickView.OrderIndex,
                 quickView.IconHash.Replace("'", "''"));
             ExecuteNonQuerySettings(sql);
+            
+            // 获取新插入记录的ID
+            var getIdSql = "SELECT last_insert_rowid()";
+            var id = Convert.ToInt32(ExecuteScalarSettings(getIdSql));
+            quickView.Id = id; // 更新对象的ID
+            
             var list = _quickViewItems.ToList();
             list.Add(quickView);
             _quickViewItems = list.ToArray();
@@ -478,6 +484,12 @@ namespace AuroraDbManager.Database {
                 userFavorite.ContentId,
                 userFavorite.ProfileId.Replace("'", "''"));
             ExecuteNonQuerySettings(sql);
+            
+            // 获取新插入记录的ID
+            var getIdSql = "SELECT last_insert_rowid()";
+            var id = Convert.ToInt32(ExecuteScalarSettings(getIdSql));
+            userFavorite.Id = id; // 更新对象的ID
+            
             var list = _userFavoriteItems.ToList();
             list.Add(userFavorite);
             _userFavoriteItems = list.ToArray();
@@ -488,6 +500,12 @@ namespace AuroraDbManager.Database {
                 userHidden.ContentId,
                 userHidden.ProfileId.Replace("'", "''"));
             ExecuteNonQuerySettings(sql);
+            
+            // 获取新插入记录的ID
+            var getIdSql = "SELECT last_insert_rowid()";
+            var id = Convert.ToInt32(ExecuteScalarSettings(getIdSql));
+            userHidden.Id = id; // 更新对象的ID
+            
             var list = _userHiddenItems.ToList();
             list.Add(userHidden);
             _userHiddenItems = list.ToArray();
@@ -507,9 +525,38 @@ namespace AuroraDbManager.Database {
                 trainer.TrainerFlags,
                 trainer.CreatorXUID.Replace("'", "''"));
             ExecuteNonQuerySettings(sql);
+            
+            // 获取新插入记录的ID
+            var getIdSql = "SELECT last_insert_rowid()";
+            var id = Convert.ToInt32(ExecuteScalarSettings(getIdSql));
+            trainer.Id = id; // 更新对象的ID
+            
             var list = _trainerItems.ToList();
             list.Add(trainer);
             _trainerItems = list.ToArray();
+        }
+
+        private object ExecuteScalarSettings(string sql) {
+            try {
+                System.Diagnostics.Debug.WriteLine($"ExecuteScalarSettings: Attempting to execute SQL: {sql}");
+
+                var cmd = new SQLiteCommand(sql, _settings);
+                var result = cmd.ExecuteScalar();
+
+                // 添加调试日志，帮助诊断问题
+                System.Diagnostics.Debug.WriteLine($"ExecuteScalarSettings: SQL={sql}, Result={result}");
+
+                return result;
+            }
+            catch (Exception ex) {
+                // 记录详细的错误信息
+                var errorMsg = $"ExecuteScalarSettings failed. SQL: {sql}, Error: {ex.Message}";
+                System.Diagnostics.Debug.WriteLine(errorMsg);
+                App.SaveException(new Exception(errorMsg, ex));
+
+                // 抛出异常，让上层知道发生了错误
+                throw new Exception($"数据库操作失败: {ex.Message}", ex);
+            }
         }
 
         public void DeleteContentItem(ContentItem item) {
@@ -521,7 +568,6 @@ namespace AuroraDbManager.Database {
                 list.RemoveAll(x => x.Id == item.Id);
                 _contentItems = list.ToArray();
                 
-                SendStatusChanged("Content item deleted successfully");
             }
             catch (Exception ex) {
                 App.SaveException(ex);
@@ -538,7 +584,6 @@ namespace AuroraDbManager.Database {
                 list.RemoveAll(x => x.Id == item.Id);
                 _titleUpdateItems = list.ToArray();
                 
-                SendStatusChanged("Title update item deleted successfully");
             }
             catch (Exception ex) {
                 App.SaveException(ex);
@@ -589,7 +634,6 @@ namespace AuroraDbManager.Database {
                 list.Add(item);
                 _contentItems = list.ToArray();
                 
-                SendStatusChanged("Content item added successfully");
             }
             catch (Exception ex) {
                 App.SaveException(ex);
@@ -621,7 +665,6 @@ namespace AuroraDbManager.Database {
                 list.Add(item);
                 _titleUpdateItems = list.ToArray();
                 
-                SendStatusChanged("Title update item added successfully");
             }
             catch (Exception ex) {
                 App.SaveException(ex);

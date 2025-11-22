@@ -9,7 +9,10 @@ namespace AuroraDbManager.Database {
 
         public bool Changed { get; set; }
 
-        public int Id { get { return int.Parse(DataRow["Id"].ToString()); } }
+        public int Id {
+            get { return (int)(long)DataRow["Id"]; }
+            set { DataRow["Id"] = value; }
+        }
         
         public string TitleId { 
             get { return DataRow["TitleId"].ToString(); }

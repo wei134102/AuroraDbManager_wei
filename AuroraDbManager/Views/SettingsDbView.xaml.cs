@@ -222,21 +222,25 @@ namespace AuroraDbManager.Views {
             try {
                 if(dataGrid.SelectedItem is Database.QuickViewItem quickViewItem) {
                     App.DbManager.DeleteQuickView(quickViewItem);
+                    // 刷新UI显示
                     dataGrid.ItemsSource = App.DbManager.GetQuickViews();
                     SendStatusChanged("Quick view deleted successfully");
                 }
                 else if(dataGrid.SelectedItem is Database.UserFavoriteItem userFavoriteItem) {
                     App.DbManager.DeleteUserFavorite(userFavoriteItem);
+                    // 刷新UI显示
                     dataGrid.ItemsSource = App.DbManager.GetUserFavorites();
                     SendStatusChanged("User favorite deleted successfully");
                 }
                 else if(dataGrid.SelectedItem is Database.UserHiddenItem userHiddenItem) {
                     App.DbManager.DeleteUserHidden(userHiddenItem);
+                    // 刷新UI显示
                     dataGrid.ItemsSource = App.DbManager.GetUserHidden();
                     SendStatusChanged("User hidden item deleted successfully");
                 }
                 else if(dataGrid.SelectedItem is Database.TrainerItem trainerItem) {
                     App.DbManager.DeleteTrainer(trainerItem);
+                    // 刷新UI显示
                     dataGrid.ItemsSource = App.DbManager.GetTrainers();
                     SendStatusChanged("Trainer deleted successfully");
                 }
@@ -261,42 +265,121 @@ namespace AuroraDbManager.Views {
                 return;
 
             try {
-                // 使用反射调用私有方法插入数据，然后重新加载
-                var method = typeof(AuroraDbManager.Database.AuroraDbManager).GetMethod("ExecuteNonQuerySettings", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                
                 if(dataGrid.Name == "QuickViewsBox") {
-                    var sql = "INSERT INTO QuickViews (DisplayName, SortMethod, FilterMethod, Flags, CreatorXUID, OrderIndex, IconHash) VALUES ('New Quick View', 'Default', 'None', 0, '0', 0, '0')";
-                    method?.Invoke(App.DbManager, new object[] { sql });
+                    // 创建一个新的DataTable来容纳新行
+                    var table = new System.Data.DataTable("QuickViews");
+                    // 添加必要的列
+                    table.Columns.Add("Id", typeof(long));
+                    table.Columns.Add("DisplayName", typeof(string));
+                    table.Columns.Add("SortMethod", typeof(string));
+                    table.Columns.Add("FilterMethod", typeof(string));
+                    table.Columns.Add("Flags", typeof(long));
+                    table.Columns.Add("CreatorXUID", typeof(string));
+                    table.Columns.Add("OrderIndex", typeof(long));
+                    table.Columns.Add("IconHash", typeof(string));
+                    
+                    // 创建新行
+                    var newRow = table.NewRow();
+                    newRow["Id"] = 0; // 临时ID，实际ID将在数据库中分配
+                    newRow["DisplayName"] = "New Quick View";
+                    newRow["SortMethod"] = "Default";
+                    newRow["FilterMethod"] = "None";
+                    newRow["Flags"] = 0;
+                    newRow["CreatorXUID"] = "0";
+                    newRow["OrderIndex"] = 0;
+                    newRow["IconHash"] = "0";
+                    
+                    // 添加新的QuickView条目
+                    var newItem = new Database.QuickViewItem(newRow);
+                    
+                    App.DbManager.AddQuickView(newItem);
+                    // 刷新UI显示
+                    dataGrid.ItemsSource = App.DbManager.GetQuickViews();
                     SendStatusChanged("Quick view added successfully");
                 }
                 else if(dataGrid.Name == "UserFavoritesBox") {
-                    var sql = "INSERT INTO UserFavorites (ContentId, ProfileId) VALUES (0, '0')";
-                    method?.Invoke(App.DbManager, new object[] { sql });
+                    // 创建一个新的DataTable来容纳新行
+                    var table = new System.Data.DataTable("UserFavorites");
+                    // 添加必要的列
+                    table.Columns.Add("Id", typeof(long));
+                    table.Columns.Add("ContentId", typeof(long));
+                    table.Columns.Add("ProfileId", typeof(string));
+                    
+                    // 创建新行
+                    var newRow = table.NewRow();
+                    newRow["Id"] = 0; // 临时ID，实际ID将在数据库中分配
+                    newRow["ContentId"] = 0;
+                    newRow["ProfileId"] = "0";
+                    
+                    // 添加新的UserFavorite条目
+                    var newItem = new Database.UserFavoriteItem(newRow);
+                    
+                    App.DbManager.AddUserFavorite(newItem);
+                    // 刷新UI显示
+                    dataGrid.ItemsSource = App.DbManager.GetUserFavorites();
                     SendStatusChanged("User favorite added successfully");
                 }
                 else if(dataGrid.Name == "UserHiddenBox") {
-                    var sql = "INSERT INTO UserHidden (ContentId, ProfileId) VALUES (0, '0')";
-                    method?.Invoke(App.DbManager, new object[] { sql });
+                    // 创建一个新的DataTable来容纳新行
+                    var table = new System.Data.DataTable("UserHidden");
+                    // 添加必要的列
+                    table.Columns.Add("Id", typeof(long));
+                    table.Columns.Add("ContentId", typeof(long));
+                    table.Columns.Add("ProfileId", typeof(string));
+                    
+                    // 创建新行
+                    var newRow = table.NewRow();
+                    newRow["Id"] = 0; // 临时ID，实际ID将在数据库中分配
+                    newRow["ContentId"] = 0;
+                    newRow["ProfileId"] = "0";
+                    
+                    // 添加新的UserHidden条目
+                    var newItem = new Database.UserHiddenItem(newRow);
+                    
+                    App.DbManager.AddUserHidden(newItem);
+                    // 刷新UI显示
+                    dataGrid.ItemsSource = App.DbManager.GetUserHidden();
                     SendStatusChanged("User hidden item added successfully");
                 }
                 else if(dataGrid.Name == "TrainersBox") {
-                    var sql = "INSERT INTO Trainers (TitleId, MediaId, TrainerPath, TrainerName, TrainerVersion, TrainerData, TrainerInfo, TrainerAuthor, TrainerRating, TrainerFlags, CreatorXUID) VALUES ('0', '0', '', 'New Trainer', 1, '', '', '', 0, 0, '0')";
-                    method?.Invoke(App.DbManager, new object[] { sql });
-                    SendStatusChanged("Trainer added successfully");
-                }
-
-                // 重新加载数据 - 不显示文件对话框，直接刷新当前DataGrid的数据源
-                if(dataGrid.Name == "QuickViewsBox") {
-                    dataGrid.ItemsSource = App.DbManager.GetQuickViews();
-                }
-                else if(dataGrid.Name == "UserFavoritesBox") {
-                    dataGrid.ItemsSource = App.DbManager.GetUserFavorites();
-                }
-                else if(dataGrid.Name == "UserHiddenBox") {
-                    dataGrid.ItemsSource = App.DbManager.GetUserHidden();
-                }
-                else if(dataGrid.Name == "TrainersBox") {
+                    // 创建一个新的DataTable来容纳新行
+                    var table = new System.Data.DataTable("Trainers");
+                    // 添加必要的列
+                    table.Columns.Add("Id", typeof(long));
+                    table.Columns.Add("TitleId", typeof(string));
+                    table.Columns.Add("MediaId", typeof(string));
+                    table.Columns.Add("TrainerPath", typeof(string));
+                    table.Columns.Add("TrainerName", typeof(string));
+                    table.Columns.Add("TrainerVersion", typeof(long));
+                    table.Columns.Add("TrainerData", typeof(string));
+                    table.Columns.Add("TrainerInfo", typeof(string));
+                    table.Columns.Add("TrainerAuthor", typeof(string));
+                    table.Columns.Add("TrainerRating", typeof(double));
+                    table.Columns.Add("TrainerFlags", typeof(long));
+                    table.Columns.Add("CreatorXUID", typeof(string));
+                    
+                    // 创建新行
+                    var newRow = table.NewRow();
+                    newRow["Id"] = 0; // 临时ID，实际ID将在数据库中分配
+                    newRow["TitleId"] = "0";
+                    newRow["MediaId"] = "0";
+                    newRow["TrainerPath"] = "";
+                    newRow["TrainerName"] = "New Trainer";
+                    newRow["TrainerVersion"] = 0;
+                    newRow["TrainerData"] = "";
+                    newRow["TrainerInfo"] = "";
+                    newRow["TrainerAuthor"] = "";
+                    newRow["TrainerRating"] = 0.0;
+                    newRow["TrainerFlags"] = 0;
+                    newRow["CreatorXUID"] = "0";
+                    
+                    // 添加新的Trainer条目
+                    var newItem = new Database.TrainerItem(newRow);
+                    
+                    App.DbManager.AddTrainer(newItem);
+                    // 刷新UI显示
                     dataGrid.ItemsSource = App.DbManager.GetTrainers();
+                    SendStatusChanged("Trainer added successfully");
                 }
             }
             catch(Exception ex) {
