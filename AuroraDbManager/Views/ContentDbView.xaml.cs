@@ -7,6 +7,8 @@
 
 using System;
 using System.ComponentModel;
+using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,13 +16,43 @@ using System.Windows.Media;
 using AuroraDbManager.Classes;
 using AuroraDbManager.Database;
 using Microsoft.Win32;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AuroraDbManager.Views {
     /// <summary>
     ///     Interaction logic for ContentDbView.xaml
     /// </summary>
     public partial class ContentDbView : UserControl {
-        public ContentDbView() { InitializeComponent(); }
+        // 添加本地化管理器
+        private ContentLocalizationManager _localizationManager;
+        private bool _isLocalizedEnabled = false;
+        
+        public ContentDbView() { 
+            InitializeComponent(); 
+            
+            // 初始化本地化管理器
+            string xboxGamesDbPath = Path.Combine(
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), 
+                "xbox_games.db");
+            _localizationManager = new ContentLocalizationManager(xboxGamesDbPath);
+            
+            // 更新UI状态
+            UpdateLocalizationUI();
+        }
+        
+        /// <summary>
+        /// 本地化功能是否可用
+        /// </summary>
+        public bool IsLocalizedEnabled
+        {
+            get { return _isLocalizedEnabled; }
+            set 
+            { 
+                _isLocalizedEnabled = value;
+                UpdateLocalizationUI();
+            }
+        }
 
         public void OpenDb(string filename = null) {
             try {
@@ -32,9 +64,21 @@ namespace AuroraDbManager.Views {
                 }
                 SendStatusChanged("Loading {0}...", filename);
                 App.DbManager.ConnectToContent(filename);
-                Dispatcher.Invoke(new Action(() => ContentDbViewBox.ItemsSource = App.DbManager.GetContentItems()));
+                var contentItems = App.DbManager.GetContentItems();
+                
+                // 应用本地化（如果可用）
+                if (_localizationManager.IsXboxGamesDbAvailable()) {
+                    SendStatusChanged("正在本地化内容数据库...");
+                    int localizedCount = _localizationManager.LocalizeContentItems(contentItems);
+                    SendStatusChanged($"已完成本地化 {localizedCount} 个项目");
+                }
+                
+                Dispatcher.Invoke(new Action(() => ContentDbViewBox.ItemsSource = contentItems));
                 Dispatcher.Invoke(new Action(() => TitleUpdatesDbViewBox.ItemsSource = App.DbManager.GetTitleUpdateItems()));
                 SendStatusChanged("Finished loading Content DB...");
+                
+                // 更新本地化功能状态
+                IsLocalizedEnabled = (contentItems.Count() > 0) && _localizationManager.IsXboxGamesDbAvailable();
             }
             catch(Exception ex) {
                 App.SaveException(ex);
@@ -50,6 +94,62 @@ namespace AuroraDbManager.Views {
             var handler = App.StatusChanged;
             if(handler != null)
                 handler(this, new StatusEventArgs(string.Format(msg, param)));
+        }
+        
+        /// <summary>
+        /// 更新本地化UI状态
+        /// </summary>
+        private void UpdateLocalizationUI()
+        {
+            if (LocalizeButton != null)
+            {
+                LocalizeButton.IsEnabled = _isLocalizedEnabled;
+            }
+            
+            if (LocalizationStatusText != null)
+            {
+                if (!_localizationManager.IsXboxGamesDbAvailable())
+                {
+                    LocalizationStatusText.Text = "本地化数据库不可用";
+                }
+                else if (!_isLocalizedEnabled)
+                {
+                    LocalizationStatusText.Text = "无内容可本地化";
+                }
+                else
+                {
+                    LocalizationStatusText.Text = "本地化功能就绪";
+                }
+            }
+        }
+        
+        /// <summary>
+        /// 本地化按钮点击事件
+        /// </summary>
+        private void LocalizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (ContentDbViewBox.ItemsSource is IEnumerable<ContentItem> contentItems)
+                {
+                    SendStatusChanged("正在本地化内容数据库...");
+                    int localizedCount = _localizationManager.LocalizeContentItems(contentItems);
+                    
+                    // 刷新UI
+                    ContentDbViewBox.Items.Refresh();
+                    
+                    SendStatusChanged($"已完成本地化 {localizedCount} 个项目");
+                }
+                else
+                {
+                    SendStatusChanged("没有可本地化的内容");
+                }
+            }
+            catch (Exception ex)
+            {
+                App.SaveException(ex);
+                SendStatusChanged($"本地化失败: {ex.Message}");
+            }
         }
 
         private void ContentDataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e) {
@@ -145,11 +245,17 @@ namespace AuroraDbManager.Views {
             }
         }
 
-        private DataGridRow FindParentDataGridRow(DependencyObject child) {
-            while (child != null && !(child is DataGridRow)) {
-                child = VisualTreeHelper.GetParent(child);
+        private DataGridRow FindParentDataGridRow(System.Windows.DependencyObject child) {
+            System.Windows.DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+
+            if (parentObject == null) return null;
+
+            if (parentObject is DataGridRow row) {
+                return row;
             }
-            return child as DataGridRow;
+            else {
+                return FindParentDataGridRow(parentObject);
+            }
         }
 
         private void DeleteContentItem_Click(object sender, RoutedEventArgs e) {
@@ -239,7 +345,7 @@ namespace AuroraDbManager.Views {
                 // var newItem = new TitleUpdateItem(/* 初始化DataRow */);
                 // App.DbManager.AddTitleUpdateItem(newItem);
                 // SendStatusChanged("New title update item added successfully");
-                // 
+                //
                 // // 更新UI
                 // var items = App.DbManager.GetTitleUpdateItems();
                 // Dispatcher.Invoke(new Action(() => TitleUpdatesDbViewBox.ItemsSource = items));

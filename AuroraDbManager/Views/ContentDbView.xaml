@@ -18,7 +18,23 @@
         </ContextMenu>
     </UserControl.Resources>
     <Grid>
-        <TabControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 添加本地化工具栏 -->
+        <ToolBar Grid.Row="0" Height="30">
+            <Button Name="LocalizeButton" Click="LocalizeButton_Click" 
+                    IsEnabled="{Binding IsLocalizedEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="本地化标题" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <TextBlock Name="LocalizationStatusText" VerticalAlignment="Center" Margin="10,0,0,0" Text="就绪"/>
+        </ToolBar>
+        
+        <TabControl Grid.Row="1">
             <TabItem Header="Content Items">
                 <DataGrid x:Name="ContentDbViewBox" IsTextSearchEnabled="False" AlternationCount="2"
                           AutoGenerateColumns="False" CanUserSortColumns="True" CanUserReorderColumns="True"

@@ -1,4 +1,4 @@
-﻿// 
+// 
 // 	App.xaml.cs
 // 	AuroraDbManager
 // 
@@ -9,13 +9,13 @@ namespace AuroraDbManager {
     using System;
     using System.IO;
     using AuroraDbManager.Classes;
-    using AuroraDbManager.Database;
+    using DbManager = AuroraDbManager.Database.AuroraDbManager;
 
     /// <summary>
     ///     Interaction logic for App.xaml
     /// </summary>
     public partial class App {
-        internal static readonly AuroraDbManager DbManager = new AuroraDbManager();
+        internal static readonly DbManager DbManager = new DbManager();
         internal static EventHandler<StatusEventArgs> StatusChanged;
 
         public static void SaveException(Exception ex) { File.AppendAllText("error.log", string.Format("[{0}]:{2}{1}{2}", DateTime.Now, ex, Environment.NewLine)); }
