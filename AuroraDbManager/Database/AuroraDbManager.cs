@@ -91,17 +91,35 @@ namespace AuroraDbManager.Database {
 
         private int ExecuteNonQueryContent(string sql) {
             try {
-                var cmd = new SQLiteCommand(sql, _content);
-                return cmd.ExecuteNonQuery();
+                System.Diagnostics.Debug.WriteLine($"ExecuteNonQueryContent: Attempting to execute SQL: {sql}");
+
+                // 使用事务确保数据一致性
+                using (var transaction = _content.BeginTransaction()) {
+                    var cmd = new SQLiteCommand(sql, _content, transaction);
+                    var result = cmd.ExecuteNonQuery();
+                    transaction.Commit(); // 显式提交事务
+
+                    // 添加调试日志，帮助诊断问题
+                    System.Diagnostics.Debug.WriteLine($"ExecuteNonQueryContent: SQL={sql}, Result={result}");
+
+                    return result;
+                }
             }
-            catch(Exception ex) {
-                App.SaveException(ex);
-                return 0;
+            catch (Exception ex) {
+                // 记录详细的错误信息
+                var errorMsg = $"ExecuteNonQueryContent failed. SQL: {sql}, Error: {ex.Message}";
+                System.Diagnostics.Debug.WriteLine(errorMsg);
+                App.SaveException(new Exception(errorMsg, ex));
+
+                // 抛出异常，让上层知道发生了错误
+                throw new Exception($"数据库操作失败: {ex.Message}", ex);
             }
         }
 
         private int ExecuteNonQuerySettings(string sql) {
             try {
+                System.Diagnostics.Debug.WriteLine($"ExecuteNonQuerySettings: Attempting to execute SQL: {sql}");
+                
                 // 使用事务确保数据一致性
                 using(var transaction = _settings.BeginTransaction()) {
                     var cmd = new SQLiteCommand(sql, _settings, transaction);
@@ -148,65 +166,144 @@ namespace AuroraDbManager.Database {
         }
 
         public void SaveContentChanges() {
-            foreach(var contentItem in _contentItems) {
-                if (!contentItem.Changed)
-                    continue;
-                //TODO: Make it save content Changes
+            System.Diagnostics.Debug.WriteLine("SaveContentChanges: Starting to save changes");
+
+            var sql = new StringBuilder();
+            var changedItems = new List<string>();
+
+            // 检查ContentItems中的更改项并生成SQL
+            System.Diagnostics.Debug.WriteLine($"SaveContentChanges: Checking {_contentItems.Count()} ContentItem items");
+            foreach (var item in _contentItems.Where(x => x.Changed)) {
+                sql.AppendLine($"UPDATE ContentItems SET " +
+                    $"TitleId={item.TitleId}, " +
+                    $"MediaId={item.MediaId}, " +
+                    $"BaseVersion={item.BaseVersion}, " +
+                    $"DiscNum={item.DiscNum}, " +
+                    $"DiscsInSet={item.DiscsInSet}, " +
+                    $"TitleName='{item.TitleName.Replace("'", "''")}', " +
+                    $"Description='{item.Description.Replace("'", "''")}', " +
+                    $"Publisher='{item.Publisher.Replace("'", "''")}', " +
+                    $"Developer='{item.Developer.Replace("'", "''")}', " +
+                    $"LiveRating={item.LiveRating}, " +
+                    $"LiveRaters={item.LiveRaters}, " +
+                    $"ReleaseDate='{item.ReleaseDate.Replace("'", "''")}', " +
+                    $"GenreFlag={(int)item.GenreFlag}, " +
+                    $"ContentFlags={(int)item.ContentFlags}, " +
+                    $"Hash='{item.Hash.Replace("'", "''")}', " +
+                    $"GameCapsOnline={((long)item.DataRow["GameCapsOnline"])}, " +
+                    $"GameCapsOffline={((long)item.DataRow["GameCapsOffline"])}, " +
+                    $"GameCapsFlags={(int)item.GameCapsFlags}, " +
+                    $"FileType={(int)item.FileType}, " +
+                    $"ContentType={(int)item.ContentType}, " +
+                    $"ContentGroup={(int)item.ContentGroup}, " +
+                    $"DefaultGroup={(int)item.DefaultGroup}, " +
+                    $"DateAdded={item.DateAdded.ToFileTime()}, " +
+                    $"FoundAtDepth={item.FoundAtDepth}, " +
+                    $"SystemLink={(item.SystemLink ? 1 : 0)}, " +
+                    $"ScanPathId={item.ScanPathId}, " +
+                    $"Directory='{item.Directory.Replace("'", "''")}', " +
+                    $"Executable='{item.Executable.Replace("'", "''")}' " +
+                    $"WHERE Id={item.Id};");
+                changedItems.Add($"ContentItem Id={item.Id}");
+                System.Diagnostics.Debug.WriteLine($"ContentItem UPDATE: Id={item.Id}, TitleName={item.TitleName}");
             }
-            foreach(var titleUpdateItem in _titleUpdateItems) {
-                if (!titleUpdateItem.Changed)
-                    continue;
-                //TODO: Make it save titleupdate Changes
+
+            // 检查TitleUpdateItems中的更改项并生成SQL
+            System.Diagnostics.Debug.WriteLine($"SaveContentChanges: Checking {_titleUpdateItems.Count()} TitleUpdateItem items");
+            foreach (var item in _titleUpdateItems.Where(x => x.Changed)) {
+                sql.AppendLine($"UPDATE TitleUpdates SET " +
+                    $"DisplayName='{item.DisplayName.Replace("'", "''")}', " +
+                    $"FileName='{item.FileName.Replace("'", "''")}', " +
+                    $"LiveDeviceId='{item.LiveDeviceId.Replace("'", "''")}', " +
+                    $"LivePath='{item.LivePath.Replace("'", "''")}', " +
+                    $"TitleId={item.TitleId}, " +
+                    $"MediaId={item.MediaId}, " +
+                    $"BaseVersion={item.BaseVersion}, " +
+                    $"Version={item.Version}, " +
+                    $"Hash='{item.Hash.Replace("'", "''")}', " +
+                    $"BackupPath='{item.BackupPath.Replace("'", "''")}', " +
+                    $"FileSize='{item.FileSize}' " +
+                    $"WHERE Id={item.Id};");
+                changedItems.Add($"TitleUpdateItem Id={item.Id}");
+                System.Diagnostics.Debug.WriteLine($"TitleUpdateItem UPDATE: Id={item.Id}, DisplayName={item.DisplayName}");
+            }
+
+            // 执行SQL
+            System.Diagnostics.Debug.WriteLine($"SaveContentChanges: Found {changedItems.Count} changed items");
+            if (sql.Length > 0) {
+                System.Diagnostics.Debug.WriteLine($"Executing {changedItems.Count} updates: {string.Join(", ", changedItems)}");
+                System.Diagnostics.Debug.WriteLine($"SQL to execute: {sql}");
+                var result = ExecuteNonQueryContent(sql.ToString());
+                System.Diagnostics.Debug.WriteLine($"SaveContentChanges: {result} rows affected");
+
+                // 只清除已保存项的更改标记
+                foreach (var item in _contentItems.Where(x => x.Changed)) item.Changed = false;
+                foreach (var item in _titleUpdateItems.Where(x => x.Changed)) item.Changed = false;
+
+                System.Diagnostics.Debug.WriteLine("SaveContentChanges completed successfully");
+            }
+            else {
+                System.Diagnostics.Debug.WriteLine("SaveContentChanges: No changes detected");
             }
         }
 
         public void SaveSettingsChanges() {
+            System.Diagnostics.Debug.WriteLine("SaveSettingsChanges: Starting to save changes");
+            
             var sql = new StringBuilder();
             var changedItems = new List<string>();
             
             // 检查每个集合中的更改项并生成SQL
+            System.Diagnostics.Debug.WriteLine($"SaveSettingsChanges: Checking {_systemSettingItems.Count()} SystemSetting items");
             foreach(var item in _systemSettingItems.Where(x => x.Changed)) {
                 sql.AppendLine($"UPDATE SystemSettings SET Name='{item.Name.Replace("'", "''")}', Value='{item.Value.Replace("'", "''")}' WHERE Id={item.Id};");
                 changedItems.Add($"SystemSetting Id={item.Id}");
                 System.Diagnostics.Debug.WriteLine($"SystemSetting UPDATE: Id={item.Id}, Name={item.Name}, Value={item.Value}");
             }
             
+            System.Diagnostics.Debug.WriteLine($"SaveSettingsChanges: Checking {_userSettingItems.Count()} UserSetting items");
             foreach(var item in _userSettingItems.Where(x => x.Changed)) {
                 sql.AppendLine($"UPDATE UserSettings SET Name='{item.Name.Replace("'", "''")}', Value='{item.Value.Replace("'", "''")}', ProfileId='{item.ProfileId.Replace("'", "''")}' WHERE Id={item.Id};");
                 changedItems.Add($"UserSetting Id={item.Id}");
                 System.Diagnostics.Debug.WriteLine($"UserSetting UPDATE: Id={item.Id}, Name={item.Name}, Value={item.Value}");
             }
             
+            System.Diagnostics.Debug.WriteLine($"SaveSettingsChanges: Checking {_scanPathItems.Count()} ScanPath items");
             foreach(var item in _scanPathItems.Where(x => x.Changed)) {
                 sql.AppendLine($"UPDATE ScanPaths SET Path='{item.Path.Replace("'", "''")}', DeviceId='{item.DeviceID.Replace("'", "''")}', Depth={item.Depth}, ScriptData='{item.ScriptData.Replace("'", "''")}', OptionsFlag={item.OptionsFlag} WHERE Id={item.Id};");
                 changedItems.Add($"ScanPath Id={item.Id}");
                 System.Diagnostics.Debug.WriteLine($"ScanPath UPDATE: Id={item.Id}, Path={item.Path}");
             }
             
+            System.Diagnostics.Debug.WriteLine($"SaveSettingsChanges: Checking {_profileItems.Count()} Profile items");
             foreach(var item in _profileItems.Where(x => x.Changed)) {
                 sql.AppendLine($"UPDATE Profiles SET Gametag='{item.GameTag.Replace("'", "''")}', Xuid='{item.Xuid.Replace("'", "''")}' WHERE Id={item.Id};");
                 changedItems.Add($"Profile Id={item.Id}");
                 System.Diagnostics.Debug.WriteLine($"Profile UPDATE: Id={item.Id}, Gametag={item.GameTag}");
             }
             
+            System.Diagnostics.Debug.WriteLine($"SaveSettingsChanges: Checking {_quickViewItems.Count()} QuickView items");
             foreach(var item in _quickViewItems.Where(x => x.Changed)) {
                 sql.AppendLine($"UPDATE QuickViews SET DisplayName='{item.DisplayName.Replace("'", "''")}', SortMethod='{item.SortMethod.Replace("'", "''")}', FilterMethod='{item.FilterMethod.Replace("'", "''")}', Flags={item.Flags}, CreatorXUID='{item.CreatorXUID.Replace("'", "''")}', OrderIndex={item.OrderIndex}, IconHash='{item.IconHash.Replace("'", "''")}' WHERE Id={item.Id};");
                 changedItems.Add($"QuickView Id={item.Id}");
                 System.Diagnostics.Debug.WriteLine($"QuickView UPDATE: Id={item.Id}, DisplayName={item.DisplayName}");
             }
             
+            System.Diagnostics.Debug.WriteLine($"SaveSettingsChanges: Checking {_userFavoriteItems.Count()} UserFavorite items");
             foreach(var item in _userFavoriteItems.Where(x => x.Changed)) {
                 sql.AppendLine($"UPDATE UserFavorites SET ContentId={item.ContentId}, ProfileId='{item.ProfileId.Replace("'", "''")}' WHERE Id={item.Id};");
                 changedItems.Add($"UserFavorite Id={item.Id}");
                 System.Diagnostics.Debug.WriteLine($"UserFavorite UPDATE: Id={item.Id}, ContentId={item.ContentId}");
             }
             
+            System.Diagnostics.Debug.WriteLine($"SaveSettingsChanges: Checking {_userHiddenItems.Count()} UserHidden items");
             foreach(var item in _userHiddenItems.Where(x => x.Changed)) {
                 sql.AppendLine($"UPDATE UserHidden SET ContentId={item.ContentId}, ProfileId='{item.ProfileId.Replace("'", "''")}' WHERE Id={item.Id};");
                 changedItems.Add($"UserHidden Id={item.Id}");
                 System.Diagnostics.Debug.WriteLine($"UserHidden UPDATE: Id={item.Id}, ContentId={item.ContentId}");
             }
             
+            System.Diagnostics.Debug.WriteLine($"SaveSettingsChanges: Checking {_trainerItems.Count()} Trainer items");
             foreach(var item in _trainerItems.Where(x => x.Changed)) {
                 sql.AppendLine($"UPDATE Trainers SET TitleId='{item.TitleId.Replace("'", "''")}', MediaId='{item.MediaId.Replace("'", "''")}', TrainerPath='{item.TrainerPath.Replace("'", "''")}', TrainerName='{item.TrainerName.Replace("'", "''")}', TrainerVersion={item.TrainerVersion}, TrainerData='{item.TrainerData.Replace("'", "''")}', TrainerInfo='{item.TrainerInfo.Replace("'", "''")}', TrainerAuthor='{item.TrainerAuthor.Replace("'", "''")}', TrainerRating={item.TrainerRating}, TrainerFlags={item.TrainerFlags}, CreatorXUID='{item.CreatorXUID.Replace("'", "''")}' WHERE Id={item.Id};");
                 changedItems.Add($"Trainer Id={item.Id}");
@@ -214,20 +311,22 @@ namespace AuroraDbManager.Database {
             }
             
             // 执行SQL
+            System.Diagnostics.Debug.WriteLine($"SaveSettingsChanges: Found {changedItems.Count} changed items");
             if(sql.Length > 0) {
                 System.Diagnostics.Debug.WriteLine($"Executing {changedItems.Count} updates: {string.Join(", ", changedItems)}");
+                System.Diagnostics.Debug.WriteLine($"SQL to execute: {sql}");
                 var result = ExecuteNonQuerySettings(sql.ToString());
                 System.Diagnostics.Debug.WriteLine($"SaveSettingsChanges: {result} rows affected");
                 
-                // 清除所有更改标记
-                foreach(var item in _systemSettingItems) item.Changed = false;
-                foreach(var item in _userSettingItems) item.Changed = false;
-                foreach(var item in _scanPathItems) item.Changed = false;
-                foreach(var item in _profileItems) item.Changed = false;
-                foreach(var item in _trainerItems) item.Changed = false;
-                foreach(var item in _userFavoriteItems) item.Changed = false;
-                foreach(var item in _userHiddenItems) item.Changed = false;
-                foreach(var item in _quickViewItems) item.Changed = false;
+                // 只清除已保存项的更改标记
+                foreach(var item in _systemSettingItems.Where(x => x.Changed)) item.Changed = false;
+                foreach(var item in _userSettingItems.Where(x => x.Changed)) item.Changed = false;
+                foreach(var item in _scanPathItems.Where(x => x.Changed)) item.Changed = false;
+                foreach(var item in _profileItems.Where(x => x.Changed)) item.Changed = false;
+                foreach(var item in _trainerItems.Where(x => x.Changed)) item.Changed = false;
+                foreach(var item in _userFavoriteItems.Where(x => x.Changed)) item.Changed = false;
+                foreach(var item in _userHiddenItems.Where(x => x.Changed)) item.Changed = false;
+                foreach(var item in _quickViewItems.Where(x => x.Changed)) item.Changed = false;
                 
                 System.Diagnostics.Debug.WriteLine("SaveSettingsChanges completed successfully");
             }
@@ -327,7 +426,7 @@ namespace AuroraDbManager.Database {
             }
         }
 
-                        public void DeleteQuickView(QuickViewItem quickView) {
+        public void DeleteQuickView(QuickViewItem quickView) {
             var sql = string.Format("DELETE FROM QuickViews WHERE Id={0}", quickView.Id);
             ExecuteNonQuerySettings(sql);
             var list = _quickViewItems.ToList();
@@ -411,6 +510,123 @@ namespace AuroraDbManager.Database {
             var list = _trainerItems.ToList();
             list.Add(trainer);
             _trainerItems = list.ToArray();
+        }
+
+        public void DeleteContentItem(ContentItem item) {
+            try {
+                var sql = $"DELETE FROM ContentItems WHERE Id={item.Id}";
+                ExecuteNonQueryContent(sql);
+                
+                var list = _contentItems.ToList();
+                list.RemoveAll(x => x.Id == item.Id);
+                _contentItems = list.ToArray();
+                
+                SendStatusChanged("Content item deleted successfully");
+            }
+            catch (Exception ex) {
+                App.SaveException(ex);
+                throw new Exception($"Failed to delete content item: {ex.Message}", ex);
+            }
+        }
+
+        public void DeleteTitleUpdateItem(TitleUpdateItem item) {
+            try {
+                var sql = $"DELETE FROM TitleUpdates WHERE Id={item.Id}";
+                ExecuteNonQueryContent(sql);
+                
+                var list = _titleUpdateItems.ToList();
+                list.RemoveAll(x => x.Id == item.Id);
+                _titleUpdateItems = list.ToArray();
+                
+                SendStatusChanged("Title update item deleted successfully");
+            }
+            catch (Exception ex) {
+                App.SaveException(ex);
+                throw new Exception($"Failed to delete title update item: {ex.Message}", ex);
+            }
+        }
+
+        public void AddContentItem(ContentItem item) {
+            try {
+                var sql = $"INSERT INTO ContentItems (" +
+                    $"Directory, Executable, TitleId, MediaId, BaseVersion, DiscNum, DiscsInSet, TitleName, Description, " +
+                    $"Publisher, Developer, LiveRating, LiveRaters, ReleaseDate, GenreFlag, ContentFlags, Hash, " +
+                    $"GameCapsOnline, GameCapsOffline, GameCapsFlags, FileType, ContentType, ContentGroup, DefaultGroup, " +
+                    $"DateAdded, FoundAtDepth, SystemLink, ScanPathId) VALUES (" +
+                    $"'{item.Directory.Replace("'", "''")}', " +
+                    $"'{item.Executable.Replace("'", "''")}', " +
+                    $"{item.TitleId}, " +
+                    $"{item.MediaId}, " +
+                    $"{item.BaseVersion}, " +
+                    $"{item.DiscNum}, " +
+                    $"{item.DiscsInSet}, " +
+                    $"'{item.TitleName.Replace("'", "''")}', " +
+                    $"'{item.Description.Replace("'", "''")}', " +
+                    $"'{item.Publisher.Replace("'", "''")}', " +
+                    $"'{item.Developer.Replace("'", "''")}', " +
+                    $"{item.LiveRating}, " +
+                    $"{item.LiveRaters}, " +
+                    $"'{item.ReleaseDate.Replace("'", "''")}', " +
+                    $"{(int)item.GenreFlag}, " +
+                    $"{(int)item.ContentFlags}, " +
+                    $"'{item.Hash.Replace("'", "''")}', " +
+                    $"{((long)item.DataRow["GameCapsOnline"])}, " +
+                    $"{((long)item.DataRow["GameCapsOffline"])}, " +
+                    $"{(int)item.GameCapsFlags}, " +
+                    $"{(int)item.FileType}, " +
+                    $"{(int)item.ContentType}, " +
+                    $"{(int)item.ContentGroup}, " +
+                    $"{(int)item.DefaultGroup}, " +
+                    $"{item.DateAdded.ToFileTime()}, " +
+                    $"{item.FoundAtDepth}, " +
+                    $"{(item.SystemLink ? 1 : 0)}, " +
+                    $"{item.ScanPathId}" +
+                    $")";
+                
+                ExecuteNonQueryContent(sql);
+                
+                var list = _contentItems.ToList();
+                list.Add(item);
+                _contentItems = list.ToArray();
+                
+                SendStatusChanged("Content item added successfully");
+            }
+            catch (Exception ex) {
+                App.SaveException(ex);
+                throw new Exception($"Failed to add content item: {ex.Message}", ex);
+            }
+        }
+
+        public void AddTitleUpdateItem(TitleUpdateItem item) {
+            try {
+                var sql = $"INSERT INTO TitleUpdates (" +
+                    $"DisplayName, FileName, LiveDeviceId, LivePath, TitleId, MediaId, BaseVersion, Version, Hash, BackupPath, FileSize" +
+                    $") VALUES (" +
+                    $"'{item.DisplayName.Replace("'", "''")}', " +
+                    $"'{item.FileName.Replace("'", "''")}', " +
+                    $"'{item.LiveDeviceId.Replace("'", "''")}', " +
+                    $"'{item.LivePath.Replace("'", "''")}', " +
+                    $"{item.TitleId}, " +
+                    $"{item.MediaId}, " +
+                    $"{item.BaseVersion}, " +
+                    $"{item.Version}, " +
+                    $"'{item.Hash.Replace("'", "''")}', " +
+                    $"'{item.BackupPath.Replace("'", "''")}', " +
+                    $"'{item.FileSize}'" +
+                    $")";
+                
+                ExecuteNonQueryContent(sql);
+                
+                var list = _titleUpdateItems.ToList();
+                list.Add(item);
+                _titleUpdateItems = list.ToArray();
+                
+                SendStatusChanged("Title update item added successfully");
+            }
+            catch (Exception ex) {
+                App.SaveException(ex);
+                throw new Exception($"Failed to add title update item: {ex.Message}", ex);
+            }
         }
 
         public void CloseSettingsDb()

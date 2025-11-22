@@ -3,70 +3,68 @@ using System.Data;
 
 namespace AuroraDbManager.Database {
     internal class QuickViewItem {
-        private readonly DataRow _row;
+        public QuickViewItem(DataRow row) { DataRow = row; }
 
-        public QuickViewItem(DataRow row) {
-            _row = row;
-        }
+        internal DataRow DataRow { get; private set; }
 
-        public int Id { get { return int.Parse(_row["Id"].ToString()); } }
+        public bool Changed { get; set; }
+
+        public int Id { get { return int.Parse(DataRow["Id"].ToString()); } }
         
         public string DisplayName { 
-            get { return _row["DisplayName"].ToString(); }
+            get { return DataRow["DisplayName"].ToString(); }
             set {
-                _row["DisplayName"] = value;
+                DataRow["DisplayName"] = value;
                 Changed = true;
             }
         }
         
         public string SortMethod { 
-            get { return _row["SortMethod"].ToString(); }
+            get { return DataRow["SortMethod"].ToString(); }
             set {
-                _row["SortMethod"] = value;
+                DataRow["SortMethod"] = value;
                 Changed = true;
             }
         }
         
         public string FilterMethod { 
-            get { return _row["FilterMethod"].ToString(); }
+            get { return DataRow["FilterMethod"].ToString(); }
             set {
-                _row["FilterMethod"] = value;
+                DataRow["FilterMethod"] = value;
                 Changed = true;
             }
         }
         
         public int Flags { 
-            get { return int.Parse(_row["Flags"].ToString()); }
+            get { return int.Parse(DataRow["Flags"].ToString()); }
             set {
-                _row["Flags"] = value;
+                DataRow["Flags"] = value;
                 Changed = true;
             }
         }
         
         public string CreatorXUID { 
-            get { return _row["CreatorXUID"].ToString(); }
+            get { return DataRow["CreatorXUID"].ToString(); }
             set {
-                _row["CreatorXUID"] = value;
+                DataRow["CreatorXUID"] = value;
                 Changed = true;
             }
         }
         
         public int OrderIndex { 
-            get { return int.Parse(_row["OrderIndex"].ToString()); }
+            get { return int.Parse(DataRow["OrderIndex"].ToString()); }
             set {
-                _row["OrderIndex"] = value;
+                DataRow["OrderIndex"] = value;
                 Changed = true;
             }
         }
         
         public string IconHash { 
-            get { return _row["IconHash"].ToString(); }
+            get { return DataRow["IconHash"].ToString(); }
             set {
-                _row["IconHash"] = value;
+                DataRow["IconHash"] = value;
                 Changed = true;
             }
         }
-        
-        public bool Changed { get; set; }
     }
 }

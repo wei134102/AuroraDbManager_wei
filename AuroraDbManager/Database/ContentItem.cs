@@ -21,7 +21,7 @@ namespace AuroraDbManager.Database {
 
         internal DataRow DataRow { get; private set; }
 
-        internal bool Changed { get; private set; }
+        public bool Changed { get; set; }
 
         public int BaseVersion {
             get { return (int)(long)DataRow["BaseVersion"]; }

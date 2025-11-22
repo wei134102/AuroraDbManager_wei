@@ -159,7 +159,7 @@
                       AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                       ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
                       SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                      RowBackground="WhiteSmoke" IsReadOnly="True"
+                      RowBackground="WhiteSmoke" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
                       MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening"
                       ContextMenu="{StaticResource DataGridContextMenu}">
                     <DataGrid.Columns>
@@ -176,7 +176,7 @@
                       AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                       ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
                       SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                      RowBackground="WhiteSmoke" IsReadOnly="True"
+                      RowBackground="WhiteSmoke" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
                       MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening"
                       ContextMenu="{StaticResource DataGridContextMenu}">
                     <DataGrid.Columns>
@@ -193,7 +193,7 @@
                       AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                       ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
                       SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                      RowBackground="WhiteSmoke" IsReadOnly="True">
+                      RowBackground="WhiteSmoke" IsReadOnly="True" RowEditEnding="DataGrid_RowEditEnding">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="Date &amp; Time" Width="SizeToCells" Binding="{Binding DateTime}"/>

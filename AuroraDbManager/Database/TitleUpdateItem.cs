@@ -13,7 +13,7 @@ namespace AuroraDbManager.Database {
 
         internal DataRow DataRow { get; private set; }
 
-        internal bool Changed { get; private set; }
+        public bool Changed { get; set; }
 
         public int Id { get { return (int)((long)DataRow["Id"]); } }
 

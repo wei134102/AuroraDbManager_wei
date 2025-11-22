@@ -109,42 +109,72 @@ namespace AuroraDbManager.Views {
                 return;
 
             try {
-                // DataGrid编辑已经直接修改了底层DataRow，并且属性setter已经设置了Changed=true
-                // 我们只需要保存更改即可，不需要调用UpdateXxx方法
-                App.DbManager.SaveSettingsChanges(); // 保存所有更改到数据库
+                // 添加调试日志
+                System.Diagnostics.Debug.WriteLine($"DataGrid_RowEditEnding: Editing item of type {e.Row.Item.GetType().Name}");
+                // 在没有调试器的情况下也可以看到消息
+                #if DEBUG
+                // System.Windows.MessageBox.Show($"Editing item of type {e.Row.Item.GetType().Name}", "Debug Info", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                #endif
                 
-                // 重新加载数据以确保界面显示最新数据
-                ReloadDataGrid(dataGrid);
-                
-                // 显示成功消息
-                if(e.Row.Item is Database.ProfileItem) {
-                    SendStatusChanged("Profile updated successfully");
-                }
-                else if(e.Row.Item is Database.ScanPathItem) {
-                    SendStatusChanged("Scan path updated successfully");
-                }
-                else if(e.Row.Item is Database.SystemSettingItem) {
-                    SendStatusChanged("System setting updated successfully");
-                }
-                else if(e.Row.Item is Database.UserSettingItem) {
-                    SendStatusChanged("User setting updated successfully");
-                }
-                else if(e.Row.Item is Database.QuickViewItem) {
-                    SendStatusChanged("Quick view updated successfully");
-                }
-                else if(e.Row.Item is Database.UserFavoriteItem) {
-                    SendStatusChanged("User favorite updated successfully");
-                }
-                else if(e.Row.Item is Database.UserHiddenItem) {
-                    SendStatusChanged("User hidden item updated successfully");
-                }
-                else if(e.Row.Item is Database.TrainerItem) {
-                    SendStatusChanged("Trainer updated successfully");
-                }
+                // 延迟保存操作，确保所有编辑都已完成
+                Dispatcher.BeginInvoke(new Action(() => {
+                    try {
+                        App.DbManager.SaveSettingsChanges(); // 保存所有更改到数据库
+                        
+                        // 显示成功消息
+                        string statusMessage = "";
+                        if(e.Row.Item is Database.ProfileItem) {
+                            statusMessage = "Profile updated successfully";
+                        }
+                        else if(e.Row.Item is Database.ScanPathItem) {
+                            statusMessage = "Scan path updated successfully";
+                        }
+                        else if(e.Row.Item is Database.SystemSettingItem) {
+                            statusMessage = "System setting updated successfully";
+                        }
+                        else if(e.Row.Item is Database.UserSettingItem) {
+                            statusMessage = "User setting updated successfully";
+                        }
+                        else if(e.Row.Item is Database.QuickViewItem) {
+                            statusMessage = "Quick view updated successfully";
+                        }
+                        else if(e.Row.Item is Database.UserFavoriteItem) {
+                            statusMessage = "User favorite updated successfully";
+                        }
+                        else if(e.Row.Item is Database.UserHiddenItem) {
+                            statusMessage = "User hidden item updated successfully";
+                        }
+                        else if(e.Row.Item is Database.TrainerItem) {
+                            statusMessage = "Trainer updated successfully";
+                        }
+                        
+                        if (!string.IsNullOrEmpty(statusMessage)) {
+                            SendStatusChanged(statusMessage);
+                            System.Diagnostics.Debug.WriteLine($"DataGrid_RowEditEnding: {statusMessage}");
+                            #if DEBUG
+                            // System.Windows.MessageBox.Show(statusMessage, "Debug Info", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                            #endif
+                        }
+                        
+                        System.Diagnostics.Debug.WriteLine("DataGrid_RowEditEnding: Completed successfully");
+                    }
+                    catch(Exception ex) {
+                        System.Diagnostics.Debug.WriteLine($"DataGrid_RowEditEnding (Delayed): Exception occurred: {ex.Message}");
+                        App.SaveException(ex);
+                        SendStatusChanged("Failed to update item: " + ex.Message);
+                        #if DEBUG
+                        // System.Windows.MessageBox.Show("Failed to update item: " + ex.Message, "Debug Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        #endif
+                    }
+                }), System.Windows.Threading.DispatcherPriority.Background);
             }
             catch(Exception ex) {
+                System.Diagnostics.Debug.WriteLine($"DataGrid_RowEditEnding: Exception occurred: {ex.Message}");
                 App.SaveException(ex);
                 SendStatusChanged("Failed to update item: " + ex.Message);
+                #if DEBUG
+                // System.Windows.MessageBox.Show("Failed to update item: " + ex.Message, "Debug Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                #endif
             }
         }
 

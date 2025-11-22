@@ -3,30 +3,28 @@ using System.Data;
 
 namespace AuroraDbManager.Database {
     internal class UserHiddenItem {
-        private readonly DataRow _row;
+        public UserHiddenItem(DataRow row) { DataRow = row; }
 
-        public UserHiddenItem(DataRow row) {
-            _row = row;
-        }
+        internal DataRow DataRow { get; private set; }
 
-        public int Id { get { return int.Parse(_row["Id"].ToString()); } }
+        public bool Changed { get; set; }
+
+        public int Id { get { return int.Parse(DataRow["Id"].ToString()); } }
         
         public int ContentId { 
-            get { return int.Parse(_row["ContentId"].ToString()); }
+            get { return int.Parse(DataRow["ContentId"].ToString()); }
             set {
-                _row["ContentId"] = value;
+                DataRow["ContentId"] = value;
                 Changed = true;
             }
         }
         
         public string ProfileId { 
-            get { return _row["ProfileId"].ToString(); }
+            get { return DataRow["ProfileId"].ToString(); }
             set {
-                _row["ProfileId"] = value;
+                DataRow["ProfileId"] = value;
                 Changed = true;
             }
         }
-        
-        public bool Changed { get; set; }
     }
 }

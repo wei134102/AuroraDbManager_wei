@@ -3,102 +3,100 @@ using System.Data;
 
 namespace AuroraDbManager.Database {
     internal class TrainerItem {
-        private readonly DataRow _row;
+        public TrainerItem(DataRow row) { DataRow = row; }
 
-        public TrainerItem(DataRow row) {
-            _row = row;
-        }
+        internal DataRow DataRow { get; private set; }
 
-        public int Id { get { return int.Parse(_row["Id"].ToString()); } }
+        public bool Changed { get; set; }
+
+        public int Id { get { return int.Parse(DataRow["Id"].ToString()); } }
         
         public string TitleId { 
-            get { return _row["TitleId"].ToString(); }
+            get { return DataRow["TitleId"].ToString(); }
             set {
-                _row["TitleId"] = value;
+                DataRow["TitleId"] = value;
                 Changed = true;
             }
         }
         
         public string MediaId { 
-            get { return _row["MediaId"].ToString(); }
+            get { return DataRow["MediaId"].ToString(); }
             set {
-                _row["MediaId"] = value;
+                DataRow["MediaId"] = value;
                 Changed = true;
             }
         }
         
         public string TrainerPath { 
-            get { return _row["TrainerPath"].ToString(); }
+            get { return DataRow["TrainerPath"].ToString(); }
             set {
-                _row["TrainerPath"] = value;
+                DataRow["TrainerPath"] = value;
                 Changed = true;
             }
         }
         
         public string TrainerName { 
-            get { return _row["TrainerName"].ToString(); }
+            get { return DataRow["TrainerName"].ToString(); }
             set {
-                _row["TrainerName"] = value;
+                DataRow["TrainerName"] = value;
                 Changed = true;
             }
         }
         
         public int TrainerVersion { 
-            get { return int.Parse(_row["TrainerVersion"].ToString()); }
+            get { return int.Parse(DataRow["TrainerVersion"].ToString()); }
             set {
-                _row["TrainerVersion"] = value;
+                DataRow["TrainerVersion"] = value;
                 Changed = true;
             }
         }
         
         public string TrainerData { 
-            get { return _row["TrainerData"].ToString(); }
+            get { return DataRow["TrainerData"].ToString(); }
             set {
-                _row["TrainerData"] = value;
+                DataRow["TrainerData"] = value;
                 Changed = true;
             }
         }
         
         public string TrainerInfo { 
-            get { return _row["TrainerInfo"].ToString(); }
+            get { return DataRow["TrainerInfo"].ToString(); }
             set {
-                _row["TrainerInfo"] = value;
+                DataRow["TrainerInfo"] = value;
                 Changed = true;
             }
         }
         
         public string TrainerAuthor { 
-            get { return _row["TrainerAuthor"].ToString(); }
+            get { return DataRow["TrainerAuthor"].ToString(); }
             set {
-                _row["TrainerAuthor"] = value;
+                DataRow["TrainerAuthor"] = value;
                 Changed = true;
             }
         }
         
         public int TrainerRating { 
-            get { return int.Parse(_row["TrainerRating"].ToString()); }
+            get { return int.Parse(DataRow["TrainerRating"].ToString()); }
             set {
-                _row["TrainerRating"] = value;
+                DataRow["TrainerRating"] = value;
                 Changed = true;
             }
         }
         
         public int TrainerFlags { 
-            get { return int.Parse(_row["TrainerFlags"].ToString()); }
+            get { return int.Parse(DataRow["TrainerFlags"].ToString()); }
             set {
-                _row["TrainerFlags"] = value;
+                DataRow["TrainerFlags"] = value;
                 Changed = true;
             }
         }
         
         public string CreatorXUID { 
-            get { return _row["CreatorXUID"].ToString(); }
+            get { return DataRow["CreatorXUID"].ToString(); }
             set {
-                _row["CreatorXUID"] = value;
+                DataRow["CreatorXUID"] = value;
                 Changed = true;
             }
         }
-        
-        public bool Changed { get; set; }
     }
 }
