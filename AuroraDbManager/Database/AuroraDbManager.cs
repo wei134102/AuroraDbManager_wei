@@ -15,10 +15,11 @@ using System.Text;
 using System.Threading;
 using AuroraDbManager.Classes;
 using AuroraDbManager.Database;
+using System.ComponentModel;
 
 namespace AuroraDbManager.Database
 {
-    public partial class AuroraDbManager
+    public partial class AuroraDbManager : INotifyPropertyChanged
     {
         private SQLiteConnection _content;
         private ContentItem[] _contentItems;
@@ -33,9 +34,22 @@ namespace AuroraDbManager.Database
         private UserHiddenItem[] _userHiddenItems;
         private TrainerItem[] _trainerItems;
 
-        public bool IsContentOpen { get { return _content != null; } }
+        public bool IsContentOpen { 
+            get { return _content != null; } 
+            private set { } 
+        }
 
-        public bool IsSettingsOpen { get { return _settings != null; } }
+        public bool IsSettingsOpen { 
+            get { return _settings != null; } 
+            private set { } 
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public void ConnectToContent(string path) {
             if(_content != null)
@@ -44,6 +58,9 @@ namespace AuroraDbManager.Database
             _content.Open();
             _contentItems = GetContentDataTable("SELECT * FROM ContentItems").Select().Select(row => new ContentItem(row)).ToArray();
             _titleUpdateItems = GetContentDataTable("SELECT CAST(FileSize AS TEXT) AS FileSize, * FROM TitleUpdates").Select().Select(row => new TitleUpdateItem(row)).ToArray();
+            
+            // 触发属性更改事件
+            OnPropertyChanged("IsContentOpen");
         }
 
         public void ConnectToSettings(string path) {
@@ -52,6 +69,9 @@ namespace AuroraDbManager.Database
             _settings = new SQLiteConnection("Data Source=\"" + path + "\";Version=3;");
             _settings.Open();
             LoadSettingsData();
+            
+            // 触发属性更改事件
+            OnPropertyChanged("IsSettingsOpen");
         }
 
         private void LoadSettingsData() {
@@ -346,7 +366,11 @@ namespace AuroraDbManager.Database
             GC.Collect();
             while (!isDisposed)
                 Thread.Sleep(10);
+                
+            // 触发属性更改事件
+            OnPropertyChanged("IsContentOpen");
         }
+        
         public IEnumerable<SystemSettingItem> GetSystemSettings() { return _systemSettingItems; }
         public IEnumerable<UserSettingItem> GetUserSettings() { return _userSettingItems; }
         public IEnumerable<ScanPathItem> GetScanPaths() { return _scanPathItems; }
@@ -684,6 +708,9 @@ namespace AuroraDbManager.Database
             GC.Collect();
             while (!isDisposed)
                 Thread.Sleep(10);
+                
+            // 触发属性更改事件
+            OnPropertyChanged("IsSettingsOpen");
         }
 
         public event EventHandler<StatusEventArgs> StatusUpdate;
