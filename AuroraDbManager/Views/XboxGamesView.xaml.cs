@@ -34,6 +34,28 @@ namespace AuroraDbManager.Views
             SearchTextBox.GotFocus += SearchTextBox_GotFocus;
             SearchTextBox.LostFocus += SearchTextBox_LostFocus;
             UpdatePlaceholderText();
+            
+            // 自动加载程序目录下的xbox_games.db文件
+            Loaded += XboxGamesView_Loaded;
+        }
+
+        private void XboxGamesView_Loaded(object sender, RoutedEventArgs e)
+        {
+            // 获取程序目录路径
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string dbPath = Path.Combine(appDirectory, "xbox_games.db");
+            
+            // 检查数据库文件是否存在
+            if (File.Exists(dbPath))
+            {
+                LoadDatabase(dbPath);
+            }
+            else
+            {
+                // 文件不存在，显示提示弹窗
+                MessageBox.Show("未找到xbox_games.db数据库文件。请确保该文件存在于程序目录中，或使用'浏览数据库...'按钮手动选择数据库文件。", 
+                    "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)

@@ -18,6 +18,7 @@ namespace AuroraDbManager {
     using System.Linq;
     using System.Collections.Generic;
     using System.Runtime.Serialization.Json;
+    using Views;
 
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
@@ -94,7 +95,17 @@ namespace AuroraDbManager {
 
         private void OpenXboxGamesDb_OnClick(object sender, RoutedEventArgs e) {
             // 创建并显示Xbox游戏数据库窗口
-            MessageBox.Show("此功能尚未实现", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+            var xboxGamesWindow = new Window {
+                Title = "Xbox游戏数据库",
+                Width = 1000,
+                Height = 700,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
+            };
+
+            var xboxGamesView = new XboxGamesView();
+            xboxGamesWindow.Content = xboxGamesView;
+            
+            xboxGamesWindow.Show();
         }
 
         private void ExportContentData_OnClick(object sender, RoutedEventArgs e) {
