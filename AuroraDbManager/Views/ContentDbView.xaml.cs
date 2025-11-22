@@ -50,7 +50,15 @@ namespace AuroraDbManager.Views {
             set 
             { 
                 _isLocalizedEnabled = value;
-                UpdateLocalizationUI();
+                // 确保UI更新在UI线程中进行
+                if (Dispatcher.CheckAccess())
+                {
+                    UpdateLocalizationUI();
+                }
+                else
+                {
+                    Dispatcher.Invoke(new Action(UpdateLocalizationUI));
+                }
             }
         }
 
@@ -77,8 +85,18 @@ namespace AuroraDbManager.Views {
                 Dispatcher.Invoke(new Action(() => TitleUpdatesDbViewBox.ItemsSource = App.DbManager.GetTitleUpdateItems()));
                 SendStatusChanged("Finished loading Content DB...");
                 
-                // 更新本地化功能状态
-                IsLocalizedEnabled = (contentItems.Count() > 0) && _localizationManager.IsXboxGamesDbAvailable();
+                // 更新本地化功能状态，确保在UI线程中设置属性
+                if (Dispatcher.CheckAccess())
+                {
+                    IsLocalizedEnabled = (contentItems.Count() > 0) && _localizationManager.IsXboxGamesDbAvailable();
+                }
+                else
+                {
+                    Dispatcher.Invoke(new Action(() => 
+                    {
+                        IsLocalizedEnabled = (contentItems.Count() > 0) && _localizationManager.IsXboxGamesDbAvailable();
+                    }));
+                }
             }
             catch(Exception ex) {
                 App.SaveException(ex);
