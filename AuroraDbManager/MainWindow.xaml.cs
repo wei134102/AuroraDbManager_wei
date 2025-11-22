@@ -1,21 +1,21 @@
-﻿// 
+// 
 // 	MainWindow.xaml.cs
 // 	AuroraDbManager
 // 
 // 	Created by Swizzy on 14/05/2015
 // 	Copyright (c) 2015 Swizzy. All rights reserved.
 
-namespace AuroraDbManager {
-    using System;
-    using System.ComponentModel;
-    using System.Reflection;
-    using System.Windows;
-    using AuroraDbManager.Views;
+using System;
+using System.ComponentModel;
+using System.Reflection;
+using System.Windows;
+using AuroraDbManager.Views;
 
+namespace AuroraDbManager {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow {
+    public partial class MainWindow : Window {
         private readonly ContentDbView _contentDbView = new ContentDbView();
         private readonly SettingsDbView _settingsDbView = new SettingsDbView();
 

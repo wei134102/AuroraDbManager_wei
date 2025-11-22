@@ -1,20 +1,23 @@
-﻿// 
+// 
 // 	ContentDbView.xaml.cs
 // 	AuroraDbManager
 // 
 // 	Created by Swizzy on 23/05/2015
 // 	Copyright (c) 2015 Swizzy. All rights reserved.
 
-namespace AuroraDbManager.Views {
-    using System;
-    using System.Windows.Controls;
-    using AuroraDbManager.Classes;
-    using Microsoft.Win32;
+using System;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
+using AuroraDbManager.Classes;
+using AuroraDbManager.Database;
+using Microsoft.Win32;
 
+namespace AuroraDbManager.Views {
     /// <summary>
     ///     Interaction logic for ContentDbView.xaml
     /// </summary>
-    public partial class ContentDbView {
+    public partial class ContentDbView : UserControl {
         public ContentDbView() { InitializeComponent(); }
 
         public void OpenDb(string filename = null) {
