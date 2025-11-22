@@ -4,7 +4,20 @@
         xmlns:Views="clr-namespace:AuroraDbManager.Views"
         Title="Aurora Database Manager" Height="600" Width="1000">
     <Grid>
-        <TabControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Menu Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Load Content Database" Click="SelectContentDb"/>
+                <MenuItem Header="_Load Settings Database" Click="SelectSettingsDb"/>
+            </MenuItem>
+        </Menu>
+        
+        <TabControl Grid.Row="1">
             <TabItem Header="Content Database">
                 <Views:ContentDbView x:Name="ContentDbViewCtrl" />
             </TabItem>
@@ -15,5 +28,11 @@
                 <Views:XboxGamesView x:Name="XboxGamesViewCtrl" />
             </TabItem>
         </TabControl>
+        
+        <StatusBar Grid.Row="2" x:Name="MainStatusBar">
+            <StatusBarItem>
+                <TextBlock x:Name="Status" Text="Ready" />
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>

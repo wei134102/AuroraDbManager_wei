@@ -23,8 +23,8 @@ namespace AuroraDbManager {
             InitializeComponent();
             var ver = Assembly.GetAssembly(typeof(MainWindow)).GetName().Version;
             Title = string.Format(Title, ver.Major, ver.Minor);
-            ContentDbViewTab.Content = _contentDbView;
-            SettingsDbViewTab.Content = _settingsDbView;
+            ContentDbViewCtrl.Content = _contentDbView;
+            SettingsDbViewCtrl.Content = _settingsDbView;
             App.StatusChanged += (sender, args) => Dispatcher.Invoke(new Action(() => Status.Text = args.Status));
         }
 
@@ -41,7 +41,11 @@ namespace AuroraDbManager {
         }
 
         private void OnDragEnter(object sender, DragEventArgs e) {
-            if(ContentDbViewTab.IsSelected || SettingsDbViewTab.IsSelected) {
+            // Since we now directly host the views, we need to check which tab is selected differently
+            bool isContentTab = ContentDbViewCtrl.IsVisible;
+            bool isSettingsTab = SettingsDbViewCtrl.IsVisible;
+            
+            if(isContentTab || isSettingsTab) {
                 if (e.Data.GetDataPresent(DataFormats.FileDrop) && (e.AllowedEffects & DragDropEffects.Copy) == DragDropEffects.Copy)
                     e.Effects = DragDropEffects.Copy;
                 else
@@ -52,9 +56,13 @@ namespace AuroraDbManager {
         }
 
         private void OnDrop(object sender, DragEventArgs e) {
-            if (ContentDbViewTab.IsSelected)
+            // Since we now directly host the views, we need to check which tab is selected differently
+            bool isContentTab = ContentDbViewCtrl.IsVisible;
+            bool isSettingsTab = SettingsDbViewCtrl.IsVisible;
+            
+            if (isContentTab)
                 _contentDbView.OpenDb(((string[])e.Data.GetData(DataFormats.FileDrop))[0]);
-            else if (SettingsDbViewTab.IsSelected)
+            else if (isSettingsTab)
                 _settingsDbView.OpenDb(((string[])e.Data.GetData(DataFormats.FileDrop))[0]);
         }
     }

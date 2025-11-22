@@ -2,7 +2,10 @@ using System;
 using System.Data;
 
 namespace AuroraDbManager.Database {
-    internal class TrainerItem {
+    /// <summary>
+    /// 表示一个训练器项
+    /// </summary>
+    public class TrainerItem {
         public TrainerItem(DataRow row) { DataRow = row; }
 
         internal DataRow DataRow { get; private set; }

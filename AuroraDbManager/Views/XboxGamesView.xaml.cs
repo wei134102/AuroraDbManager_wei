@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using AuroraDbManager.Database;
 using Microsoft.Win32;
+using DbManager = AuroraDbManager.Database.AuroraDbManager;
 
 namespace AuroraDbManager.Views
 {
@@ -21,14 +22,14 @@ namespace AuroraDbManager.Views
     /// </summary>
     public partial class XboxGamesView : UserControl
     {
-        private AuroraDbManager _dbManager;
+        private DbManager _dbManager;
         private string _currentDbPath;
         private List<XboxGameItem> _allGames;
         
         public XboxGamesView()
         {
             InitializeComponent();
-            _dbManager = new AuroraDbManager();
+            _dbManager = new DbManager();
             _allGames = new List<XboxGameItem>();
             SearchTextBox.GotFocus += SearchTextBox_GotFocus;
             SearchTextBox.LostFocus += SearchTextBox_LostFocus;

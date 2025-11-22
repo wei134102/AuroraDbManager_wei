@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using AuroraDbManager.Classes;
 using AuroraDbManager.Database;
 
 namespace AuroraDbManager.Database
@@ -683,6 +684,13 @@ namespace AuroraDbManager.Database
             GC.Collect();
             while (!isDisposed)
                 Thread.Sleep(10);
+        }
+
+        public event EventHandler<StatusEventArgs> StatusUpdate;
+        
+        protected virtual void OnStatusUpdate(StatusEventArgs e)
+        {
+            StatusUpdate?.Invoke(this, e);
         }
 
         /// <summary>

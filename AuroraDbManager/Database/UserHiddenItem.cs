@@ -2,7 +2,10 @@ using System;
 using System.Data;
 
 namespace AuroraDbManager.Database {
-    internal class UserHiddenItem {
+    /// <summary>
+    /// 表示一个用户隐藏项
+    /// </summary>
+    public class UserHiddenItem {
         public UserHiddenItem(DataRow row) { DataRow = row; }
 
         internal DataRow DataRow { get; private set; }
