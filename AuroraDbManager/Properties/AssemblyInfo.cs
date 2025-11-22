@@ -1,4 +1,4 @@
-﻿// 
+// 
 // 	AssemblyInfo.cs
 // 	AuroraDbManager
 // 
@@ -13,12 +13,12 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("AuroraManager")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Aurora Database Manager")]
+[assembly: AssemblyDescription("Aurora Database Manager V2.0 2025年 B站：86年复古游戏厅 优化版")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AuroraManager")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyProduct("Aurora Database Manager")]
+[assembly: AssemblyCopyright("Copyright © 2015-2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -56,5 +56,5 @@ using System.Windows;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("0.1.0.0")]
-[assembly: AssemblyFileVersion("0.1.0.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]
