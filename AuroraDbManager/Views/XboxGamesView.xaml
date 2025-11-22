@@ -1,0 +1,44 @@
+<UserControl x:Class="AuroraDbManager.Views.XboxGamesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 搜索区域 -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <TextBox x:Name="SearchTextBox" Width="300" Margin="0,0,10,0" 
+                     TextChanged="SearchTextBox_TextChanged" 
+                     VerticalContentAlignment="Center"
+                     Tag="输入游戏名称进行搜索..."/>
+            <CheckBox x:Name="SearchChineseCheckBox" Content="在中文标题中搜索" 
+                      VerticalAlignment="Center" Margin="0,0,10,0"
+                      Checked="SearchOptionsChanged" Unchecked="SearchOptionsChanged"/>
+            <Button x:Name="BrowseDbButton" Content="浏览数据库..." 
+                    Click="BrowseDbButton_Click" Margin="0,0,10,0"/>
+            <TextBlock x:Name="GameCountTextBlock" VerticalAlignment="Center" 
+                       Text="游戏总数: 0"/>
+        </StackPanel>
+        
+        <!-- 游戏列表 -->
+        <DataGrid x:Name="GamesDataGrid" Grid.Row="1" 
+                  AutoGenerateColumns="False" IsReadOnly="True"
+                  SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                <DataGridTextColumn Header="标题ID" Binding="{Binding TitleId}" Width="80"/>
+                <DataGridTextColumn Header="英文标题" Binding="{Binding Title}" Width="*"/>
+                <DataGridTextColumn Header="中文标题" Binding="{Binding TitleCn}" Width="*"/>
+                <DataGridTextColumn Header="开发商" Binding="{Binding Developer}" Width="150"/>
+                <DataGridTextColumn Header="发行商" Binding="{Binding Publisher}" Width="150"/>
+                <DataGridTextColumn Header="平台" Binding="{Binding Platform}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

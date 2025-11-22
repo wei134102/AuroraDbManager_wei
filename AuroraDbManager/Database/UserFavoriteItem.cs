@@ -2,7 +2,10 @@ using System;
 using System.Data;
 
 namespace AuroraDbManager.Database {
-    internal class UserFavoriteItem {
+    /// <summary>
+    /// 表示一个用户收藏项
+    /// </summary>
+    public class UserFavoriteItem {
         public UserFavoriteItem(DataRow row) { DataRow = row; }
 
         internal DataRow DataRow { get; private set; }

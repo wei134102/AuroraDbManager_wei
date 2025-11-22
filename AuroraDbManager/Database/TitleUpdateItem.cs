@@ -13,12 +13,20 @@ namespace AuroraDbManager.Database {
 
         internal DataRow DataRow { get; private set; }
 
-        public bool Changed { get; set; }
+        internal bool Changed { get; set; }
 
-        public int Id { get { return (int)((long)DataRow["Id"]); } }
+        public int Id { 
+            get { 
+                var value = DataRow["Id"];
+                return value is long ? (int)(long)value : System.Convert.ToInt32(value);
+            } 
+        }
 
         public string DisplayName {
-            get { return (string)DataRow["DisplayName"]; }
+            get { 
+                var value = DataRow["DisplayName"];
+                return value?.ToString() ?? string.Empty;
+            }
             set {
                 Changed = true;
                 DataRow["DisplayName"] = value;
@@ -26,7 +34,10 @@ namespace AuroraDbManager.Database {
         }
 
         public int TitleId {
-            get { return (int)((long)DataRow["TitleId"]); }
+            get { 
+                var value = DataRow["TitleId"];
+                return value is long ? (int)(long)value : System.Convert.ToInt32(value);
+            }
             set {
                 Changed = true;
                 DataRow["TitleId"] = value;
@@ -34,7 +45,10 @@ namespace AuroraDbManager.Database {
         }
 
         public int MediaId {
-            get { return (int)((long)DataRow["MediaId"]); }
+            get { 
+                var value = DataRow["MediaId"];
+                return value is long ? (int)(long)value : System.Convert.ToInt32(value);
+            }
             set {
                 Changed = true;
                 DataRow["MediaId"] = value;
@@ -42,7 +56,10 @@ namespace AuroraDbManager.Database {
         }
 
         public int BaseVersion {
-            get { return (int)((long)DataRow["BaseVersion"]); }
+            get { 
+                var value = DataRow["BaseVersion"];
+                return value is long ? (int)(long)value : System.Convert.ToInt32(value);
+            }
             set {
                 Changed = true;
                 DataRow["BaseVersion"] = value;
@@ -50,7 +67,10 @@ namespace AuroraDbManager.Database {
         }
 
         public int Version {
-            get { return (int)((long)DataRow["Version"]); }
+            get { 
+                var value = DataRow["Version"];
+                return value is long ? (int)(long)value : System.Convert.ToInt32(value);
+            }
             set {
                 Changed = true;
                 DataRow["Version"] = value;
@@ -58,27 +78,53 @@ namespace AuroraDbManager.Database {
         }
 
         public string FileName {
-            get { return (string)DataRow["FileName"]; }
+            get { 
+                var value = DataRow["FileName"];
+                return value?.ToString() ?? string.Empty;
+            }
             set {
                 Changed = true;
                 DataRow["FileName"] = value;
             }
         }
 
-        public string FileSize { get { return (string)DataRow["FileSize"]; } }
+        public string FileSize { 
+            get { 
+                var value = DataRow["FileSize"];
+                return value?.ToString() ?? string.Empty;
+            } 
+        }
 
-        public string LiveDeviceId { get { return (string)DataRow["LiveDeviceId"]; } }
+        public string LiveDeviceId { 
+            get { 
+                var value = DataRow["LiveDeviceId"];
+                return value?.ToString() ?? string.Empty;
+            } 
+        }
 
         public string LivePath {
-            get { return (string)DataRow["LivePath"]; }
+            get { 
+                var value = DataRow["LivePath"];
+                return value?.ToString() ?? string.Empty;
+            }
             set {
                 Changed = true;
                 DataRow["LivePath"] = value;
             }
         }
 
-        public string BackupPath { get { return (string)DataRow["BackupPath"]; } }
+        public string BackupPath { 
+            get { 
+                var value = DataRow["BackupPath"];
+                return value?.ToString() ?? string.Empty;
+            } 
+        }
 
-        public string Hash { get { return (string)DataRow["Hash"]; } }
+        public string Hash { 
+            get { 
+                var value = DataRow["Hash"];
+                return value?.ToString() ?? string.Empty;
+            } 
+        }
     }
 }

@@ -32,7 +32,13 @@ namespace AuroraDbManager.Database {
         }
 
         public DateTime DateAdded {
-            get { return DateTime.FromFileTime((long)DataRow["DateAdded"]); }
+            get { 
+                var value = DataRow["DateAdded"];
+                if (value is long longValue) {
+                    return DateTime.FromFileTime(longValue);
+                }
+                return DateTime.FromFileTime(Convert.ToInt64(value));
+            }
             set {
                 Changed = true;
                 DataRow["DateAdded"] = value.ToFileTime();
@@ -40,7 +46,10 @@ namespace AuroraDbManager.Database {
         }
 
         public string Directory {
-            get { return (string)DataRow["Directory"]; }
+            get { 
+                var value = DataRow["Directory"];
+                return value?.ToString() ?? string.Empty;
+            }
             set {
                 Changed = true;
                 DataRow["Directory"] = value;
@@ -49,7 +58,8 @@ namespace AuroraDbManager.Database {
 
         public int DiscsInSet {
             get {
-                var ret = (int)(long)DataRow["DiscsInSet"];
+                var value = DataRow["DiscsInSet"];
+                var ret = value is long ? (int)(long)value : Convert.ToInt32(value);
                 return ret <= 0 ? 1 : ret;
             }
             set {
@@ -60,7 +70,8 @@ namespace AuroraDbManager.Database {
 
         public int DiscNum {
             get {
-                var ret = (int)(long)DataRow["DiscNum"];
+                var value = DataRow["DiscNum"];
+                var ret = value is long ? (int)(long)value : Convert.ToInt32(value);
                 return ret <= 0 ? 1 : ret;
             }
             set {
@@ -71,28 +82,70 @@ namespace AuroraDbManager.Database {
 
         public string DiscInfo { get { return string.Format("{0}/{1}", DiscNum, DiscsInSet); } }
 
-        public string Executable { get { return (string)DataRow["Executable"]; } }
+        public string Executable { 
+            get { 
+                var value = DataRow["Executable"];
+                return value?.ToString() ?? string.Empty;
+            } 
+        }
 
-        public DbFlags.FileTypes FileType { get { return (DbFlags.FileTypes)DataRow["FileType"]; } }
+        public DbFlags.FileTypes FileType { 
+            get { 
+                var value = DataRow["FileType"];
+                if (value is long longValue) {
+                    return (DbFlags.FileTypes)longValue;
+                }
+                return (DbFlags.FileTypes)Convert.ToInt32(value);
+            } 
+        }
 
-        public int FoundAtDepth { get { return (int)(long)DataRow["FoundAtDepth"]; } }
+        public int FoundAtDepth { 
+            get { 
+                var value = DataRow["FoundAtDepth"];
+                return value is long ? (int)(long)value : Convert.ToInt32(value);
+            } 
+        }
 
-        public string Hash { get { return (string)DataRow["Hash"]; } }
+        public string Hash { 
+            get { 
+                var value = DataRow["Hash"];
+                return value?.ToString() ?? string.Empty;
+            } 
+        }
 
-        public int Id { get { return (int)(long)DataRow["Id"]; } }
+        public int Id { 
+            get { 
+                var value = DataRow["Id"];
+                return value is long ? (int)(long)value : Convert.ToInt32(value);
+            } 
+        }
 
         public int MediaId {
-            get { return (int)(long)DataRow["MediaId"]; }
+            get { 
+                var value = DataRow["MediaId"];
+                return value is long ? (int)(long)value : Convert.ToInt32(value);
+            }
             set {
                 Changed = true;
                 DataRow["MediaId"] = value;
             }
         }
 
-        public int ScanPathId { get { return (int)(long)DataRow["ScanPathId"]; } }
+        public int ScanPathId { 
+            get { 
+                var value = DataRow["ScanPathId"];
+                return value is long ? (int)(long)value : Convert.ToInt32(value);
+            } 
+        }
 
         public bool SystemLink {
-            get { return (long)DataRow["SystemLink"] == 1; }
+            get { 
+                var value = DataRow["SystemLink"];
+                if (value is long longValue) {
+                    return longValue == 1;
+                }
+                return Convert.ToInt64(value) == 1;
+            }
             set {
                 Changed = true;
                 DataRow["SystemLink"] = value ? 1 : 0;
@@ -100,7 +153,10 @@ namespace AuroraDbManager.Database {
         }
 
         public int TitleId {
-            get { return (int)(long)DataRow["TitleId"]; }
+            get { 
+                var value = DataRow["TitleId"];
+                return value is long ? (int)(long)value : Convert.ToInt32(value);
+            }
             set {
                 Changed = true;
                 DataRow["TitleId"] = value;
@@ -108,7 +164,13 @@ namespace AuroraDbManager.Database {
         }
 
         public DbFlags.ContentFlags ContentFlags {
-            get { return (DbFlags.ContentFlags)(long)DataRow["ContentFlags"]; }
+            get { 
+                var value = DataRow["ContentFlags"];
+                if (value is long longValue) {
+                    return (DbFlags.ContentFlags)longValue;
+                }
+                return (DbFlags.ContentFlags)Convert.ToInt32(value);
+            }
             set {
                 Changed = true;
                 DataRow["ContentFlags"] = (int)value;
@@ -116,7 +178,13 @@ namespace AuroraDbManager.Database {
         }
 
         public DbFlags.ContentGroups ContentGroup {
-            get { return (DbFlags.ContentGroups)(long)DataRow["ContentGroup"]; }
+            get { 
+                var value = DataRow["ContentGroup"];
+                if (value is long longValue) {
+                    return (DbFlags.ContentGroups)longValue;
+                }
+                return (DbFlags.ContentGroups)Convert.ToInt32(value);
+            }
             set {
                 Changed = true;
                 DataRow["ContentGroup"] = (int)value;
@@ -124,7 +192,13 @@ namespace AuroraDbManager.Database {
         }
 
         public DbFlags.ContentTypes ContentType {
-            get { return (DbFlags.ContentTypes)(long)DataRow["ContentType"]; }
+            get { 
+                var value = DataRow["ContentType"];
+                if (value is long longValue) {
+                    return (DbFlags.ContentTypes)longValue;
+                }
+                return (DbFlags.ContentTypes)Convert.ToInt32(value);
+            }
             set {
                 Changed = true;
                 DataRow["ContentType"] = (int)value;
@@ -132,7 +206,13 @@ namespace AuroraDbManager.Database {
         }
 
         public DbFlags.ContentGroups DefaultGroup {
-            get { return (DbFlags.ContentGroups)(long)DataRow["DefaultGroup"]; }
+            get { 
+                var value = DataRow["DefaultGroup"];
+                if (value is long longValue) {
+                    return (DbFlags.ContentGroups)longValue;
+                }
+                return (DbFlags.ContentGroups)Convert.ToInt32(value);
+            }
             set {
                 Changed = true;
                 DataRow["DefaultGroup"] = (int)value;
@@ -140,7 +220,10 @@ namespace AuroraDbManager.Database {
         }
 
         public string Description {
-            get { return (string)DataRow["Description"]; }
+            get { 
+                var value = DataRow["Description"];
+                return value?.ToString() ?? string.Empty;
+            }
             set {
                 Changed = true;
                 DataRow["Description"] = value;
@@ -148,7 +231,10 @@ namespace AuroraDbManager.Database {
         }
 
         public string Developer {
-            get { return (string)DataRow["Developer"]; }
+            get { 
+                var value = DataRow["Developer"];
+                return value?.ToString() ?? string.Empty;
+            }
             set {
                 Changed = true;
                 DataRow["Developer"] = value;
@@ -156,7 +242,13 @@ namespace AuroraDbManager.Database {
         }
 
         public DbFlags.GameCapsFlags GameCapsFlags {
-            get { return (DbFlags.GameCapsFlags)(long)DataRow["GameCapsFlags"]; }
+            get { 
+                var value = DataRow["GameCapsFlags"];
+                if (value is long longValue) {
+                    return (DbFlags.GameCapsFlags)longValue;
+                }
+                return (DbFlags.GameCapsFlags)Convert.ToInt32(value);
+            }
             set {
                 Changed = true;
                 DataRow["GameCapsFlags"] = (int)value;
@@ -164,7 +256,13 @@ namespace AuroraDbManager.Database {
         }
 
         public DbFlags.GenreFlags GenreFlag {
-            get { return (DbFlags.GenreFlags)DataRow["GenreFlag"]; }
+            get { 
+                var value = DataRow["GenreFlag"];
+                if (value is long longValue) {
+                    return (DbFlags.GenreFlags)longValue;
+                }
+                return (DbFlags.GenreFlags)Convert.ToInt32(value);
+            }
             set {
                 Changed = true;
                 DataRow["GenreFlag"] = (int)value;
@@ -172,7 +270,10 @@ namespace AuroraDbManager.Database {
         }
 
         public int LiveRaters {
-            get { return (int)(long)DataRow["LiveRaters"]; }
+            get { 
+                var value = DataRow["LiveRaters"];
+                return value is long ? (int)(long)value : Convert.ToInt32(value);
+            }
             set {
                 Changed = true;
                 DataRow["LiveRaters"] = value;
@@ -180,7 +281,13 @@ namespace AuroraDbManager.Database {
         }
 
         public double LiveRating {
-            get { return (double)DataRow["LiveRating"]; }
+            get { 
+                var value = DataRow["LiveRating"];
+                if (value is double doubleValue) {
+                    return doubleValue;
+                }
+                return Convert.ToDouble(value);
+            }
             set {
                 Changed = true;
                 DataRow["LiveRating"] = value;
@@ -188,7 +295,10 @@ namespace AuroraDbManager.Database {
         }
 
         public string Publisher {
-            get { return (string)DataRow["Publisher"]; }
+            get { 
+                var value = DataRow["Publisher"];
+                return value?.ToString() ?? string.Empty;
+            }
             set {
                 Changed = true;
                 DataRow["Publisher"] = value;
@@ -196,7 +306,10 @@ namespace AuroraDbManager.Database {
         }
 
         public string ReleaseDate {
-            get { return (string)DataRow["ReleaseDate"]; }
+            get { 
+                var value = DataRow["ReleaseDate"];
+                return value?.ToString() ?? string.Empty;
+            }
             set {
                 Changed = true;
                 DataRow["ReleaseDate"] = value;
@@ -204,7 +317,10 @@ namespace AuroraDbManager.Database {
         }
 
         public string TitleName {
-            get { return (string)DataRow["TitleName"]; }
+            get { 
+                var value = DataRow["TitleName"];
+                return value?.ToString() ?? string.Empty;
+            }
             set {
                 Changed = true;
                 DataRow["TitleName"] = value;

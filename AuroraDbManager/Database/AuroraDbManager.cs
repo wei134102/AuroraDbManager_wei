@@ -15,9 +15,10 @@ using System.Text;
 using System.Threading;
 using AuroraDbManager.Database;
 
-namespace AuroraDbManager.Database {
-
-    internal class AuroraDbManager {
+namespace AuroraDbManager.Database
+{
+    public partial class AuroraDbManager
+    {
         private SQLiteConnection _content;
         private ContentItem[] _contentItems;
         private SQLiteConnection _settings;
@@ -682,6 +683,129 @@ namespace AuroraDbManager.Database {
             GC.Collect();
             while (!isDisposed)
                 Thread.Sleep(10);
+        }
+
+        /// <summary>
+        /// 获取Xbox游戏数据表
+        /// </summary>
+        /// <param name="dbPath">数据库文件路径</param>
+        /// <returns>Xbox游戏列表</returns>
+        public List<XboxGameItem> GetXboxGames(string dbPath)
+        {
+            var games = new List<XboxGameItem>();
+            
+            try
+            {
+                using (var connection = new SQLiteConnection($"Data Source={dbPath};Version=3;"))
+                {
+                    connection.Open();
+                    
+                    using (var command = new SQLiteCommand("SELECT * FROM ContentItems", connection))
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            var table = new DataTable();
+                            table.Load(reader);
+                            
+                            foreach (DataRow row in table.Rows)
+                            {
+                                games.Add(new XboxGameItem(row));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                OnStatusUpdate(new StatusEventArgs($"加载Xbox游戏数据时出错: {ex.Message}"));
+            }
+            
+            return games;
+        }
+
+        /// <summary>
+        /// 根据标题ID查找游戏
+        /// </summary>
+        /// <param name="dbPath">数据库文件路径</param>
+        /// <param name="titleId">标题ID</param>
+        /// <returns>匹配的游戏项，如果未找到则返回null</returns>
+        public XboxGameItem GetXboxGameByTitleId(string dbPath, string titleId)
+        {
+            try
+            {
+                using (var connection = new SQLiteConnection($"Data Source={dbPath};Version=3;"))
+                {
+                    connection.Open();
+                    
+                    using (var command = new SQLiteCommand("SELECT * FROM ContentItems WHERE TitleId = @titleId LIMIT 1", connection))
+                    {
+                        command.Parameters.AddWithValue("@titleId", titleId);
+                        
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                var table = new DataTable();
+                                table.Load(reader);
+                                
+                                if (table.Rows.Count > 0)
+                                {
+                                    return new XboxGameItem(table.Rows[0]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                OnStatusUpdate(new StatusEventArgs($"查找游戏时出错: {ex.Message}"));
+            }
+            
+            return null;
+        }
+
+        /// <summary>
+        /// 搜索Xbox游戏
+        /// </summary>
+        /// <param name="dbPath">数据库文件路径</param>
+        /// <param name="searchTerm">搜索词</param>
+        /// <param name="searchInChinese">是否在中文标题中搜索</param>
+        /// <returns>匹配的游戏列表</returns>
+        public List<XboxGameItem> SearchXboxGames(string dbPath, string searchTerm, bool searchInChinese = false)
+        {
+            var games = new List<XboxGameItem>();
+            
+            try
+            {
+                using (var connection = new SQLiteConnection($"Data Source={dbPath};Version=3;"))
+                {
+                    connection.Open();
+                    
+                    string columnName = searchInChinese ? "Title_cn" : "Title";
+                    using (var command = new SQLiteCommand($"SELECT * FROM ContentItems WHERE {columnName} LIKE @searchTerm", connection))
+                    {
+                        command.Parameters.AddWithValue("@searchTerm", $"%{searchTerm}%");
+                        
+                        using (var reader = command.ExecuteReader())
+                        {
+                            var table = new DataTable();
+                            table.Load(reader);
+                            
+                            foreach (DataRow row in table.Rows)
+                            {
+                                games.Add(new XboxGameItem(row));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                OnStatusUpdate(new StatusEventArgs($"搜索游戏时出错: {ex.Message}"));
+            }
+            
+            return games;
         }
     }
 }

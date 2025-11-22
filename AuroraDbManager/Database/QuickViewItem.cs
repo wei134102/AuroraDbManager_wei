@@ -2,7 +2,10 @@ using System;
 using System.Data;
 
 namespace AuroraDbManager.Database {
-    internal class QuickViewItem {
+    /// <summary>
+    /// 表示一个快速视图项
+    /// </summary>
+    public class QuickViewItem {
         public QuickViewItem(DataRow row) { DataRow = row; }
 
         internal DataRow DataRow { get; private set; }
