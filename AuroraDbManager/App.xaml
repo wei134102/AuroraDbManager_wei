@@ -4,6 +4,24 @@
              xmlns:local="clr-namespace:AuroraDbManager.Classes.Controls"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <!-- 颜色定义 -->
+        <Color x:Key="PrimaryColor">#2196F3</Color>
+        <Color x:Key="PrimaryLightColor">#64B5F6</Color>
+        <Color x:Key="PrimaryDarkColor">#1976D2</Color>
+        <Color x:Key="AccentColor">#FF4081</Color>
+        <Color x:Key="BackgroundColor">#F5F5F5</Color>
+        <Color x:Key="ForegroundColor">#212121</Color>
+        <Color x:Key="BorderColor">#BDBDBD</Color>
+        
+        <!-- 画笔定义 -->
+        <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
+        <SolidColorBrush x:Key="PrimaryLightBrush" Color="{StaticResource PrimaryLightColor}"/>
+        <SolidColorBrush x:Key="PrimaryDarkBrush" Color="{StaticResource PrimaryDarkColor}"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+        <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
+        <SolidColorBrush x:Key="ForegroundBrush" Color="{StaticResource ForegroundColor}"/>
+        <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}"/>
+        
         <Geometry x:Key="ArrowLeft">M0,5 L10,10 10,0Z</Geometry>
         <Geometry x:Key="ArrowRight">M0,0 L10,5 L0,10Z</Geometry>
         <Geometry x:Key="TabMenuButton">M0,1 H0,5 M7,8 L0,8 0,2 10,2 L10,5 M10,8 L10,10 8,10Z</Geometry>
@@ -54,6 +72,68 @@
             <GradientStop Offset="1" Color="#EEE" />
         </LinearGradientBrush>
         <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="ButtonWidthAndHeight">18</sys:Double>
+        
+        <!-- 按钮样式 -->
+        <Style x:Key="ModernButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource PrimaryLightBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource PrimaryDarkBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Background" Value="#CCCCCC"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- 菜单样式 -->
+        <Style x:Key="ModernMenuStyle" TargetType="{x:Type Menu}">
+            <Setter Property="Background" Value="White"/>
+        </Style>
+        
+        <Style x:Key="ModernMenuItemStyle" TargetType="{x:Type MenuItem}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        </Style>
+        
+        <!-- 工具栏样式 -->
+        <Style x:Key="ModernToolBarStyle" TargetType="{x:Type ToolBar}">
+            <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
+        </Style>
+        
+        <!-- 状态栏样式 -->
+        <Style x:Key="ModernStatusBarStyle" TargetType="{x:Type StatusBar}">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        
+        <!-- DataGrid样式 -->
+        <Style x:Key="ModernDataGridStyle" TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+            <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
+            <Setter Property="RowBackground" Value="White"/>
+        </Style>
+        
         <Style x:Key="LineButtonStyle" TargetType="{x:Type RepeatButton}">
             <Setter Property="Focusable" Value="False" />
             <Setter Property="Height" Value="{StaticResource ButtonWidthAndHeight}" />

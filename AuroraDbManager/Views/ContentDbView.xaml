@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:conv="clr-namespace:AuroraDbManager.Classes.Converters"
-             mc:Ignorable="d" Background="WhiteSmoke">
+             mc:Ignorable="d" Background="{StaticResource BackgroundBrush}">
     <UserControl.Resources>
         <ContextMenu x:Key="ContentDataGridContextMenu">
             <MenuItem Header="删除选中条目" Click="DeleteContentItem_Click" />
@@ -24,9 +24,10 @@
         </Grid.RowDefinitions>
         
         <!-- 添加本地化工具栏 -->
-        <ToolBar Grid.Row="0" Height="30">
+        <ToolBar Grid.Row="0" Height="40" Style="{StaticResource ModernToolBarStyle}">
             <Button Name="LocalizeButton" Click="LocalizeButton_Click" 
-                    IsEnabled="{Binding IsLocalizedEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                    IsEnabled="{Binding IsLocalizedEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    Style="{StaticResource ModernButtonStyle}">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="本地化标题" VerticalAlignment="Center"/>
                 </StackPanel>
@@ -41,10 +42,11 @@
                           CanUserResizeColumns="True" CanUserResizeRows="True"
                           AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                           ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
-                          SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                          RowBackground="WhiteSmoke" IsReadOnly="False" SelectionChanged="DbViewChanged"
+                          SelectionMode="Single" SelectionUnit="FullRow" Background="White"
+                          RowBackground="White" IsReadOnly="False" SelectionChanged="DbViewChanged"
                           MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening"
-                          ContextMenu="{StaticResource ContentDataGridContextMenu}" RowEditEnding="ContentDataGrid_RowEditEnding">
+                          ContextMenu="{StaticResource ContentDataGridContextMenu}" RowEditEnding="ContentDataGrid_RowEditEnding"
+                          Style="{StaticResource ModernDataGridStyle}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Width="SizeToCells" Binding="{Binding Id}" />
                         <DataGridTextColumn Header="Title" Binding="{Binding TitleName}" Width="SizeToCells" />
@@ -103,10 +105,11 @@
                           CanUserResizeColumns="True" CanUserResizeRows="False"
                           AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                           ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
-                          SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                          RowBackground="WhiteSmoke" IsReadOnly="False" SelectionChanged="DbViewChanged"
+                          SelectionMode="Single" SelectionUnit="FullRow" Background="White"
+                          RowBackground="White" IsReadOnly="False" SelectionChanged="DbViewChanged"
                           MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening"
-                          ContextMenu="{StaticResource TitleUpdateDataGridContextMenu}" RowEditEnding="TitleUpdateDataGrid_RowEditEnding">
+                          ContextMenu="{StaticResource TitleUpdateDataGridContextMenu}" RowEditEnding="TitleUpdateDataGrid_RowEditEnding"
+                          Style="{StaticResource ModernDataGridStyle}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Width="SizeToCells" Binding="{Binding Id}" />
                         <DataGridTextColumn Header="Display Name" Binding="{Binding DisplayName}" Width="SizeToCells" />

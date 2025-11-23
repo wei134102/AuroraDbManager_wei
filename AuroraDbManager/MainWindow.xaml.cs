@@ -439,5 +439,10 @@ namespace AuroraDbManager {
                 return Encoding.UTF8.GetString(stream.ToArray());
             }
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

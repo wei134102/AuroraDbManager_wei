@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:conv="clr-namespace:AuroraDbManager.Classes.Converters"
-             mc:Ignorable="d" Background="WhiteSmoke">
+             mc:Ignorable="d" Background="{StaticResource BackgroundBrush}">
     <UserControl.Resources>
         <ContextMenu x:Key="DataGridContextMenu">
             <MenuItem Header="删除选中条目" Click="DeleteItem_Click" />
@@ -20,9 +20,10 @@
                           CanUserResizeColumns="True" CanUserResizeRows="False"
                           AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                           ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
-                          SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                          RowBackground="WhiteSmoke" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
-                          MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening">
+                          SelectionMode="Single" SelectionUnit="FullRow" Background="White"
+                          RowBackground="White" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
+                          MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening"
+                          Style="{StaticResource ModernDataGridStyle}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding Id}" />
                         <DataGridTextColumn Header="TU ID" Width="SizeToCells" Binding="{Binding TitleUpdateId}" />
@@ -50,9 +51,10 @@
                           CanUserResizeColumns="True" CanUserResizeRows="False"
                           AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                           ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
-                          SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                          RowBackground="WhiteSmoke" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
-                          MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening">
+                          SelectionMode="Single" SelectionUnit="FullRow" Background="White"
+                          RowBackground="White" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
+                          MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening"
+                          Style="{StaticResource ModernDataGridStyle}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding Id}" />
                         <DataGridTextColumn Header="Gamertag" Width="SizeToCells" Binding="{Binding GameTag}" />
@@ -66,10 +68,11 @@
                       CanUserResizeColumns="True" CanUserResizeRows="False"
                       AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                       ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
-                      SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                      RowBackground="WhiteSmoke" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
+                      SelectionMode="Single" SelectionUnit="FullRow" Background="White"
+                      RowBackground="White" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
                       MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening"
-                      ContextMenu="{StaticResource DataGridContextMenu}">
+                      ContextMenu="{StaticResource DataGridContextMenu}"
+                      Style="{StaticResource ModernDataGridStyle}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="Display Name" Width="SizeToCells" Binding="{Binding DisplayName}"/>
@@ -88,9 +91,10 @@
                       CanUserResizeColumns="True" CanUserResizeRows="False"
                       AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                       ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
-                      SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                      RowBackground="WhiteSmoke" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
-                      MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening">
+                      SelectionMode="Single" SelectionUnit="FullRow" Background="White"
+                      RowBackground="White" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
+                      MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening"
+                      Style="{StaticResource ModernDataGridStyle}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="Path" Width="SizeToCells" Binding="{Binding Path}"/>
@@ -107,9 +111,10 @@
                       CanUserResizeColumns="True" CanUserResizeRows="False"
                       AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                       ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
-                      SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                      RowBackground="WhiteSmoke" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
-                      MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening">
+                      SelectionMode="Single" SelectionUnit="FullRow" Background="White"
+                      RowBackground="White" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
+                      MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening"
+                      Style="{StaticResource ModernDataGridStyle}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name}"/>
@@ -123,9 +128,10 @@
                       CanUserResizeColumns="True" CanUserResizeRows="False"
                       AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                       ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
-                      SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                      RowBackground="WhiteSmoke" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
-                      MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening">
+                      SelectionMode="Single" SelectionUnit="FullRow" Background="White"
+                      RowBackground="White" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
+                      MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening"
+                      Style="{StaticResource ModernDataGridStyle}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name}"/>
@@ -140,10 +146,11 @@
                       CanUserResizeColumns="True" CanUserResizeRows="False"
                       AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                       ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
-                      SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                      RowBackground="WhiteSmoke" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
+                      SelectionMode="Single" SelectionUnit="FullRow" Background="White"
+                      RowBackground="White" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
                       MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening"
-                      ContextMenu="{StaticResource DataGridContextMenu}">
+                      ContextMenu="{StaticResource DataGridContextMenu}"
+                      Style="{StaticResource ModernDataGridStyle}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="TitleID" Width="SizeToCells" Binding="{Binding TitleID, Converter={conv:IntHexConverter}}" />
@@ -158,10 +165,11 @@
                       CanUserResizeColumns="True" CanUserResizeRows="False"
                       AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                       ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
-                      SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                      RowBackground="WhiteSmoke" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
+                      SelectionMode="Single" SelectionUnit="FullRow" Background="White"
+                      RowBackground="White" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
                       MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening"
-                      ContextMenu="{StaticResource DataGridContextMenu}">
+                      ContextMenu="{StaticResource DataGridContextMenu}"
+                      Style="{StaticResource ModernDataGridStyle}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="Content ID" Width="SizeToCells" Binding="{Binding ContentId}"/>
@@ -175,10 +183,11 @@
                       CanUserResizeColumns="True" CanUserResizeRows="False"
                       AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                       ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
-                      SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                      RowBackground="WhiteSmoke" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
+                      SelectionMode="Single" SelectionUnit="FullRow" Background="White"
+                      RowBackground="White" IsReadOnly="False" RowEditEnding="DataGrid_RowEditEnding"
                       MouseRightButtonUp="DataGrid_MouseRightButtonUp" ContextMenuOpening="DataGrid_ContextMenuOpening"
-                      ContextMenu="{StaticResource DataGridContextMenu}">
+                      ContextMenu="{StaticResource DataGridContextMenu}"
+                      Style="{StaticResource ModernDataGridStyle}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="Content ID" Width="SizeToCells" Binding="{Binding ContentId}"/>
@@ -192,8 +201,9 @@
                       CanUserResizeColumns="True" CanUserResizeRows="False"
                       AlternatingRowBackground="LightGray" HeadersVisibility="Column"
                       ColumnWidth="*" CanUserDeleteRows="False" CanUserAddRows="False"
-                      SelectionMode="Single" SelectionUnit="FullRow" Background="WhiteSmoke"
-                      RowBackground="WhiteSmoke" IsReadOnly="True" RowEditEnding="DataGrid_RowEditEnding">
+                      SelectionMode="Single" SelectionUnit="FullRow" Background="White"
+                      RowBackground="White" IsReadOnly="True" RowEditEnding="DataGrid_RowEditEnding"
+                      Style="{StaticResource ModernDataGridStyle}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Width="SizeToCells" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="Date &amp; Time" Width="SizeToCells" Binding="{Binding DateTime}"/>
