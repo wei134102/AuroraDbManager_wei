@@ -8,8 +8,8 @@ namespace AuroraDbManager
     {
         // 重要提示：这只是一个示例！在实际应用中，不应将密码或哈希值硬编码。
         // 更好的做法是从一个安全的配置文件或专门的密码管理服务中读取。
-        // 这里存储的是 "123456" 经过 SHA256 哈希后的值。
-        private const string StoredPasswordHash = "8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92";
+        // 这里存储的是 "admin" 经过 SHA256 哈希后的值。
+        private const string StoredPasswordHash = "8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918";
 
         public LoginWindow()
         {
@@ -41,16 +41,35 @@ namespace AuroraDbManager
 
         private bool VerifyPassword(string password)
         {
+            // 新增：将可能的全角数字转换为半角数字，以提高用户体验
+            string normalizedPassword = ToHalfWidth(password);
+
             using (SHA256 sha256 = SHA256.Create())
             {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(normalizedPassword));
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < bytes.Length; i++)
                 {
                     builder.Append(bytes[i].ToString("X2"));
                 }
-                return builder.ToString() == StoredPasswordHash;
+                return string.Equals(builder.ToString().Trim(), StoredPasswordHash.Trim(), System.StringComparison.OrdinalIgnoreCase);
             }
+        }
+
+        /// <summary>
+        /// 将字符串中的全角字符转换为半角字符
+        /// </summary>
+        private string ToHalfWidth(string input)
+        {
+            StringBuilder sb = new StringBuilder(input);
+            for (int i = 0; i < sb.Length; i++)
+            {
+                // 全角空格为12288，半角空格为32
+                // 其他全角字符（33-126）与半角字符相差65248
+                if (sb[i] >= 65281 && sb[i] <= 65374)
+                    sb[i] = (char)(sb[i] - 65248);
+            }
+            return sb.ToString();
         }
     }
 }
