@@ -5,13 +5,16 @@
              ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
         <!-- 颜色定义 -->
-        <Color x:Key="PrimaryColor">#2196F3</Color>
-        <Color x:Key="PrimaryLightColor">#64B5F6</Color>
-        <Color x:Key="PrimaryDarkColor">#1976D2</Color>
-        <Color x:Key="AccentColor">#FF4081</Color>
-        <Color x:Key="BackgroundColor">#F5F5F5</Color>
-        <Color x:Key="ForegroundColor">#212121</Color>
-        <Color x:Key="BorderColor">#BDBDBD</Color>
+        <Color x:Key="PrimaryColor">#4A90E2</Color>
+        <Color x:Key="PrimaryLightColor">#73B4FF</Color>
+        <Color x:Key="PrimaryDarkColor">#2D5F9A</Color>
+        <Color x:Key="AccentColor">#FFB547</Color>
+        <Color x:Key="BackgroundColor">#F2F5FA</Color>
+        <Color x:Key="ForegroundColor">#1F2933</Color>
+        <Color x:Key="BorderColor">#D8DFEB</Color>
+        <Color x:Key="SecondaryBackgroundColor">#FFFFFF</Color>
+        <Color x:Key="MutedForegroundColor">#5F6B7C</Color>
+        <Color x:Key="SuccessColor">#3DBE8B</Color>
         
         <!-- 画笔定义 -->
         <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
@@ -21,6 +24,14 @@
         <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
         <SolidColorBrush x:Key="ForegroundBrush" Color="{StaticResource ForegroundColor}"/>
         <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}"/>
+        <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource SecondaryBackgroundColor}"/>
+        <SolidColorBrush x:Key="MutedForegroundBrush" Color="{StaticResource MutedForegroundColor}"/>
+        <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource SuccessColor}"/>
+        <LinearGradientBrush x:Key="WindowGradientBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0" Color="#EDF3FF"/>
+            <GradientStop Offset="1" Color="#FDFDFE"/>
+        </LinearGradientBrush>
+        <DropShadowEffect x:Key="CardShadow" ShadowDepth="4" Color="#1F000000" BlurRadius="16" Opacity="0.35"/>
         
         <Geometry x:Key="ArrowLeft">M0,5 L10,10 10,0Z</Geometry>
         <Geometry x:Key="ArrowRight">M0,0 L10,5 L0,10Z</Geometry>
@@ -73,12 +84,76 @@
         </LinearGradientBrush>
         <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="ButtonWidthAndHeight">18</sys:Double>
         
+        <!-- 全局字体 -->
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+            <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,0,6,0"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+            <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+        </Style>
+
+        <Style TargetType="{x:Type PasswordBox}">
+            <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+        </Style>
+
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+            <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6,2"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+        </Style>
+
+        <!-- 卡片样式 -->
+        <Style x:Key="CardBorderStyle" TargetType="{x:Type Border}">
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="Margin" Value="0,8,0,8"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+        </Style>
+
+        <Style x:Key="SectionHeaderStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="{StaticResource PrimaryDarkBrush}"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+
         <!-- 按钮样式 -->
         <Style x:Key="ModernButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Padding" Value="12,6"/>
             <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -86,7 +161,7 @@
                                 Background="{TemplateBinding Background}" 
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
-                                CornerRadius="3">
+                                CornerRadius="6">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -107,31 +182,57 @@
         
         <!-- 菜单样式 -->
         <Style x:Key="ModernMenuStyle" TargetType="{x:Type Menu}">
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Margin" Value="0,12,0,0"/>
         </Style>
         
         <Style x:Key="ModernMenuItemStyle" TargetType="{x:Type MenuItem}">
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Margin" Value="0,0,6,0"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         
         <!-- 工具栏样式 -->
         <Style x:Key="ModernToolBarStyle" TargetType="{x:Type ToolBar}">
-            <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="4"/>
         </Style>
         
         <!-- 状态栏样式 -->
         <Style x:Key="ModernStatusBarStyle" TargetType="{x:Type StatusBar}">
             <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="0,0,12,0"/>
         </Style>
         
         <!-- DataGrid样式 -->
         <Style x:Key="ModernDataGridStyle" TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
-            <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
+            <Setter Property="AlternatingRowBackground" Value="#F6F9FC"/>
             <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="RowHeight" Value="34"/>
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="8,4"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="BorderBrush" Value="#EEF1F7"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="0,4,0,0"/>
+        </Style>
+
+        <Style TargetType="TreeView">
+            <Setter Property="Background" Value="Transparent"/>
         </Style>
         
         <Style x:Key="LineButtonStyle" TargetType="{x:Type RepeatButton}">

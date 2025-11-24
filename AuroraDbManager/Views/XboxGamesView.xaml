@@ -5,42 +5,56 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="{StaticResource BackgroundBrush}">
-    <Grid>
+             Background="Transparent">
+    <Grid Margin="4">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Xbox 游戏百科" Style="{StaticResource SectionHeaderStyle}"/>
+        <TextBlock Grid.Row="1" Text="快速检索 Aurora 游戏元数据，支持中英文关键字匹配"
+                   Foreground="{StaticResource MutedForegroundBrush}" FontSize="13" Margin="0,0,0,8"/>
         
         <!-- 搜索区域 -->
-        <ToolBar Grid.Row="0" Height="40" Style="{StaticResource ModernToolBarStyle}">
-            <TextBox x:Name="SearchTextBox" Width="300" Margin="0,0,10,0" 
-                     VerticalContentAlignment="Center"
-                     Tag="输入游戏名称进行搜索..."/>
-            <CheckBox x:Name="SearchChineseCheckBox" Content="在中文标题中搜索" 
-                      VerticalAlignment="Center" Margin="0,0,10,0"
-                      Checked="SearchOptionsChanged" Unchecked="SearchOptionsChanged"/>
-            <Button x:Name="BrowseDbButton" Content="浏览数据库..." 
-                    Click="BrowseDbButton_Click" Margin="0,0,10,0"
-                    Style="{StaticResource ModernButtonStyle}"/>
-            <TextBlock x:Name="GameCountTextBlock" VerticalAlignment="Center" 
-                       Text="游戏总数: 0"/>
-        </ToolBar>
-        
-        <!-- 游戏列表 -->
-        <DataGrid x:Name="GamesDataGrid" Grid.Row="1" 
-                  AutoGenerateColumns="False" IsReadOnly="True"
-                  SelectionMode="Single"
-                  Style="{StaticResource ModernDataGridStyle}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
-                <DataGridTextColumn Header="标题ID" Binding="{Binding TitleId}" Width="80"/>
-                <DataGridTextColumn Header="英文标题" Binding="{Binding Title}" Width="*"/>
-                <DataGridTextColumn Header="中文标题" Binding="{Binding TitleCn}" Width="*"/>
-                <DataGridTextColumn Header="开发商" Binding="{Binding Developer}" Width="150"/>
-                <DataGridTextColumn Header="发行商" Binding="{Binding Publisher}" Width="150"/>
-                <DataGridTextColumn Header="平台" Binding="{Binding Platform}" Width="100"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Border Grid.Row="2" Style="{StaticResource CardBorderStyle}" Padding="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <ToolBar Grid.Row="0" Height="52" Style="{StaticResource ModernToolBarStyle}" Padding="16,8">
+                    <TextBox x:Name="SearchTextBox" Width="300" Margin="0,0,10,0" 
+                             VerticalContentAlignment="Center"
+                             Tag="输入游戏名称进行搜索..."/>
+                    <CheckBox x:Name="SearchChineseCheckBox" Content="在中文标题中搜索" 
+                              VerticalAlignment="Center" Margin="0,0,10,0"
+                              Checked="SearchOptionsChanged" Unchecked="SearchOptionsChanged"/>
+                    <Button x:Name="BrowseDbButton" Content="浏览数据库..." 
+                            Click="BrowseDbButton_Click" Margin="0,0,10,0"
+                            Style="{StaticResource ModernButtonStyle}"/>
+                    <TextBlock x:Name="GameCountTextBlock" VerticalAlignment="Center" 
+                               Text="游戏总数: 0" Foreground="{StaticResource MutedForegroundBrush}"/>
+                </ToolBar>
+                
+                <!-- 游戏列表 -->
+                <DataGrid x:Name="GamesDataGrid" Grid.Row="1" 
+                          AutoGenerateColumns="False" IsReadOnly="True"
+                          SelectionMode="Single"
+                          Style="{StaticResource ModernDataGridStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="60"/>
+                        <DataGridTextColumn Header="标题ID" Binding="{Binding TitleId}" Width="100"/>
+                        <DataGridTextColumn Header="英文标题" Binding="{Binding Title}" Width="*"/>
+                        <DataGridTextColumn Header="中文标题" Binding="{Binding TitleCn}" Width="*"/>
+                        <DataGridTextColumn Header="开发商" Binding="{Binding Developer}" Width="160"/>
+                        <DataGridTextColumn Header="发行商" Binding="{Binding Publisher}" Width="160"/>
+                        <DataGridTextColumn Header="平台" Binding="{Binding Platform}" Width="120"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

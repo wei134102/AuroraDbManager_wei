@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace AuroraDbManager.Views
 {
@@ -18,6 +19,8 @@ namespace AuroraDbManager.Views
         public string Name { get; set; }
         public string FullPath { get; set; }
         public bool IsDirectory { get; set; }
+        public long Size { get; set; }
+        public DateTime? Modified { get; set; }
         public BitmapImage Icon { get; set; }
         public List<FileSystemItem> Children { get; set; } = new List<FileSystemItem>();
         public bool IsExpanded { get; set; } // Added for TreeView expansion
@@ -46,6 +49,7 @@ namespace AuroraDbManager.Views
             LocalTreeView.ItemsSource = _localFileSystemItems; // Bind ItemsSource once
             _remoteFileSystemItems = new ObservableCollection<FileSystemItem>();
             RemoteTreeView.ItemsSource = _remoteFileSystemItems; // Bind ItemsSource once
+            UpdateRemotePreview(null);
             InitializeFtpClient();
             PopulateLocalTreeView(_currentLocalPath);
             LocalPathTextBox.Text = _currentLocalPath;
@@ -115,7 +119,10 @@ namespace AuroraDbManager.Views
                 DownloadButton.IsEnabled = false;
                 DeleteButton.IsEnabled = false;
                 CreateFolderButton.IsEnabled = false;
-                RemoteTreeView.Items.Clear(); // Clear remote view
+                _remoteFileSystemItems.Clear();
+                _currentRemotePath = "/";
+                RemotePathTextBox.Text = "/";
+                UpdateRemotePreview(null);
             }
         }
 
@@ -171,6 +178,8 @@ namespace AuroraDbManager.Views
         private async Task PopulateRemoteTreeView(string path) // Changed to private
         {
             _remoteFileSystemItems.Clear(); // Clear the bound collection
+            _selectedRemoteItem = null;
+            UpdateRemotePreview(null);
             if (!_ftpClient.IsConnected)
             {
                 StatusTextBlock.Text = "未连接到FTP服务器。";
@@ -198,7 +207,9 @@ namespace AuroraDbManager.Views
                             Name = "..",
                             FullPath = parentPath,
                             IsDirectory = true,
-                            Icon = GetFolderIcon()
+                            Icon = GetFolderIcon(),
+                            Size = 0,
+                            Modified = null
                         }
                     );
                 }
@@ -210,7 +221,9 @@ namespace AuroraDbManager.Views
                         Name = item.Name,
                         FullPath = item.FullName,
                         IsDirectory = item.Type == FtpFileSystemObjectType.Directory,
-                        Icon = item.Type == FtpFileSystemObjectType.Directory ? GetFolderIcon() : GetFileIcon()
+                        Icon = item.Type == FtpFileSystemObjectType.Directory ? GetFolderIcon() : GetFileIcon(),
+                        Size = item.Size,
+                        Modified = item.Modified == DateTime.MinValue ? (DateTime?)null : item.Modified
                     };
                     rootItem.Children.Add(fsItem); // Add to children of FileSystemItem
                 }
@@ -219,6 +232,7 @@ namespace AuroraDbManager.Views
                 _currentRemotePath = path; // Update current remote path
                 RemotePathTextBox.Text = path;
                 StatusTextBlock.Text = $"远程目录加载完成: {path}";
+                UpdateRemotePreview(null);
             }
             catch (Exception ex)
             {
@@ -249,17 +263,39 @@ namespace AuroraDbManager.Views
 
         private async void RemoteTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            _selectedRemoteItem = RemoteTreeView.SelectedItem as FileSystemItem; // Direct cast
-            if (_selectedRemoteItem != null && _selectedRemoteItem.IsDirectory)
+            var selectedItem = RemoteTreeView.SelectedItem as FileSystemItem;
+            if (selectedItem == null)
             {
-                await PopulateRemoteTreeView(_selectedRemoteItem.FullPath); // Navigate to selected remote directory
+                _selectedRemoteItem = null;
+                UpdateRemotePreview(null);
+                return;
             }
+
+            UpdateRemotePreview(selectedItem);
+
+            if (selectedItem.IsDirectory)
+            {
+                _selectedRemoteItem = null;
+
+                if (selectedItem.Name == "..")
+                {
+                    await PopulateRemoteTreeView(selectedItem.FullPath);
+                    return;
+                }
+
+                if (!string.Equals(selectedItem.FullPath, _currentRemotePath, StringComparison.OrdinalIgnoreCase))
+                {
+                    await PopulateRemoteTreeView(selectedItem.FullPath);
+                }
+
+                return;
+            }
+
+            _selectedRemoteItem = selectedItem;
         }
 
         private async void UploadButton_Click(object sender, RoutedEventArgs e) // Changed to private
         {
-            _selectedRemoteItem = RemoteTreeView.SelectedItem as FileSystemItem; // Direct cast
-
             if (_selectedLocalItem == null || _selectedLocalItem.IsDirectory)
             {
                 MessageBox.Show("请选择一个本地文件进行上传。", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -273,33 +309,38 @@ namespace AuroraDbManager.Views
 
             try
             {
-                StatusTextBlock.Text = $"正在上传 {_selectedLocalItem.Name} 到 {_currentRemotePath}...";
-                TransferProgressBar.Visibility = Visibility.Visible;
-                TransferProgressBar.Value = 0;
+                string remoteFilePath = CombineRemotePath(_selectedLocalItem.Name);
+                var localInfo = new FileInfo(_selectedLocalItem.FullPath);
+                long totalBytes = localInfo.Length;
 
-                await Task.Run(() => {
+                StatusTextBlock.Text = $"正在上传 {_selectedLocalItem.Name} 到 {_currentRemotePath}...";
+                ShowProgress(true, totalBytes <= 0);
+
+                await Task.Run(() =>
+                {
                     using (var localStream = File.OpenRead(_selectedLocalItem.FullPath))
-                    using (var remoteStream = _ftpClient.OpenWrite($"{_currentRemotePath.TrimEnd('/')}/{_selectedLocalItem.Name}"))
-                        localStream.CopyTo(remoteStream);
+                    using (var remoteStream = _ftpClient.OpenWrite(remoteFilePath))
+                    {
+                        CopyStreamWithProgress(localStream, remoteStream, totalBytes);
+                    }
                 });
 
                 StatusTextBlock.Text = $"文件 {_selectedLocalItem.Name} 上传成功！";
-                TransferProgressBar.Visibility = Visibility.Collapsed;
                 await PopulateRemoteTreeView(_currentRemotePath); // Refresh remote view
             }
             catch (Exception ex)
             {
                 StatusTextBlock.Text = $"上传失败: {ex.Message}";
-                TransferProgressBar.Visibility = Visibility.Collapsed;
                 MessageBox.Show($"上传失败: {ex.Message}", "FTP错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                ShowProgress(false);
             }
         }
 
         private async void DownloadButton_Click(object sender, RoutedEventArgs e) // Changed to private
         {
-            var selectedTreeViewItem = RemoteTreeView.SelectedItem as TreeViewItem;
-            _selectedRemoteItem = selectedTreeViewItem?.Header as FileSystemItem;
-
             if (_selectedRemoteItem == null || _selectedRemoteItem.IsDirectory)
             {
                 MessageBox.Show("请选择一个远程文件进行下载。", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -314,36 +355,44 @@ namespace AuroraDbManager.Views
             try
             {
                 string localFilePath = Path.Combine(_currentLocalPath, _selectedRemoteItem.Name);
-                StatusTextBlock.Text = $"正在下载 {_selectedRemoteItem.Name} 到 {localFilePath}...";
-                TransferProgressBar.Visibility = Visibility.Visible;
-                TransferProgressBar.Value = 0;
+                if (File.Exists(localFilePath))
+                {
+                    var overwrite = MessageBox.Show($"本地已存在 {localFilePath}，是否覆盖？", "确认覆盖", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (overwrite != MessageBoxResult.Yes) return;
+                }
 
-                await Task.Run(() => {
+                long remoteSize = _selectedRemoteItem.Size;
+                StatusTextBlock.Text = $"正在下载 {_selectedRemoteItem.Name} 到 {localFilePath}...";
+                ShowProgress(true, remoteSize <= 0);
+
+                await Task.Run(() =>
+                {
                     using (var remoteStream = _ftpClient.OpenRead(_selectedRemoteItem.FullPath))
                     using (var localStream = File.Create(localFilePath))
-                        remoteStream.CopyTo(localStream);
+                    {
+                        CopyStreamWithProgress(remoteStream, localStream, remoteSize);
+                    }
                 });
 
                 StatusTextBlock.Text = $"文件 {_selectedRemoteItem.Name} 下载成功！";
-                TransferProgressBar.Visibility = Visibility.Collapsed;
                 PopulateLocalTreeView(_currentLocalPath); // Refresh local view
             }
             catch (Exception ex)
             {
                 StatusTextBlock.Text = $"下载失败: {ex.Message}";
-                TransferProgressBar.Visibility = Visibility.Collapsed;
                 MessageBox.Show($"下载失败: {ex.Message}", "FTP错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                ShowProgress(false);
             }
         }
 
         private async void DeleteButton_Click(object sender, RoutedEventArgs e) // Changed to private
         {
-            var selectedTreeViewItem = RemoteTreeView.SelectedItem as TreeViewItem;
-            _selectedRemoteItem = selectedTreeViewItem?.Header as FileSystemItem;
-
             if (_selectedRemoteItem == null)
             {
-                MessageBox.Show("请选择一个远程文件或文件夹进行删除。", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("请选择一个远程文件进行删除。", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
             if (!_ftpClient.IsConnected)
@@ -358,14 +407,7 @@ namespace AuroraDbManager.Views
             try
             {
                 StatusTextBlock.Text = $"正在删除 {_selectedRemoteItem.Name}...";
-                if (_selectedRemoteItem.IsDirectory)
-                {
-                    await Task.Run(() => _ftpClient.DeleteDirectory(_selectedRemoteItem.FullPath, true)); // Recursive delete
-                }
-                else
-                {
-                    await Task.Run(() => _ftpClient.DeleteFile(_selectedRemoteItem.FullPath));
-                }
+                await Task.Run(() => _ftpClient.DeleteFile(_selectedRemoteItem.FullPath));
                 StatusTextBlock.Text = $"已删除 {_selectedRemoteItem.Name}。";
                 await PopulateRemoteTreeView(_currentRemotePath); // Refresh remote view
             }
@@ -389,7 +431,7 @@ namespace AuroraDbManager.Views
 
             try
             {
-                string newFolderPath = $"{_currentRemotePath.TrimEnd('/')}/{folderName}";
+                string newFolderPath = CombineRemotePath(folderName);
                 StatusTextBlock.Text = $"正在创建文件夹 {newFolderPath}...";
                 await Task.Run(() => _ftpClient.CreateDirectory(newFolderPath));
                 StatusTextBlock.Text = $"文件夹 {folderName} 创建成功。";
@@ -399,6 +441,126 @@ namespace AuroraDbManager.Views
             {
                 StatusTextBlock.Text = $"创建文件夹失败: {ex.Message}";
                 MessageBox.Show($"创建文件夹失败: {ex.Message}", "FTP错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private string CombineRemotePath(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return _currentRemotePath;
+            }
+
+            string basePath = string.IsNullOrWhiteSpace(_currentRemotePath) ? "/" : _currentRemotePath;
+            if (basePath == "/")
+            {
+                return $"/{name}";
+            }
+
+            return $"{basePath.TrimEnd('/')}/{name}";
+        }
+
+        private void UpdateRemotePreview(FileSystemItem item)
+        {
+            if (RemotePreviewNameText == null)
+            {
+                return;
+            }
+
+            if (item == null)
+            {
+                RemotePreviewNameText.Text = "名称：-";
+                RemotePreviewTypeText.Text = "类型：-";
+                RemotePreviewSizeText.Text = "大小：-";
+                RemotePreviewModifiedText.Text = "修改时间：-";
+                RemotePreviewPathText.Text = "路径：-";
+                return;
+            }
+
+            RemotePreviewNameText.Text = $"名称：{item.Name}";
+            RemotePreviewTypeText.Text = $"类型：{(item.IsDirectory ? "目录" : "文件")}";
+            RemotePreviewSizeText.Text = item.IsDirectory ? "大小：-" : $"大小：{FormatFileSize(item.Size)}";
+            RemotePreviewModifiedText.Text = item.Modified.HasValue ? $"修改时间：{item.Modified:yyyy-MM-dd HH:mm}" : "修改时间：-";
+            RemotePreviewPathText.Text = $"路径：{item.FullPath}";
+        }
+
+        private string FormatFileSize(long size)
+        {
+            if (size <= 0)
+            {
+                return "0 B";
+            }
+
+            string[] units = { "B", "KB", "MB", "GB", "TB" };
+            double readableSize = size;
+            int unitIndex = 0;
+            while (readableSize >= 1024 && unitIndex < units.Length - 1)
+            {
+                readableSize /= 1024;
+                unitIndex++;
+            }
+
+            return $"{readableSize:0.##} {units[unitIndex]}";
+        }
+
+        private void ShowProgress(bool show, bool indeterminate = false)
+        {
+            if (TransferProgressBar == null)
+            {
+                return;
+            }
+
+            TransferProgressBar.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
+            TransferProgressBar.IsIndeterminate = indeterminate;
+
+            if (show && !indeterminate)
+            {
+                TransferProgressBar.Minimum = 0;
+                TransferProgressBar.Maximum = 100;
+                TransferProgressBar.Value = 0;
+            }
+
+            if (!show)
+            {
+                TransferProgressBar.IsIndeterminate = false;
+                TransferProgressBar.Value = 0;
+            }
+        }
+
+        private void UpdateProgressValue(double percent)
+        {
+            if (TransferProgressBar == null)
+            {
+                return;
+            }
+
+            Dispatcher.Invoke(() =>
+            {
+                TransferProgressBar.Value = Math.Max(0, Math.Min(100, percent));
+            }, DispatcherPriority.Background);
+        }
+
+        private void CopyStreamWithProgress(Stream source, Stream destination, long totalBytes)
+        {
+            const int bufferSize = 81920;
+            byte[] buffer = new byte[bufferSize];
+            long totalRead = 0;
+            bool reportProgress = totalBytes > 0;
+            int bytesRead;
+            while ((bytesRead = source.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                destination.Write(buffer, 0, bytesRead);
+                if (reportProgress)
+                {
+                    totalRead += bytesRead;
+                    double percent = (double)totalRead / totalBytes * 100;
+                    UpdateProgressValue(percent);
+                }
+            }
+
+            if (reportProgress)
+            {
+                UpdateProgressValue(100);
             }
         }
 

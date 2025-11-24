@@ -4,51 +4,69 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="Transparent">
+    <Grid Margin="4">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/> <!-- Connection Settings -->
-            <RowDefinition Height="*"/>    <!-- File Browsers -->
-            <RowDefinition Height="Auto"/> <!-- Status Bar -->
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <TextBlock Grid.Row="0" Text="Xbox 360 FTP 控制台" Style="{StaticResource SectionHeaderStyle}"/>
+        <TextBlock Grid.Row="1" Text="连接 Aurora 主机，双向传输 Title Update、封面与脚本等资源"
+                   Foreground="{StaticResource MutedForegroundBrush}" FontSize="13" Margin="0,0,0,12"/>
+
         <!-- Connection Settings -->
-        <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="0,0,0,1" Padding="5">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <Label Content="主机:"/>
-                <TextBox x:Name="HostTextBox" Width="120" Text="192.168.1.100" Margin="0,0,5,0"/>
-                <Label Content="端口:"/>
-                <TextBox x:Name="PortTextBox" Width="50" Text="21" Margin="0,0,5,0"/>
-                <Label Content="用户:"/>
-                <TextBox x:Name="UserTextBox" Width="80" Text="xboxftp" Margin="0,0,5,0"/>
-                <Label Content="密码:"/>
-                <PasswordBox x:Name="PasswordBox" Width="80" Margin="0,0,10,0"/>
-                <Button x:Name="ConnectButton" Content="连接" Width="70" Margin="0,0,5,0" Click="ConnectButton_Click"/>
-                <Button x:Name="DisconnectButton" Content="断开" Width="70" Click="DisconnectButton_Click" IsEnabled="False"/>
-            </StackPanel>
+        <Border Grid.Row="2" Style="{StaticResource CardBorderStyle}" Padding="18" Margin="0,0,0,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.ColumnSpan="5">
+                    <Label Content="主机"/>
+                    <TextBox x:Name="HostTextBox" Width="150" Text="192.168.1.100"/>
+                    <Label Content="端口"/>
+                    <TextBox x:Name="PortTextBox" Width="70" Text="21"/>
+                    <Label Content="用户"/>
+                    <TextBox x:Name="UserTextBox" Width="110" Text="xboxftp"/>
+                    <Label Content="密码"/>
+                    <PasswordBox x:Name="PasswordBox" Width="120"/>
+                    <Button x:Name="ConnectButton" Content="连接" Width="90" Margin="8,0" Click="ConnectButton_Click"
+                            Style="{StaticResource ModernButtonStyle}"/>
+                    <Button x:Name="DisconnectButton" Content="断开" Width="90" Click="DisconnectButton_Click"
+                            Style="{StaticResource ModernButtonStyle}" Background="{StaticResource PrimaryDarkBrush}" IsEnabled="False"/>
+                </StackPanel>
+            </Grid>
         </Border>
 
         <!-- File Browsers and Actions -->
-        <Grid Grid.Row="1" Margin="5">
+        <Grid Grid.Row="3" Margin="0,0,0,16">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/> <!-- Local Files -->
-                <ColumnDefinition Width="Auto"/> <!-- Action Buttons -->
-                <ColumnDefinition Width="*"/> <!-- Remote Files -->
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <!-- Local File Browser -->
-            <Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="1" Margin="0,0,5,0">
+            <Border Grid.Column="0" Style="{StaticResource CardBorderStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <Label Content="本地路径:"/>
-                        <TextBox x:Name="LocalPathTextBox" IsReadOnly="True" Text="C:\" Width="200" VerticalContentAlignment="Center"/>
-                        <Button Content="刷新" Margin="5,0,0,0" Click="RefreshLocalButton_Click"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                        <TextBlock Text="本地路径" FontWeight="SemiBold" Margin="0,0,12,0"/>
+                        <TextBox x:Name="LocalPathTextBox" IsReadOnly="True" Text="C:\" Width="220" VerticalContentAlignment="Center"/>
+                        <Button Content="刷新" Margin="8,0,0,0" Click="RefreshLocalButton_Click" Style="{StaticResource ModernButtonStyle}"/>
                     </StackPanel>
-                    <TreeView x:Name="LocalTreeView" Grid.Row="1" Margin="5"
+                    <TreeView x:Name="LocalTreeView" Grid.Row="1" Margin="0,4,0,0"
                               ItemsSource="{Binding LocalFileSystemItems}"
                               SelectedItemChanged="LocalTreeView_SelectedItemChanged">
                         <TreeView.Resources>
@@ -69,26 +87,32 @@
             </Border>
 
             <!-- Action Buttons -->
-            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="5,0">
-                <Button x:Name="UploadButton" Content="上传 " Width="80" Margin="0,5" Click="UploadButton_Click" IsEnabled="False"/>
-                <Button x:Name="DownloadButton" Content="下载" Width="80" Margin="0,5" Click="DownloadButton_Click" IsEnabled="False"/>
-                <Button x:Name="DeleteButton" Content="删除" Width="80" Margin="0,5" Click="DeleteButton_Click" IsEnabled="False"/>
-                <Button x:Name="CreateFolderButton" Content="新建文件夹" Width="80" Margin="0,5" Click="CreateFolderButton_Click" IsEnabled="False"/>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="20,0" Width="140">
+                <Button x:Name="UploadButton" Content="上传" Margin="0,6" Click="UploadButton_Click" IsEnabled="False"
+                        Style="{StaticResource ModernButtonStyle}"/>
+                <Button x:Name="DownloadButton" Content="下载" Margin="0,6" Click="DownloadButton_Click" IsEnabled="False"
+                        Style="{StaticResource ModernButtonStyle}"/>
+                <Button x:Name="DeleteButton" Content="删除" Margin="0,6" Click="DeleteButton_Click" IsEnabled="False"
+                        Style="{StaticResource ModernButtonStyle}"/>
+                <Button x:Name="CreateFolderButton" Content="新建文件夹" Margin="0,6" Click="CreateFolderButton_Click" IsEnabled="False"
+                        Style="{StaticResource ModernButtonStyle}"/>
             </StackPanel>
 
             <!-- Remote File Browser -->
-            <Border Grid.Column="2" BorderBrush="LightGray" BorderThickness="1" Margin="5,0,0,0">
+            <Border Grid.Column="2" Style="{StaticResource CardBorderStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <Label Content="远程路径:"/>
-                        <TextBox x:Name="RemotePathTextBox" IsReadOnly="True" Text="/" Width="200" VerticalContentAlignment="Center"/>
-                        <Button x:Name="RefreshRemoteButton" Content="刷新" Margin="5,0,0,0" Click="RefreshRemoteButton_Click" IsEnabled="False"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                        <TextBlock Text="远程路径" FontWeight="SemiBold" Margin="0,0,12,0"/>
+                        <TextBox x:Name="RemotePathTextBox" IsReadOnly="True" Text="/" Width="220" VerticalContentAlignment="Center"/>
+                        <Button x:Name="RefreshRemoteButton" Content="刷新" Margin="8,0,0,0" Click="RefreshRemoteButton_Click" IsEnabled="False"
+                                Style="{StaticResource ModernButtonStyle}"/>
                     </StackPanel>
-                    <TreeView x:Name="RemoteTreeView" Grid.Row="1" Margin="5"
+                    <TreeView x:Name="RemoteTreeView" Grid.Row="1" Margin="0,4,0,0"
                               ItemsSource="{Binding RemoteFileSystemItems}"
                               SelectedItemChanged="RemoteTreeView_SelectedItemChanged">
                         <TreeView.Resources>
@@ -105,17 +129,27 @@
                             </HierarchicalDataTemplate>
                         </TreeView.ItemTemplate>
                     </TreeView>
+                    <Border Grid.Row="2" Margin="0,12,0,0" Background="#F5F8FF" Padding="10" CornerRadius="6">
+                        <StackPanel>
+                            <TextBlock Text="预览信息" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                            <TextBlock x:Name="RemotePreviewNameText" Text="名称：-" Margin="0,2,0,0"/>
+                            <TextBlock x:Name="RemotePreviewTypeText" Text="类型：-" Margin="0,2,0,0"/>
+                            <TextBlock x:Name="RemotePreviewSizeText" Text="大小：-" Margin="0,2,0,0"/>
+                            <TextBlock x:Name="RemotePreviewModifiedText" Text="修改时间：-" Margin="0,2,0,0"/>
+                            <TextBlock x:Name="RemotePreviewPathText" Text="路径：-" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
                 </Grid>
             </Border>
         </Grid>
 
         <!-- Status Bar -->
-        <StatusBar Grid.Row="2" Height="25" Background="LightSteelBlue">
+        <StatusBar Grid.Row="4" Height="30" Style="{StaticResource ModernStatusBarStyle}">
             <StatusBarItem>
                 <TextBlock x:Name="StatusTextBlock" Text="未连接"/>
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
-                <ProgressBar x:Name="TransferProgressBar" Width="150" Height="15" Visibility="Collapsed"/>
+                <ProgressBar x:Name="TransferProgressBar" Width="180" Height="15" Visibility="Collapsed" Minimum="0" Maximum="100"/>
             </StatusBarItem>
         </StatusBar>
     </Grid>

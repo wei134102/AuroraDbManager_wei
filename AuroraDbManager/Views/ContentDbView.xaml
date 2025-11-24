@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:conv="clr-namespace:AuroraDbManager.Classes.Converters"
-             mc:Ignorable="d" Background="{StaticResource BackgroundBrush}">
+             mc:Ignorable="d" Background="Transparent">
     <UserControl.Resources>
         <ContextMenu x:Key="ContentDataGridContextMenu">
             <MenuItem Header="删除选中条目" Click="DeleteContentItem_Click" />
@@ -17,27 +17,30 @@
             <MenuItem Header="添加新条目" Click="AddTitleUpdateItem_Click" />
         </ContextMenu>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="4">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <!-- 添加本地化工具栏 -->
-        <ToolBar Grid.Row="0" Height="40" Style="{StaticResource ModernToolBarStyle}">
-            <Button Name="LocalizeButton" Click="LocalizeButton_Click" 
-                    IsEnabled="{Binding IsLocalizedEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                    Style="{StaticResource ModernButtonStyle}">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="本地化标题" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Button>
-            <TextBlock Name="LocalizationStatusText" VerticalAlignment="Center" Margin="10,0,0,0" Text="就绪"/>
-        </ToolBar>
+        <StackPanel Grid.Row="0" Margin="0,0,0,8">
+            <TextBlock Text="内容数据库" Style="{StaticResource SectionHeaderStyle}"/>
+            <TextBlock Text="本地化 Aurora 内容表并实时预览数据变更" Foreground="{StaticResource MutedForegroundBrush}" FontSize="13"/>
+            <ToolBar Height="40" Style="{StaticResource ModernToolBarStyle}" Margin="0,12,0,0">
+                <Button Name="LocalizeButton" Width="160" Click="LocalizeButton_Click" 
+                        IsEnabled="{Binding IsLocalizedEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                        Style="{StaticResource ModernButtonStyle}">
+                    <TextBlock Text="执行本地化" VerticalAlignment="Center"/>
+                </Button>
+                <TextBlock Name="LocalizationStatusText" VerticalAlignment="Center" Margin="16,0,0,0" 
+                           Text="就绪" Foreground="{StaticResource SuccessBrush}" FontWeight="SemiBold"/>
+            </ToolBar>
+        </StackPanel>
         
         <TabControl Grid.Row="1">
             <TabItem Header="Content Items">
-                <DataGrid x:Name="ContentDbViewBox" IsTextSearchEnabled="False" AlternationCount="2"
+                <Border Style="{StaticResource CardBorderStyle}">
+                    <DataGrid x:Name="ContentDbViewBox" IsTextSearchEnabled="False" AlternationCount="2"
                           AutoGenerateColumns="False" CanUserSortColumns="True" CanUserReorderColumns="True"
                           CanUserResizeColumns="True" CanUserResizeRows="True"
                           AlternatingRowBackground="LightGray" HeadersVisibility="Column"
@@ -97,10 +100,12 @@
                         <DataGridTextColumn Header="File Type" Binding="{Binding FileType}" Width="SizeToCells" />
                         <DataGridTextColumn Header="Hash" Binding="{Binding Hash}" Width="SizeToCells" />
                     </DataGrid.Columns>
-                </DataGrid>
+                    </DataGrid>
+                </Border>
             </TabItem>
             <TabItem Header="Title Updates">
-                <DataGrid x:Name="TitleUpdatesDbViewBox" IsTextSearchEnabled="False" AlternationCount="2"
+                <Border Style="{StaticResource CardBorderStyle}">
+                    <DataGrid x:Name="TitleUpdatesDbViewBox" IsTextSearchEnabled="False" AlternationCount="2"
                           AutoGenerateColumns="False" CanUserSortColumns="True" CanUserReorderColumns="True"
                           CanUserResizeColumns="True" CanUserResizeRows="False"
                           AlternatingRowBackground="LightGray" HeadersVisibility="Column"
@@ -128,7 +133,8 @@
                         <DataGridTextColumn Header="Device ID" Width="SizeToCells" Binding="{Binding LiveDeviceId}" />
                         <DataGridTextColumn Header="Hash" Width="SizeToCells" Binding="{Binding Hash}" />
                     </DataGrid.Columns>
-                </DataGrid>
+                    </DataGrid>
+                </Border>
             </TabItem>
         </TabControl>
     </Grid>

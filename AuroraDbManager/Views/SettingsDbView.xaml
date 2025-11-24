@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:conv="clr-namespace:AuroraDbManager.Classes.Converters"
-             mc:Ignorable="d" Background="{StaticResource BackgroundBrush}">
+             mc:Ignorable="d" Background="Transparent">
     <UserControl.Resources>
         <ContextMenu x:Key="DataGridContextMenu">
             <MenuItem Header="删除选中条目" Click="DeleteItem_Click" />
@@ -12,10 +12,21 @@
             <MenuItem Header="添加新条目" Click="AddItem_Click" />
         </ContextMenu>
     </UserControl.Resources>
-    <Grid>
-        <TabControl>
-            <TabItem Header="Active TUs">
-                <DataGrid x:Name="ActiveTuBox" IsTextSearchEnabled="False" AlternationCount="2"
+    <Grid Margin="4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,8">
+            <TextBlock Text="设置数据库" Style="{StaticResource SectionHeaderStyle}"/>
+            <TextBlock Text="统一管理用户设置、扫描路径、收藏及最近游戏记录" Foreground="{StaticResource MutedForegroundBrush}" FontSize="13"/>
+        </StackPanel>
+
+        <Border Grid.Row="1" Style="{StaticResource CardBorderStyle}">
+            <TabControl>
+                <TabItem Header="Active TUs">
+                    <DataGrid x:Name="ActiveTuBox" IsTextSearchEnabled="False" AlternationCount="2"
                           AutoGenerateColumns="False" CanUserSortColumns="True" CanUserReorderColumns="True"
                           CanUserResizeColumns="True" CanUserResizeRows="False"
                           AlternatingRowBackground="LightGray" HeadersVisibility="Column"
@@ -43,8 +54,9 @@
                         <DataGridTextColumn Header="Backup Path" Width="SizeToCells" Binding="{Binding Info.BackupPath}" />
                         <DataGridTextColumn Header="Hash" Width="SizeToCells" Binding="{Binding Info.Hash}" />
                     </DataGrid.Columns>
-                </DataGrid>
-            </TabItem><TabItem Header="Profiles">
+                    </DataGrid>
+                </TabItem>
+            <TabItem Header="Profiles">
                 <DataGrid x:Name="ProfilesBox" IsTextSearchEnabled="False" AlternationCount="2"
                           AutoGenerateColumns="False" CanUserSortColumns="True" CanUserReorderColumns="True"
                           CanUserResizeColumns="True" CanUserResizeRows="False"
@@ -59,9 +71,9 @@
                         <DataGridTextColumn Header="Gamertag" Width="SizeToCells" Binding="{Binding GameTag}" />
                         <DataGridTextColumn Header="XUID" Width="SizeToCells" Binding="{Binding Xuid}" />
                     </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-            <TabItem Header="Quick Views">
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Quick Views">
                 <DockPanel>
                     <Button x:Name="AddGenresButton" Content="游戏分类添加" Margin="5" Click="AddGenresButton_Click" DockPanel.Dock="Top"/>
                     <DataGrid x:Name="QuickViewsBox" IsTextSearchEnabled="False" AlternationCount="2"
@@ -105,9 +117,9 @@
                         <DataGridTextColumn Header="Script Data" Width="SizeToCells" Binding="{Binding ScriptData}" />
                         <DataGridTextColumn Header="Options" Width="SizeToCells" Binding="{Binding OptionsFlag}" />
                     </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-            <TabItem Header="System Settings">
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="System Settings">
                 <DataGrid x:Name="SystemSettingsBox" IsTextSearchEnabled="False" AlternationCount="2"
                       AutoGenerateColumns="False" CanUserSortColumns="True" CanUserReorderColumns="True"
                       CanUserResizeColumns="True" CanUserResizeRows="False"
@@ -122,9 +134,9 @@
                         <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="Value" Width="SizeToCells" Binding="{Binding Value}" />
                     </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-            <TabItem Header="User Settings">
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="User Settings">
                 <DataGrid x:Name="UserSettingsBox" IsTextSearchEnabled="False" AlternationCount="2"
                       AutoGenerateColumns="False" CanUserSortColumns="True" CanUserReorderColumns="True"
                       CanUserResizeColumns="True" CanUserResizeRows="False"
@@ -140,9 +152,9 @@
                         <DataGridTextColumn Header="Value" Width="SizeToCells" Binding="{Binding Value}" />
                         <DataGridTextColumn Header="Profile ID" Width="SizeToCells" Binding="{Binding ProfileId}" />
                     </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-            <TabItem Header="Trainers" x:Name="TrainersTab">
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Trainers" x:Name="TrainersTab">
                 <DataGrid x:Name="TrainersBox" IsTextSearchEnabled="False" AlternationCount="2"
                       AutoGenerateColumns="False" CanUserSortColumns="True" CanUserReorderColumns="True"
                       CanUserResizeColumns="True" CanUserResizeRows="False"
@@ -159,9 +171,9 @@
                         <DataGridTextColumn Header="Hash" Width="SizeToCells" Binding="{Binding Hash}"/>
                         <DataGridTextColumn Header="Value" Width="SizeToCells" Binding="{Binding Value}"/>
                     </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-            <TabItem Header="Favorite Titles">
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Favorite Titles">
                 <DataGrid x:Name="UserFavoritesBox" IsTextSearchEnabled="False" AlternationCount="2"
                       AutoGenerateColumns="False" CanUserSortColumns="True" CanUserReorderColumns="True"
                       CanUserResizeColumns="True" CanUserResizeRows="False"
@@ -177,9 +189,9 @@
                         <DataGridTextColumn Header="Content ID" Width="SizeToCells" Binding="{Binding ContentId}"/>
                         <DataGridTextColumn Header="Profile ID" Width="SizeToCells" Binding="{Binding ProfileId}"/>
                     </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-            <TabItem Header="Hidden Titles">
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Hidden Titles">
                 <DataGrid x:Name="UserHiddenBox" IsTextSearchEnabled="False" AlternationCount="2"
                       AutoGenerateColumns="False" CanUserSortColumns="True" CanUserReorderColumns="True"
                       CanUserResizeColumns="True" CanUserResizeRows="False"
@@ -195,9 +207,9 @@
                         <DataGridTextColumn Header="Content ID" Width="SizeToCells" Binding="{Binding ContentId}"/>
                         <DataGridTextColumn Header="Profile ID" Width="SizeToCells" Binding="{Binding ProfileId}"/>
                     </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-            <TabItem Header="Recent Games">
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Recent Games">
                 <DataGrid x:Name="UserRecentBox" IsTextSearchEnabled="False" AlternationCount="2"
                       AutoGenerateColumns="False" CanUserSortColumns="True" CanUserReorderColumns="True"
                       CanUserResizeColumns="True" CanUserResizeRows="False"
@@ -212,8 +224,9 @@
                         <DataGridTextColumn Header="Content ID" Width="SizeToCells" Binding="{Binding ContentId}"/>
                         <DataGridTextColumn Header="Profile ID" Width="SizeToCells" Binding="{Binding ProfileId}"/>
                     </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-        </TabControl>
+                    </DataGrid>
+                </TabItem>
+            </TabControl>
+        </Border>
     </Grid>
 </UserControl>

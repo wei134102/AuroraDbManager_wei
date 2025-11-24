@@ -4,23 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="登录" Height="180" Width="350"
+        Title="登录 Aurora 管理器" Height="220" Width="420"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        WindowStyle="ToolWindow">
-    <Grid Margin="15">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        Background="{StaticResource WindowGradientBrush}">
+    <Grid Margin="24">
+        <Border Style="{StaticResource CardBorderStyle}" Padding="24">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <Label Content="请输入密码:" Grid.Row="0"/>
-        <PasswordBox x:Name="PasswordBox" Grid.Row="1" Margin="0,5,0,15" FontSize="16" VerticalContentAlignment="Center"/>
+                <StackPanel Grid.Row="0" Margin="0,0,0,12">
+                    <TextBlock Text="请输入访问口令" Style="{StaticResource SectionHeaderStyle}"/>
+                    <TextBlock Text="保护数据库安全，仅授权用户可登录" Foreground="{StaticResource MutedForegroundBrush}" FontSize="13"/>
+                </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Button Content="登录" Width="80" IsDefault="True" Click="Login_Click"/>
-            <Button Content="取消" Width="80" Margin="10,0,0,0" IsCancel="True" Click="Cancel_Click"/>
-        </StackPanel>
+                <PasswordBox x:Name="PasswordBox" Grid.Row="1" Margin="0,0,0,20" FontSize="16" VerticalContentAlignment="Center"/>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="取消" Width="90" Margin="0,0,12,0" IsCancel="True" Click="Cancel_Click"/>
+                    <Button Content="登录" Width="120" IsDefault="True" Click="Login_Click" Style="{StaticResource ModernButtonStyle}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
