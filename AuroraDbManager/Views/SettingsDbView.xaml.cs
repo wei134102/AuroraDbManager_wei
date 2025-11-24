@@ -6,7 +6,10 @@
 // 	Copyright (c) 2015 Swizzy. All rights reserved.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Input;
@@ -248,6 +251,134 @@ namespace AuroraDbManager.Views {
             catch(Exception ex) {
                 App.SaveException(ex);
                 SendStatusChanged("Failed to delete item: " + ex.Message);
+            }
+        }
+
+        private void AddGenresButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // 检查数据库连接
+                if (App.DbManager == null || !App.DbManager.IsSettingsOpen)
+                {
+                    MessageBox.Show("请先加载设置数据库", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string luaFolderPath = Path.Combine(currentDirectory, "LUA");
+                string genresCnPath = Path.Combine(currentDirectory, "genres_cn.txt");
+
+                // 检查LUA文件夹是否存在
+                if (!Directory.Exists(luaFolderPath))
+                {
+                    MessageBox.Show("LUA文件夹不存在", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // 检查genres_cn.txt文件是否存在
+                if (!File.Exists(genresCnPath))
+                {
+                    MessageBox.Show("genres_cn.txt文件不存在", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // 读取genres_cn.txt文件，建立文件名到中文名称的映射
+                Dictionary<string, string> nameMap = new Dictionary<string, string>();
+                foreach (string line in File.ReadAllLines(genresCnPath, Encoding.UTF8))
+                {
+                    string[] parts = line.Split(new[] { '=' }, 2);
+                    if (parts.Length == 2)
+                    {
+                        string fileName = parts[0].Trim();
+                        string cnName = parts[1].Trim();
+                        nameMap[fileName] = cnName;
+                    }
+                }
+
+                // 获取第一个非空白的Creator XUID
+                string creatorXuid = "";
+                var quickViews = App.DbManager.GetQuickViews().ToList();
+                if (quickViews != null && quickViews.Count > 0)
+                {
+                    foreach (var item in quickViews)
+                    {
+                        if (!string.IsNullOrEmpty(item.CreatorXUID))
+                        {
+                            creatorXuid = item.CreatorXUID;
+                            break;
+                        }
+                    }
+                }
+                
+                // 如果没有找到，使用默认值
+                if (string.IsNullOrEmpty(creatorXuid))
+                {
+                    creatorXuid = "0000000000000000";
+                }
+
+                // 处理每个.lua文件
+                int addedCount = 0;
+                int skippedCount = 0;
+                foreach (string luaFilePath in Directory.GetFiles(luaFolderPath, "*.lua"))
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(luaFilePath);
+                    string filterMethod = $"User.{fileName}";
+                    string displayName = nameMap.ContainsKey(fileName) ? nameMap[fileName] : fileName;
+                    
+                    // 检查是否已经存在相同的FilterMethod
+                    bool exists = false;
+                    var allQuickViews = App.DbManager.GetQuickViews().ToList();
+                    foreach (var item in allQuickViews)
+                    {
+                        if (item.FilterMethod == filterMethod)
+                        {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (exists)
+                    {
+                        skippedCount++;
+                        continue; // 跳过已存在的项目
+                    }
+
+                    // 创建新的QuickViewItem
+                    DataTable tempTable = new DataTable();
+                    tempTable.Columns.Add("Id", typeof(long));
+                    tempTable.Columns.Add("DisplayName", typeof(string));
+                    tempTable.Columns.Add("SortMethod", typeof(string));
+                    tempTable.Columns.Add("FilterMethod", typeof(string));
+                    tempTable.Columns.Add("Flags", typeof(int));
+                    tempTable.Columns.Add("CreatorXUID", typeof(string));
+                    tempTable.Columns.Add("OrderIndex", typeof(int));
+                    tempTable.Columns.Add("IconHash", typeof(string));
+
+                    DataRow row = tempTable.NewRow();
+                    row["Id"] = 0;
+                    row["DisplayName"] = displayName;
+                    row["SortMethod"] = "Title Name";
+                    row["FilterMethod"] = filterMethod;
+                    row["Flags"] = 0;
+                    row["CreatorXUID"] = creatorXuid;
+                    row["OrderIndex"] = 0;
+                    row["IconHash"] = "";
+                    tempTable.Rows.Add(row);
+
+                    QuickViewItem newItem = new QuickViewItem(row);
+                    App.DbManager.AddQuickView(newItem);
+                    addedCount++;
+                }
+
+                // 重新加载数据网格
+                ReloadDataGrid(QuickViewsBox);
+                
+                // 显示结果
+                MessageBox.Show($"已成功添加{addedCount}个游戏分类。跳过{skippedCount}个已存在的分类。", "成功", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"添加游戏分类时发生错误：{ex.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

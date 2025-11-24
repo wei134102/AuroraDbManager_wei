@@ -44,8 +44,7 @@
                         <DataGridTextColumn Header="Hash" Width="SizeToCells" Binding="{Binding Info.Hash}" />
                     </DataGrid.Columns>
                 </DataGrid>
-            </TabItem>
-            <TabItem Header="Profiles">
+            </TabItem><TabItem Header="Profiles">
                 <DataGrid x:Name="ProfilesBox" IsTextSearchEnabled="False" AlternationCount="2"
                           AutoGenerateColumns="False" CanUserSortColumns="True" CanUserReorderColumns="True"
                           CanUserResizeColumns="True" CanUserResizeRows="False"
@@ -63,7 +62,9 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Quick Views">
-                <DataGrid x:Name="QuickViewsBox" IsTextSearchEnabled="False" AlternationCount="2"
+                <DockPanel>
+                    <Button x:Name="AddGenresButton" Content="游戏分类添加" Margin="5" Click="AddGenresButton_Click" DockPanel.Dock="Top"/>
+                    <DataGrid x:Name="QuickViewsBox" IsTextSearchEnabled="False" AlternationCount="2"
                       AutoGenerateColumns="False" CanUserSortColumns="True" CanUserReorderColumns="True"
                       CanUserResizeColumns="True" CanUserResizeRows="False"
                       AlternatingRowBackground="LightGray" HeadersVisibility="Column"
@@ -84,6 +85,7 @@
                         <DataGridTextColumn Header="Icon Hash" Width="SizeToCells" Binding="{Binding IconHash}"/>
                     </DataGrid.Columns>
                 </DataGrid>
+                </DockPanel>
             </TabItem>
             <TabItem Header="Scan Paths">
                 <DataGrid x:Name="ScanPathsBox" IsTextSearchEnabled="False" AlternationCount="2"
