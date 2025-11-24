@@ -149,7 +149,9 @@ return ("""
         
         # 解析游戏文件
         xbox360_games = self.parse_game_file(xbox360_file)
-        xboxlive_games = self.parse_game_file(xboxlive_file)
+        xboxlive_games = []
+        if xboxlive_file and os.path.exists(xboxlive_file):
+            xboxlive_games = self.parse_game_file(xboxlive_file)
         
         all_games = xbox360_games + xboxlive_games
         print(f"总共处理了 {len(all_games)} 个游戏")
@@ -190,7 +192,7 @@ return ("""
                 print(f"解析xbox360.txt失败: {e}")
         
         # 解析xbox360live.txt
-        if os.path.exists(xboxlive_file):
+        if xboxlive_file and os.path.exists(xboxlive_file):
             try:
                 with open(xboxlive_file, 'r', encoding='utf-8') as f:
                     lines = f.readlines()
@@ -207,6 +209,8 @@ return ("""
                             categories.add(category)
             except Exception as e:
                 print(f"解析xbox360live.txt失败: {e}")
+        elif xboxlive_file:
+            print(f"警告: 找不到文件 {xboxlive_file}, 将只处理xbox360.txt")
         
         # 保存分类到genres.txt文件
         try:
@@ -242,11 +246,11 @@ return ("""
 def main():
     # 配置路径 - 使用Python程序所在目录
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    base_dir = os.path.dirname(script_dir)  # 上一级目录（项目根目录）
+    base_dir = script_dir  # 当前目录就是根目录
     
-    xbox360_file = os.path.join(base_dir, "xbox 360", "xbox360.txt")
-    xboxlive_file = os.path.join(base_dir, "xbox 360", "xbox360live.txt")  
-    translations_file = os.path.join(base_dir, "xbox 360", "xbox_translations.json")
+    xbox360_file = os.path.join(base_dir, "xbox360.txt")
+    xboxlive_file = os.path.join(base_dir, "xbox360live.txt")  
+    translations_file = os.path.join(base_dir, "xbox_translations.json")
     genres_file = os.path.join(script_dir, "genres.txt")  # 分类文件在根目录，文件名为genres.txt
     output_dir = os.path.join(script_dir, "lua")  # Lua文件在py程序目录下的lua文件夹
     

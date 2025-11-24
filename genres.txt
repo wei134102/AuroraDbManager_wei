@@ -1,0 +1,18 @@
+Xbox 360游戏分类列表
+==============================
+Action
+Card
+Classics
+Educational
+Family
+Fighting
+Kinect
+Music
+Other
+Platformer
+Puzzle
+Racing
+Role Playing
+Shooter
+Sports
+Strategy

@@ -1,0 +1,1069 @@
+﻿Title ID	Game	 	Developer	Category	Year
+413307D3	Air Conflicts: Secret Wars	Games Farm	Fighting	
+415407D1	Zoids Assault	SEM&O Co., Ltd.	Strategy	2008
+415407D2	Operation Darkness(NA)	SUCCESS Corporation	Strategy	2008
+415407D6	The Cursed Crusade	Kylotonn Games	Action	
+415407D7	Catherine	Atlus	Action	2011
+415407D8	Divinity II: TDKS	Larian Studio	Role Playing	
+415407DE	Game of Thrones	Cyanide	Role Playing	2012
+415407E0	Testament of Sherlock Holmes	Frogwares	Action	2012
+415607D1	Call of DutyÂ® 2	Infinity	Action	2005
+415607D2	QUAKE 4	id Software	Shooter	2012
+415607D3	Gun	Neversoft	Action	2005
+415607D4	American Wasteland	Neversoft	Action	2005
+415607D6	Quake 2	id Software	Action	
+415607D9	WSOP: TOC	Left Field Productions	Sports	2008
+415607DA	Marvel Ult. Alliance	Raven Software	Action	2008
+415607DB	X-Men:TheOfficialGame	Activision	Action	2006
+415607DC	Alaskan Adventures	Fun Labs	Action	2006
+415607DD	Tony Hawk's Project 8	Neversoft	Action	2006
+415607DE	Wolfenstein	Raven Software	Action	2009
+415607DF	ET: QUAKE Wars	Nerve Software	Action	2008
+415607E1	Call of DutyÂ® 3	Treyarch	Shooter	2006
+415607E2	Spider-Man 3	Treyarch	Action	2007
+415607E4	Civil War	Cauldron	Shooter	2007
+415607E5	Cabela's Safari	Fun Labs	Action	2010
+415607E6	Modern WarfareÂ®	Infinity	Action	2007
+415607E7	Guitar Hero II	Harmonix Music Systems	Music	2007
+415607E8	SHReK the THiRD	7 Studios	Action	2007
+415607EB	Rapala Tournament	Fun Labs	Sports	2006
+415607EF	Singularity	Raven Software	Action	2010
+415607F0	TH Proving Ground	Neversoft	Action	2007
+415607F1	Transformers: The Game	Traveller's Tales	Action	2007
+415607F2	Kung Fu Panda	Luxoflux	Action	2008
+415607F5	Bee Movie Game	Beenox	Action	2007
+415607F7	Guitar Hero III	Neversoft	Music	2007
+415607FA	Spider-Man: FoF	Next Level Games	Action	2007
+415607FF	Quantum of Solace	Treyarch	Action	2008
+41560800	Big Game Hunter	Fun Labs	Sports	2007
+41560804	Cabela's Trophy Bucks	FunLabs	Action	
+41560815	Spidey: Web of Shadows	Shaba / Treyarch	Action	2008
+41560816	XMen Origins Wolverine	Raven Software	Action	2009
+41560817	Modern WarfareÂ® 2	Infinity	Action	2009
+41560818	SOF Payback	Cauldron	Action	2007
+41560819	Guitar Hero: Aerosmith	Neversoft	Music	2008
+4156081A	Guitar Hero World Tour	Neversoft	Music	2008
+4156081C	Call of DutyÂ®: WaW	Treyarch	Action	2008
+4156081D	Madagascar 2	Toys for Bob	Other	2008
+4156081F	James Bond 007: Blood Stone	Bizarre Creations	Action	2010
+41560820	Tony Hawk: RIDE	Robomodo	Sports	2009
+41560821	True Crime	United Front Games	Action	
+41560823	Baja 1000	Left Field Productions	Racing	2008
+41560824	Secret Service	Cauldron	Action	2008
+41560825	CW: Secret Missions	Cauldron	Action	2008
+41560826	Dangerous Hunts 2009	Fun Labs	Action	2008
+41560827	Paintball 2009	Fun Labs	Action	2008
+4156082A	Monsters vs. Aliens	Beenox	Action	2009
+4156082F	Marvel Ult. Alliance 2	Vicarious Visions	Action	
+41560830	Guitar Hero Metallica	Neversoft	Music	2009
+41560834	Transformers 2	Luxoflux	Action	2009
+4156083D	Guitar Hero Van Halen	Underground Development	Music	2009
+4156083E	Guitar Hero Hits	Beenox	Music	2009
+4156083F	Ice Age 3	Eurocom	Action	2009
+41560840	Guitar Hero 5	Neversoft	Music	2009
+41560845	Blur	Bizarre Creations	Racing	2010
+4156084C	Transformers: WFC	High Moon Studios	Action	2010
+4156084E	[PROTOTYPE]	Radical	Action	
+41560855	Call of DutyÂ®: Black Ops	Treyarch	Shooter	2010
+41560857	Bakugan	Now Pro	Action	2009
+4156085A	Chaotic	Fun Labs	Action	2009
+4156085B	Outdoor Adventures	Fun Labs	Action	2009
+4156085C	Band Hero	Neversoft	Music	2009
+4156085F	Cabela's BGH 2010	Cauldron	Action	2009
+41560870	Jurassic: The Hunted	Cauldron	Action	
+41560871	Guitar Hero VIP Pass	Seven Studios	Music	
+41560876	Shrek Forever After	XPEC	Action	2010
+41560877	HowToTrainYourDragon	Etranges Libellules	Action	2010
+4156087F	DJ HeroÂ® 2	Freestyle	Music	2010
+41560881	Spider-Man:Dimensions	Beenox	Action	
+41560883	GH: Warriors of Rock	Neversoft	Music	2010
+41560886	LLWS2010	Now Pro	Sports	2010
+41560889	RapalaÂ® Pro Bass	Fun Labs	Sports	2010
+4156088B	Apache: Air Assault	Gaijin Entertainment	Racing	2010
+4156088C	MJ Path of Destruction	Virtuos	Racing	
+4156088D	Blood Drive	Sidhe	Racing	2010
+4156088F	Cabela's NAA	Fun Labs	Action	2010
+41560890	Cabela'sÂ® DH 2011	Cauldron	Shooter	
+41560891	Bakugan: DOTC	Now Pro	Action	2012
+41560893	NASCAR The Game 2011	Eutechnyx	Racing	2011
+41560898	Call of DutyÂ® ELITE	Beachhead	Shooter	
+4156089C	TRANSFORMERS: FoC	High Moon Studios	Action	2012
+415608A4	TRANSFORMERS: Dark of the Moon	High Moon Studios	Action	2011
+415608A7	PROTOTYPE 2	Radical	Action	2012
+415608AA	X-Men: Destiny	Silicon Knights	Action	
+415608AB	Skylanders Spyro's Adventure	XPEC	Action	
+415608AE	Wipeout: In The Zone	Behaviour	Family	
+415608AF	GoldenEye Reloaded	Eurocom	Shooter	2010
+415608B2	Spider-Man: EoT	Beenox	Action	2011
+415608B4	DreamWorks Kartz	High Impact Games	Family	2011
+415608B5	The Amazing Spider-Man	Beenox	Action	2012
+415608BB	NASCARÂ® Unleashed	Firebrand Games	Racing	2012
+415608BD	Cabela's Big Game Hunter 2012	Cauldron	Shooter	2011
+415608BE	Cabela's Survival: SoK	Fun Labs	Action	2011
+415608C2	Cabela's Hunting Party	GamesFarm	Action	
+415608C5	Family Guy	Heavy Iron	Action	2012
+415608C6	RapalaÂ® for Kinect	Now Pro	Sports	2010
+415608C7	Adventure Camp	Cauldron	Family	2012
+415608CC	Wipeout 2	Behaviour	Platformer	2011
+415608CE	Big League Sports	Robomodo	Sports	2010
+415608D1	Battleship	Double Helix	Shooter	2012
+415608D3	MIB: Alien Crisis	Fun Labs	Shooter	2012
+415608D7	Ice Age 4	Behaviour	Family	2012
+415608D8	007 Legends	Eurocom	Shooter	2012
+415608DB	Cabela's Dangerous Hunts 2013	Cauldron	Action	2012
+415608DD	Wipeout 3	Behaviour	Platformer	2012
+415608E4	Angry Birds Trilogy	Rovio	Puzzle	2012
+415707D1	GUILTY GEAR 2	Arc System Works	Action	2008
+415707D4	Battle Fantasia	Arc System Works	Fighting	2010
+415707DA	BLAZBLUE CS	Arc System Works	Fighting	
+415707DC	Arcana Heart 3	Arc System Works	Fighting	2011
+415707DD	BLAZBLUE CONTINUUM SHIFT EXTEND	Arc System Works	Fighting	2012
+415807D5	BlazBlue	Arc System Works	Fighting	
+415807D7	Record of Agarest War	Idea Factory	Role Playing	2010
+415807D8	DEATHSMILES NA	Cave	Shooter	2010
+415807D9	Record of Agarest War Zero	Idea Factory	Role Playing	
+415907D5	Supreme Commander	Hellbent Games	Strategy	
+415907D7	BCFx-Doug Williams Ed.	Nerjyzed Entertainment Inc.	Sports	2009
+415907D8	Dreamkiller	Mindware	Action	2009
+424107DC	DBZ: BURST LIMIT	Dimps Corporation	Action	
+424507D1	KUF: Circle of Doom	Blueside Inc.	Action	2008
+424707D1	BradyGames Strategy	BradyGames	Other	2009
+424907D4	WSC Real 2011	Dark Energy Digital	Sports	
+425307D1	Oblivion	Bethesda Game Studios	Role Playing	2010
+425307D3	Rogue Warrior	Rebellion	Shooter	2009
+425307D5	Fallout 3	Bethesda Game Studios	Role Playing	2008
+425307D7	Hunted Demons Forge	inXile Entertainment	Action	
+425307D9	Brink	Splash Damage	Shooter	2011
+425307DB	WET	Artificial Mind & Movement	Action	2009
+425307E0	Fallout: New Vegas	Obsidian Entertainment	Action	2010
+425307E3	Dishonored	Arkane Studios	Action	2012
+425307E5	Prey 2	Human Head Studios	Shooter	
+425307EC	RAGE	id Software	Action	
+425307F1	DOOM 3 BFG Edition	id Software	Shooter	
+425407D4	Space Chimps	RedTribe	Platformer	2008
+425607D1	At Worlds End	Eurocom	Action	2007
+425607D3	Turok	Propaganda Games	Action	2008
+425607D4	Meet the Robinsons	Avalanche	Action	2009
+425607D9	Pure	Black Rock Studio	Racing	2008
+425607DB	Narnia: Prince Caspian	Traveller's Tales	Action	2008
+425607DE	Disney Bolt	Avalanche	Action	2008
+425607DF	HSM3 Senior Year DANCE	Page 44 Studios	Family	
+425607E0	Disney Sing It	Zoe Mode	Family	2008
+425607E5	Toy Story 3	Avalanche	Action	2010
+425607E6	Disney Sing It HSM3	ZoÃ« Mode	Family	2010
+425607E7	Split/Second	BlackRock Studios	Action	2010
+425607E8	G-Force	Eurocom	Action	2009
+425607E9	Hannah The Movie	N-Space	Action	2009
+425607ED	Tron: Evolution	Propaganda Games	Action	2010
+425607FE	Cars 2: The Video Game	Avalanche	Action	2011
+42560802	LEGO Pirates of the Caribbean: The Video Game	TT Games	Action	2011
+42560803	Disney Universe	Eurocom	Action	2011
+42560807	Disney Phineas & Ferb	Lakshya Digital, Pvt. Ltd.	Family	
+42560816	Disney Epic Mickey 2: The Power of Two	Junction Point Studios	Action	2012
+42560817	Brave: The Video Game	Behaviour	Action	2012
+42560819	Toy Story Mania!	High Voltage Software	Family	2012
+434107D3	Vampire Rain	Artoon	Action	2007
+434307D2	DEAD RISING	Capcom	Action	2006
+434307D3	LOST PLANET	Capcom	Action	2007
+434307D4	RESIDENT EVIL 5	Capcom	Action	2009
+434307DD	Bionic Commando	GRIN	Action	2009
+434307DE	LOST PLANET COLONIES	Capcom	Action	
+434307DF	Devil May Cry 4	Capcom	Action	2008
+434307E0	Dark Void	Airtight Games	Action	2010
+434307E1	STREET FIGHTER IV	Capcom	Action	2009
+434307E6	MotoGP 08	Milestone	Racing	2008
+434307EC	Dead Rising 2	Blue Castle Games	Action	2010
+434307ED	LOST PLANET 2	Capcom	Action	2010
+434307F0	MotoGP 09/10	Monumental Games	Racing	2010
+434307FC	SUPER STREETFIGHTER IV ARCADE EDITION	Capcom	Fighting	2010
+43430806	MARVEL VS. CAPCOM 3	Capcom	Fighting	
+4343080B	MotoGP 10/11	Monumental Games	Racing	
+4343080F	STREET FIGHTER X TEKKEN	Capcom	Fighting	2011
+43430814	Dragon's Dogma	Capcom	Action	2012
+43430816	STEEL BATTALION HEAVY ARMOR	FROM SOFTWARE	Action	2012
+43430817	ASURA'S WRATH	CyberConnect2 Co.Ltd.	Action	2012
+4343081C	Resident Evil 4	Capcom	Action	2011
+4343081D	Resident Evil Operation Raccoon City	Slant Six	Action	2012
+4343081E	DMC HD Collection	Foundation 9	Action	2012
+4343081F	DEAD RISING 2 OFF THE RECORD	Capcom	Action	2011
+43430821	U. MARVEL VS. CAPCOM 3	Capcom	Fighting	2011
+43430822	RESIDENT EVIL CODE: Veronica X	Capcom	Action	2011
+4343082B	Capcom DC	Backbone Entertainment	Action	2012
+43430830	Lost Planet 3	Spark Unlimited	Action	
+434407D6	Divinity II	Larian Studio	Action	
+434D07D2	LMA Manager 2007	Codemasters	Strategy	2006
+434D07D5	Overlord	Triumph Studios	Action	2007
+434D07D8	ICC Cricket 2007	Codemasters	Sports	2007
+434D07DB	DiRT	Codemasters	Racing	2007
+434D07DE	Rise of the Argonauts	Liquid Entertainment, LLC	Action	2008
+434D07E0	Turning Point	Spark Unlimited	Shooter	2008
+434D07E9	Clive Barker's Jericho	Mercury Steam	Action	2007
+434D07FF	GRID	Codemasters	Racing	2008
+434D0806	Damnation	Blue Omega Entertainment...	Action	2009
+434D0808	You're in the Movies	ZoÃ« Mode	Family	2008
+434D0809	Overlord II	Triumph Studios	Action	2009
+434D080D	FUEL	Asobo Studio	Racing	2009
+434D0811	OF: Dragon Rising	Codemasters	Action	2009
+434D0819	DiRT 2	Codemasters	Racing	2009
+434D0822	Leisure Suit Larry	Team 17	Action	2009
+434D082B	Ashes Cricket 2009	Transmission Games	Sports	2009
+434D082D	F1 2010	Codemasters	Racing	
+434D0838	Operation Flashpoint: Red River	Codemasters	Action	2011
+434D0839	Bodycount	Codemasters	Shooter	
+434D083D	DiRT 3	Codemasters	Racing	2011
+434D0842	F1 2011	Codemasters	Racing	2011
+434D0844	GRID 2	Codemasters	Racing	
+434D0845	DiRT Showdown	Codemasters	Racing	2012
+434D0847	F1 2012	Codemasters	Racing	2012
+434D0849	F1 Race Stars	Codemasters	Family	2012
+435607DA	Brunswick Pro Bowling	FarSight Studios	Sports	2010
+435907D1	Sniper: Ghost Warrior	City Interactive	Action	
+435907D2	Combat Wings: GBWWII	City Interactive	Racing	2012
+435907D4	Sniper Ghost Warrior 2	City Interactive	Action	2012
+435A07D9	DeathSmiles2 X	Cave	Shooter	
+444507D3	Stoked	Bongfish GmbH	Sports	2009
+444507D5	Stoked: Big Air Ed.	Bongfish GmbH	Sports	2009
+445007D3	EarthDefenseForce 2017	SANDLOT	Action	2007
+445007D4	Dark Sector	Digital Extremes	Action	2008
+445007EA	Onechanbara	TAMSOFT	Action	2009
+445007EB	Eat Lead	Vicious Cycle Software	Shooter	2009
+445007F1	BEN 10: VILGAX ATTACKS	Papaya Studio	Action	2009
+445007F9	Earth Defense Force: IA	Vicious Cycle Software	Action	2011
+445007FA	Victorious: Time to Shine	High Voltage Software	Music	
+445007FC	Ben 10 Galactic Racing	Monkey Bar Games	Family	2011
+44500801	Madagascar 3: The Video Game	Vicious Cycle Software	Action	2012
+445407D1	Venetica	DECK13 Interactive	Action	2009
+445407D3	Divinity II	Larian Studio	Action	
+445407D4	Gray Matter	Wizarbox	Action	
+445407D9	Crash Time 4 - The Syndicate	Synetic	Racing	
+445407DA	Winter Sports 2011	49Games	Strategy	
+453907D2	P4A	Atlus	Fighting	2012
+454107D2	Madden NFL 06	Electronic Arts	Sports	2005
+454107D6	Tiger Woods PGA TOUR06	Electronic Arts	Sports	2006
+454107D7	FIFA 06 RTFWC	EA Canada	Sports	2005
+454107D8	NBA LIVE 06	Electronic Arts	Sports	2005
+454107DB	Battlefield 2: MC	DICE	Action	2010
+454107DC	Burnout Revenge	Criterion Games	Action	2010
+454107DE	Fight Night Round 3	EA Chicago	Sports	2010
+454107DF	LOTR, BFME II	Electronic Arts	Strategy	2006
+454107E6	2006 FIFA World Cup	EA Canada	Sports	2006
+454107E8	NCAAÂ® Football 07	Electronic Arts	Sports	2006
+454107E9	The Godfather	Electronic Arts	Action	2006
+454107EB	Madden NFL 07	Electronic Arts	Sports	2006
+454107EC	Need for Speed Carbon	EA Black Box	Action	2006
+454107ED	Superman Returns	EA Tiburon	Action	2006
+454107EE	DEF JAM: ICON	EA Chicago	Fighting	2007
+454107EF	FIFA 07	EA Canada	Sports	2006
+454107F1	NBA LIVE 07	Electronic Arts	Sports	2006
+454107F2	NCAAÂ® March MadnessÂ®07	Electronic Arts	Sports	2007
+454107F3	NHLÂ® 07	Electronic Arts	Sports	2006
+454107F4	TigerWoodsPGATOURÂ®07	Electronic Arts	Sports	2006
+454107F6	MOH Airborne	Electronic Arts	Action	2007
+454107F7	NBA STREET Homecourt	Electronic Arts	Sports	2007
+454107F8	Army of Two	Electronic Arts	Shooter	2008
+454107F9	Battlefield: Bad Co.	EA Digital Illusions CE AB	Action	2008
+454107FA	Harry Potter HBP	Electronic Arts	Action	2009
+45410806	Burnout Paradise	Criterion Games	Racing	2008
+4541080E	Command and Conquer 3	Electronic Arts	Strategy	2007
+4541080F	The Orange Box	Valve	Shooter	2008
+45410811	UEFA CL 2006-2007	EA Canada	Sports	2007
+45410813	skate.	Electronic Arts	Sports	2007
+45410814	NASCARÂ® 08	EA Tiburon	Racing	2007
+45410819	Harry Potter OOTP	Electronic Arts	Action	2007
+4541081A	NCAAÂ® Football 08	Electronic Arts	Sports	2007
+4541081D	Madden NFL 08	Electronic Arts	Sports	2007
+4541081F	FIFA 08	EA Canada	Sports	2007
+45410820	NHLÂ® 08	Electronic Arts	Sports	2007
+45410821	TigerWoodsPGATOURÂ® 08	Electronic Arts	Sports	2007
+45410822	NFS ProStreet	EA Black Box	Action	2010
+45410828	Mercenaries 2	Pandemic Studios	Action	2008
+45410829	Rock Band	Harmonix Music Systems	Music	2007
+4541082B	NBA LIVE 08	Electronic Arts	Sports	2007
+45410830	Left 4 Dead	Valve	Action	2009
+45410835	NFL Tour	Electronic Arts	Sports	2008
+45410837	NCAAÂ® March MadnessÂ®08	Electronic Arts	Sports	2007
+4541083A	C&C3: Kane's Wrath	Electronic Arts	Strategy	2008
+4541083B	FIFA Street 3	Electronic Arts	Sports	2008
+4541083F	UEFA EURO 2008	EA Canada	Sports	2008
+45410841	NFL Head Coach 09	Electronic Arts	Sports	2008
+4541084C	Army of Two (EU)	Electronic Arts	Shooter	2008
+45410850	Mirror's Edge	DICE	Action	2008
+45410852	LOTR: Conquest	Pandemic Studios	Action	2009
+45410857	Dead Space	Electronic Arts	Action	2008
+4541085B	FIFA 09	EA Canada	Sports	2008
+4541085D	NCAAÂ® Football 09	Electronic Arts	Sports	2008
+45410860	C&C Red Alert 3	Electronic Arts	Strategy	2008
+45410861	FaceBreaker	EA Canada	Sports	2008
+45410864	Madden NFL 09	Electronic Arts	Sports	2008
+45410866	The Godfather II	Electronic Arts	Action	2009
+45410869	Rock Band 2	Harmonix Music Systems	Music	2010
+4541086F	MONOPOLY	EA Bright Light	Family	
+45410870	TigerWoodsPGATOURÂ® 09	Electronic Arts	Sports	2008
+45410872	NHLÂ® 09	Electronic Arts	Sports	2008
+45410876	NFS Undercover	EA Black Box	Action	2008
+4541087A	NBA LIVE 09	Electronic Arts	Sports	2008
+4541087F	Skate 2	Electronic Arts	Sports	2009
+45410889	AC/DC LIVE: Rock Band	Harmonix Music Systems	Music	2008
+4541088A	NCAAÂ® Basketball 09	Electronic Arts	Sports	2008
+4541088F	The Saboteur	Pandemic Studios	Action	2009
+45410891	EA SPORTS Grand SlamÂ® Tennis 2	Electronic Arts	Sports	2012
+45410894	Fight Night Round 4	EA Canada	Sports	2009
+45410898	Trivial Pursuit	EA Bright Light	Family	2009
+4541089B	G.I. JOE	Double Helix	Action	
+454108A8	Battlefield: Bad Co. 2	Digital Illusions	Action	2010
+454108AD	TigerWoodsPGATOURÂ® 10	Electronic Arts	Sports	2009
+454108B0	Rock Band Classic Rock	Harmonix Music Systems	Music	2009
+454108B1	The Beatles: Rock Band	Harmonix Music Systems	Music	2009
+454108B4	Need for Speed SHIFT	Slightly Mad Studios	Racing	2009
+454108BA	NHLÂ® 10	Electronic Arts	Sports	2009
+454108BC	FIFA 10	EA Canada	Sports	2009
+454108C0	Dragon Age: Origins	BioWare	Role Playing	2009
+454108C1	NBA LIVE 10	Electronic Arts	Sports	2009
+454108C3	NCAAÂ® Basketball 10	Electronic Arts	Sports	2009
+454108C5	BrÃ¼tal Legend	Double Fine	Action	2009
+454108C6	Madden NFL 10	Electronic Arts	Sports	2009
+454108CA	Rock Band Country Pack	Harmonix Music Systems	Music	2009
+454108CD	Rock Band Metal Pack	Harmonix Music Systems	Music	2009
+454108CE	Mass Effect 2	BioWare	Role Playing	2010
+454108CF	Dante's Inferno	Electronic Arts	Action	2010
+454108D4	Left 4 Dead 2	Valve	Action	2010
+454108D8	Army of TWO: TFD	Electronic Arts	Shooter	2010
+454108D9	G.I. JOE (PAL)	Double Helix	Action	
+454108DF	Dead Space 2	Visceral	Action	2011
+454108E2	The Sims 3	Edge of Reality	Strategy	2010
+454108E3	Crysis 2	Crytek	Shooter	2011
+454108E4	2010 FIFA World Cup	EA Canada	Sports	2010
+454108E5	MySims SkyHeroes	Artificial Mind & Movement	Action	2010
+454108E6	Skate 3	Electronic Arts	Sports	2010
+454108E7	Green Day: Rock Band	Harmonix Music Systems	Music	2010
+454108EE	TigerWoodsPGATOURÂ® 11	Electronic Arts	Sports	2010
+454108EF	Bulletstorm	Epic Games / People Can Fly	Shooter	2011
+454108F3	FIFA Soccer 11	Electronic Arts	Sports	
+454108F5	MONOPOLYÂ® Streets	Electronic Arts	Family	2010
+454108F7	Medal of Honor	EALA + DICE	Shooter	2010
+454108F9	Harry Potter and the Deathly Hallows - Part 1	Bright Light	Action	2010
+454108FC	EA SPORTS MMA	EA Tiburon	Fighting	2010
+454108FD	NHLÂ® 11	Electronic Arts	Sports	2010
+454108FE	Madden NFL 11	Electronic Arts	Sports	2010
+45410900	NCAAÂ® Football 11	Electronic Arts	Sports	2010
+45410903	Need for Speed Hot Pursuit	Criterion Games	Action	2011
+4541090B	Dragon Age 2	BioWare	Action	2011
+4541090C	Hasbro Family Game Night 3	Sumo Digital	Family	
+45410911	EA SPORTS Active 2	Electronic Arts	Sports	2010
+45410912	Portal 2	Valve	Action	2011
+45410914	Rock Band 3	Harmonix Music Systems	Music	2010
+45410915	FIGHT NIGHT CHAMPION	Electronic Arts	Fighting	2010
+45410916	Alice: Madness Returns	Spicy Horse	Action	
+45410919	NBA ELITE 11	Electronic Arts	Sports	
+45410923	Syndicate	EAP / Starbreeze	Shooter	2012
+45410929	Create	Bright Light	Other	2010
+4541092A	Shadows of the Damned	Grasshopper Manufacture	Action	2011
+45410934	SHIFT 2 UNLEASHED	Slightly Mad Studios	Racing	
+45410937	Madden NFL 12	Tiburon	Sports	2011
+4541093A	Rango	Behaviour	Action	2011
+4541093E	Kingdoms of Amalur: Reckoning	38 Studios / Big Huge Games	Role Playing	2012
+4541094A	NEED FOR SPEED THE RUN	Black Box	Racing	2011
+4541094C	NBA JAM	Electronic Arts	Sports	2010
+4541094D	Tiger Woods PGA TOURÂ® 12: The MastersÂ®	EA Tiburon	Sports	
+4541094E	NCAAÂ® Football 12	Electronic Arts	Sports	2011
+45410950	Battlefield 3	DICE	Shooter	2011
+45410955	Harry Potter and the Deathly Hallows - Part 2	EA Bright Light	Action	
+45410961	NEED FOR SPEED MOST WANTED	Criterion Games	Action	2012
+45410962	The Sims 3 Pets	Edge of Reality	Strategy	
+45410964	NHLÂ®12	Electronic Arts	Sports	2011
+45410966	Family Game Night 4: The Game Show	Wahoo Studios, Inc.	Family	2011
+45410967	FIFA 12	EA Canada	Sports	2011
+45410968	Crysis	Crytek	Shooter	
+45410969	Madden NFL 12	Electronic Arts	Sports	
+4541096C	EA SPORTS	EA SPORTS	Sports	2011
+4541096D	SSX	Electronic Arts	Sports	2012
+4541096E	Fuse	Insomnia	Action	2077
+4541097B	EA SPORTS FIFA Street	Electronic Arts	Sports	2012
+4541098A	NCAAÂ® Football 13	EA Tiburon	Sports	2012
+4541098E	CrysisÂ® 3	Crytek	Shooter	
+45410993	Medal of Honor Warfighter	Danger Close Games	Shooter	2012
+45410998	FIFA Soccer 13	EA Canada	Sports	
+45410999	FIFA Soccer 13 Early Access	EA Canada	Sports	2012
+4541099B	NHLÂ®13	EA SPORTS	Sports	2012
+4541099C	NHLÂ® 13 Early Release	EA SPORTS	Sports	2012
+4541099D	Dead Space 3	Visceral	Action	
+4541099F	Zuma's Revenge! Collection	PopCap	Action	2012
+454D07D2	FlatOut UC	Bugbear Entertainment	Racing	2007
+455607D1	Brave- Warrior's Tale	Collision Studios	Action	2009
+455607D3	Raven Squad	Atomic	Action	
+455607D5	Terminator Salvation	GRIN	Action	2009
+455607D6	JASF	Trickstar Games	Racing	
+455607D7	Venetica	Deck 13	Action	2010
+455607D8	Mayhem	Left Field Productions	Racing	2011
+455607DB	Test Drive: Ferrari	Slightly Mad Studios	Racing	2012
+464507D1	Blood Bowl	Cyanide	Strategy	2010
+464507D3	Sherlock Holmes	Spiders	Other	2010
+464507D6	Divinity II - DKS	Larian Studio	Action	2010
+464507D8	Tour de France	Cyanide	Sports	
+464F07D1	IL-2: Birds of Prey	Gaijin Entertainment	Strategy	
+464F07D7	MorphX	Targem Games	Shooter	2010
+464F07D8	Naughty Bear	Artificial Mind & Movement	Action	2010
+464F07D9	Naval Assault	Artech Studios	Action	2010
+464F07DA	BACKBREAKER	NaturalMotion Games	Strategy	2010
+464F07DB	Field & Stream T.O.C.	Beast Studios	Strategy	
+464F07E1	Michael Phelps: Push the Limit	Blitz Games	Family	2011
+464F07E4	Supremacy MMA	Kung Fu Factory	Fighting	2011
+464F07E7	Grease Dance	ZoÃ« Mode	Other	2011
+464F07E8	Sniper Elite V2	Rebellion	Shooter	2012
+464F07EC	Top Gun: Hard Lock	Headstrong Games	Racing	2012
+464F07ED	Rugby World Cup 2011	H.B. Studios Multimedia ...	Sports	2011
+464F07F2	Blackwater Kinect	Zombie Studios	Shooter	2011
+464F07F6	Jillian Michael's Fitness Adventure	N-Space	Other	2011
+464F07FE	miCoach	Developed by Chromativit...	Sports	2011
+465307D6	ARMORED CORE4	FromSoftware	Action	2007
+465307D7	Tenchu Z	K2	Action	2007
+465307D9	NINJA BLADE	FromSoftware	Action	2009
+465307DA	AC for Answer	FromSoftware	Action	
+465607DE	Phantom Breaker	5pb.	Fighting	
+474507D2	Kengo Legend of the 9	GENKI	Action	2007
+474907D1	The Strike	Piranha Games	Sports	2009
+475007D2	Hail to the Chimp	Wideload Games	Other	2008
+475007D3	Legendary	Spark Unlimited	Action	2008
+475007D4	Section 8	TimeGate Studios	Shooter	2009
+475007D5	Velvet Assassin	Replay Studios	Action	2009
+475207F5	Xbox LIVE Event Registrations	Xbox LIVE	Other	
+475707D1	Alaskan Storm	Liquid Dragon Studios	Strategy	2008
+475807D1	Lucha Libre AAA	Immersion Games	Fighting	
+484507D1	Rugby League Live	Big Ant Studios	Sports	
+484507D2	AFL Live	Big Ant Studios	Sports	
+484507D4	Jonah Lomu Rugby Challenge	Sidhe	Sports	2011
+485507D1	BOMBERMAN Act:Zero	HUDSON	Action	2006
+485507D4	Fuzion Frenzy 2	Microsoft	Action	2007
+485507DF	DECA SPORTS FREEDOM	HUDSON	Sports	
+494607D1	Spectral Force 3	XPEC	Role Playing	2008
+494707D1	Alone In The Dark	Eden Games	Action	2008
+494707D4	Test Drive Unlimited	Eden Games	Racing	2006
+494707DB	BulletWitch	Atari	Action	2007
+494707E4	Race Pro	SimBin	Racing	2009
+494707EE	Assault on Dark Athena	Starbreeze	Action	2009
+494707F4	Ghostbusters	Terminal Reality	Action	2009
+49470803	Backyard Football '10	FarSight Studios	Family	2009
+49470804	Test Drive Unlimited 2	Eden Games	Racing	
+49470806	Sandlot Sluggers	HB Studios	Sports	2010
+4947080B	Backyard Sports: Rookie Rush	Humongous Inc.	Sports	
+494F07D1	El Shaddai	Ignition Entertainment	Action	2011
+494F07D4	DEADLY PREMONITION	Access	Action	2010
+494F07E8	National Geographic Challenge!	Gusto Games	Puzzle	2011
+4A5707D2	ArcaniA - Gothic 4	Spellbound	Role Playing	2010
+4B4D07D1	Sacred 2 Fallen Angel	ASCARON Entertainment	Action	2009
+4B4D07D8	Risen	Wizarbox	Role Playing	2009
+4B4D07DE	Prison Break	ZootFly	Action	
+4B4D07DF	Dead Island	Techland	Action	2011
+4B4D07E0	nail'd	Techland	Racing	2010
+4B4D07E5	Winter Stars	49Games	Sports	
+4B4D07E6	Risen 2: Dark Waters	Piranha Bytes	Action	2012
+4B4D07EB	Summer Stars 2012	49Games	Sports	2012
+4B4E07D1	Rumble Roses Double X	YUKE'S Co.,Ltd.	Action	2006
+4B4E07D3	Hellboy: TSoE	Krome Studios	Action	2008
+4B4E07DA	Pro Evolution Soccer 6	Konami	Sports	2006
+4B4E07DC	DDR/DS Universe	HUDSON	Music	2007
+4B4E07DF	Winning Eleven 2007	Konami	Sports	2007
+4B4E07E0	Rock Revolution	ZoÃ« Mode	Music	
+4B4E07E2	KR: AI Encore	Blitz Games	Family	2008
+4B4E07E5	Silent Hill Homecoming	Double Helix	Action	2008
+4B4E07E6	PES2008	Konami	Sports	2008
+4B4E07E7	DDR/DS Universe 2	HUDSON	Music	2007
+4B4E07EF	DDR Universe 3	HUDSON	Music	2008
+4B4E07F0	PES 2009	Konami	Sports	2008
+4B4E07F3	KR: AI Encore 2	Blitz Games	Family	2008
+4B4E07FA	PES 2009	Konami	Sports	
+4B4E0801	PES 2010	Konami	Sports	2009
+4B4E0802	Saw	Zombie Studios	Other	2009
+4B4E0803	Karaoke Revolution	Blitz Games	Family	2009
+4B4E0805	PES 2010	Konami	Sports	
+4B4E0806	Tornado Outbreak	Loose Cannon Studios	Family	2009
+4B4E0807	DanceDanceRevolution	Konami	Music	
+4B4E0809	Castlevania LoS	Mercury Steam	Action	
+4B4E080A	Metal Gear Solid RISING	Konami	Action	2009
+4B4E0810	Ninety-Nine Nights/NA	feelplus	Action	2010
+4B4E0816	Ninety-Nine Nights/EU	feelplus	Action	
+4B4E0817	Ninety-Nine Nights/JP	feelplus	Action	
+4B4E0819	ADRENALIN MISFITS	Konami	Action	
+4B4E081D	PES 2011	Konami	Sports	2011
+4B4E081E	DanceMasters	Konami	Music	
+4B4E081F	NeverDead	Rebellion	Action	2012
+4B4E0820	DEF JAM RAPSTAR	Terminal Reality	Music	
+4B4E0822	SAW II	Zombie Studios	Other	2010
+4B4E082C	CROSSBOARD 7	Konami	Action	
+4B4E0837	PES 2012	Konami	Sports	
+4B4E0838	Blades of Time	Gaijin Entertainment	Action	2012
+4B4E0839	Birds of Steel	Gaijin Entertainment	Racing	2011
+4B4E083A	Otomedius Excellent	Konami	Shooter	2011
+4B4E083C	MGS PW HD	Konami	Action	2011
+4B4E083F	Karaoke Revolution Glee: Volume 3	Hijinx Studios, LLC.	Music	2011
+4B4E0840	MGS 2&3	Kojima Productions	Action	2011
+4B4E0841	Jimmie Johnson's Anything With An Engine	Isopod Labs	Racing	2011
+4B4E084C	PES 2013	Konami	Sports	2012
+4B4E084D	Castlevania: LoS 2	Mercury Steam	Action	
+4B4F07D3	DW5 Empires	KOEI	Action	2006
+4B4F07D5	SAMURAI WARRIORS 2 XL	KOEI	Action	2006
+4B4F07D6	SW2 Empires	KOEI	Action	2007
+4B4F07D7	Fatal Inertia	KOEI	Racing	2007
+4B4F07D8	BLADESTORM	KOEI	Action	2007
+4B4F07D9	WARRIORS OROCHI	Tecmo	Action	2011
+4B4F07E0	DW6	Tecmo	Action	2008
+4B4F07E1	DYNASTY WARRIORS 6	KOEI	Action	
+4B4F07E3	WARRIORS OROCHI 2	Tecmo	Action	2008
+4B4F07E7	DW6 Empires	Tecmo	Action	2009
+4B4F07FA	DW: Strikeforce	KOEI	Action	
+4B4F07FE	Fist of the North Star	Tecmo	Action	
+4B5607D2	Dynasty Warriors 7	Tecmo	Action	
+4B5607D4	NINJA GAIDEN 3	Tecmo	Action	2012
+4B5607D5	Champion Jockey	Tose	Racing	
+4B5607D9	WARRIORS OROCHI 3	Tecmo	Action	2012
+4B5607DA	Dead or Alive 5	Tecmo	Fighting	2012
+4B5607DF	WARRIORS OROCHI 3	Tecmo	Action	2012
+4B5907D6	Tropico 3	Haemimont Games	Strategy	2010
+4B5907D8	The First Templar	Haemimont Games	Action	2011
+4B5907DA	DarkStar One	Gaming Minds Studios	Action	
+4B5907DC	Tropico 4	Haemimont Games	Strategy	2011
+4B5907DF	Port Royale 3	Gaming Minds Studios	Strategy	2012
+4B5907E0	Air Conflicts: Secret Wars	Games Farm	Shooter	2011
+4C4107D1	LEGO Star Wars II	Traveller's Tales	Action	2006
+4C4107D2	Star Wars: The Force Unleashed	LucasArts	Action	2008
+4C4107D4	Fracture	Day 1 Studios	Action	2008
+4C4107D6	Thrillville: OTR	Frontier	Action	2007
+4C4107D7	LEGO Star Wars: TCS	Traveller's Tales	Action	2007
+4C4107DF	LEGOÂ® Indiana Jones	Traveller's Tales	Action	2008
+4C4107E2	SWTCW: Republic Heroes	Krome Studios	Action	2009
+4C4107ED	LEGOÂ® Indiana Jones 2	Traveller's Tales	Action	2010
+4C4107F2	Star Wars: The Force Unleashed II	LucasArts	Action	2010
+4C4107F3	LEGO Star Wars III	Traveller's Tales	Action	2011
+4C5307D1	SBKÂ®08	Milestone	Racing	
+4C5307D4	SBK09	Milestone	Racing	
+4C5307D7	SBKÂ®X	Milestone	Racing	
+4C5307D8	SuperstarsÂ® V8 NC	Milestone	Racing	
+4C5307DB	NGQ! Wild Life	Gusto Games	Family	
+4C5307DD	WRC 2010	Milestone	Racing	
+4C5307DE	Get Fit With Mel B	Lightning Fish Games	Sports	
+4C5307E5	SBK	Milestone	Racing	2012
+4C5307EB	WRC 2	Milestone	Racing	
+4C5307EC	MUD	Milestone	Racing	
+4C5307ED	Kung-Fu	Virtual Air Guitar Company	Kinect	2011
+4D4A07D8	GHP2	Super X Studios LLC	Shooter	2010
+4D4A07D9	AttackOfTheMovies3D	Panic	Action	2010
+4D4A07DA	Zumba Fitness	Pipeworks	Music	2010
+4D4A07DD	Hulk Hogan's Main Event	Panic	Fighting	
+4D4A07E2	Twister Mania	Naked Sky	Family	2011
+4D4A07E3	Harley Pasternaks Hollywood Workout	Heavy Iron	Strategy	2012
+4D4A07E4	Alvin and The Chipmunks: Chipwrecked	Behaviour	Family	2011
+4D4A07E5	Jillian Michaels Fitness Adventure	Majesco	Sports	2011
+4D4A07E6	Motion Explosion	Artech Studios	Other	
+4D4A07E7	Zumba Fitness: Rush	Zoe Mode	Music	2012
+4D4A07E8	NBA Baller Beats	HB-Studios	Sports	2012
+4D4A07F0	Zumba Fitness Core	Zoe Mode	Music	2012
+4D4B07D2	Alien Breed Trilogy	Team 17	Action	
+4D4B07D3	PopCap Hits Vol. 2	PopCap	Family	2009
+4D4B07D4	Serious Sam HD: The First and Second Encounters	Croteam	Shooter	
+4D4F07D1	Raiden IV	Moss	Shooter	2009
+4D5307D1	PGR 3	Bizarre Creations	Racing	2005
+4D5307D2	Kameo	Rare	Action	2005
+4D5307D3	Perfect Dark Zero	Rare	Action	2005
+4D5307D5	Gears of War	Epic Games, Inc.	Shooter	2006
+4D5307D6	Shadowrun	FASA Studio	Shooter	
+4D5307DB	Ninety-Nine Nights	Phantagram	Action	2006
+4D5307DC	Crackdown	Realtime Worlds	Action	2007
+4D5307DF	Blue Dragon	Mistwalker / Artoon	Role Playing	2007
+4D5307E6	Halo 3	Bungie Studios	Shooter	2010
+4D5307E8	Mass Effect	BioWare	Role Playing	2007
+4D5307EA	Forza Motorsport 2	Microsoft	Racing	2007
+4D5307F1	Fable II	Microsoft	Role Playing	2008
+4D5307F2	Viva PiÃ±ata	Rare	Family	2006
+4D5307F9	PGR 4	Bizarre Creations	Racing	2007
+4D5307FA	Lost Odyssey	Mistwalker / feelplus	Role Playing	2008
+4D530805	Alan Wake	Remedy Games	Action	2010
+4D530808	Halo Wars	Ensemble Studios	Action	2009
+4D530819	Party Animals	Krome Studios	Other	2007
+4D53082D	Gears of War 2	Epic Games, Inc.	Shooter	2008
+4D530832	Scene It? LCA	WXP	Other	2007
+4D53084D	Forza Motorsport 3	Turn 10 Studios	Racing	2009
+4D53085B	Halo: Reach	Bungie Studios	Shooter	2010
+4D530860	Scene It? BOS!	Krome/Screenlife	Other	2008
+4D530877	Halo 3: ODST	Bungie Studios	Shooter	2009
+4D530888	Lips	iNiS	Music	2008
+4D5308AF	Lips: Number One Hits	iNiS	Music	2009
+4D5308BC	Crackdown 2	Ruffian Games Ltd.	Other	2010
+4D5308C9	Kinect Sports	Rare	Family	2010
+4D5308CE	Halo Waypoint	343 Industries	Other	2010
+4D5308D6	Fable III	Lionhead Studios	Action	2010
+4D5308ED	Kinect Adventures!	Good Science Studio	Other	2010
+4D530901	Game Room	Krome Studios	Action	
+4D53093B	Kinect Joy Ride	MGS	Racing	2010
+4D5309C5	Triple Pack	Microsoft	Action	
+4D5309DF	The Gunstringer	Twisted Pixel Games	Action	2011
+4D5309ED	Pre-Release Console Registration Applicaiton	Microsoft	Other	2011
+4D530A55	KS Ultimate	Rare	Family	
+4D5607D1	Deadly Premonition	Access	Action	
+4D5707D3	This is Vegas	Midway	Action	
+4D5707D4	Blitz: The League	Point of View	Sports	2007
+4D5707D6	Wheelman	Midway	Action	2008
+4D5707D7	Blacksite	Midway	Action	2007
+4D5707D9	Hour of Victory	Nfusion Interactive	Action	2007
+4D5707DA	NBA Ballers:Chosen One	Midway	Sports	2008
+4D5707DB	Unreal TournamentÂ® 3	Epic Games, Inc.	Shooter	2008
+4D5707DF	TNA iMPACT!	Midway	Sports	2008
+4D5707E4	Hour of Victory (PC)	Nfusion Interactive	Action	
+4D5707E8	Blitz: The League II	Midway	Sports	2008
+4D5707E9	Mortal Kombat vs. DCU	Midway	Fighting	2008
+4D5907D3	Damage Inc. - Pacific Squadron WWII	Trickstar Games	Action	2012
+4E4D07D1	ACE COMBAT 6	Namco	Action	2007
+4E4D07D3	Ridge Racer 6	Namco	Racing	2005
+4E4D07D8	AFRO SAMURAI	SURGE	Action	2009
+4E4D07DC	Beautiful Katamari	Namco	Action	2007
+4E4D07DF	Warhammer:BattleMarch	Black Hole Entertainment	Strategy	2008
+4E4D07E0	Soulcalibur IV	Namco	Action	2008
+4E4D07E2	Eternal Sonata	tri-Crescendo	Role Playing	2007
+4E4D07E4	Eternal Sonata	tri-Crescendo	Role Playing	2007
+4E4D07E5	DW:GUNDAM	KOEI	Action	2007
+4E4D07E9	Tales of Vesperia	Namco	Role Playing	2008
+4E4D07ED	SMASH COURT TENNIS 3	Namco	Sports	2008
+4E4D07F0	SPLATTERHOUSEÂ®	Namco	Action	
+4E4D07F1	ENSLAVED	Ninja Theory Ltd.	Action	2010
+4E4D07F5	DTR: Retribution	Volatile Games	Fighting	2010
+4E4D07FC	TEKKEN 6	Namco	Fighting	2009
+4E4D0800	DW: GUNDAM 2	KOEI	Action	2009
+4E4D0801	Inversion	Saber Interactive	Action	2012
+4E4D0803	DB: Raging Blast	Spike	Fighting	2009
+4E4D0805	Tales of Vesperia	Namco	Role Playing	
+4E4D080B	Magnacarta2	SoftMax	Role Playing	2009
+4E4D080C	Magnacarta2	SoftMax	Role Playing	
+4E4D0816	Majin and the Forsaken Kingdom	Game Republic	Action	
+4E4D0819	NINJA STORM 2	Cyber Connect 2	Action	2010
+4E4D081B	CLASH OF THE TITANS	Game Republic	Action	2010
+4E4D081C	ACE COMBAT: AH	Namco	Action	2011
+4E4D081D	ASSAULTHORIZON	Namco	Shooter	
+4E4D0821	Knights Contract	Game Republic	Action	
+4E4D0826	DB: Raging Blast 2	Spike	Fighting	
+4E4D0827	Body and Brain Connection	Namco	Family	2010
+4E4D0834	DW: Gundam 3	Tecmo	Action	
+4E4D083A	Dark Souls	FromSoftware	Action	2011
+4E4D083D	SOULCALIBUR	Namco	Fighting	2012
+4E4D083E	Ridge Racer Unbounded	Bugbear Entertainment	Action	2012
+4E4D0842	STORM Generations	CyberConnect2 Co., Ltd.	Action	2012
+4E4D0846	Dragon Ball Z UT	Spike	Fighting	2011
+4E4D084C	ACE COMBAT: AH Demo	Namco	Action	
+4E4D084E	DBZ for Kinect	Spike	Fighting	2012
+4E4D084F	Armored Core V	FromSoftware	Action	2012
+4E4D0856	DBZ Budokai HD Collection	Pyramid, Inc.	Fighting	2012
+4E4D0859	TEKKEN TAG TOURNAMENT 2	Namco	Fighting	2012
+4F4707D1	PDC World Championship Darts: Pro Tour	Redoubt	Sports	
+4F4707D4	Everyone Sing	Gusto Games	Music	2012
+4F4707D7	CN: PTEXL	Papaya Studio	Fighting	
+504307D4	Infernal	Metro	Action	2009
+524C07D1	Crash Time	Synetic	Racing	
+524C07D6	Crash Time II	Synetic	Action	
+524C07D8	Winter Sports 2010	49Games	Family	
+524C07D9	Crash Time 3	Synetic	Action	
+524C07DE	Summer Challenge	49Games	Family	
+534307D3	Conflict: Denied Ops	Pivotal Games	Action	2008
+534307D4	Tomb Raider:Legend	Crystal	Action	2006
+534307D5	Just Cause	Avalanche	Action	2006
+534307D9	Battlestations: Midway	Eidos	Action	2010
+534307DB	Hitman: Blood Money	Eidos	Action	2010
+534307E0	Kane and Lynch:DeadMen	IO Interactive	Action	2007
+534307E2	Bionicle Heroes	Traveller's Tales	Action	2006
+534307E4	MINI NINJAS	IO Interactive	Action	2009
+534307E5	Shellshock 2	Rebellion	Action	2009
+534307E7	Just Cause 2	Avalanche	Action	2010
+534307E9	Battlestations Pacific	Eidos	Action	2009
+534307EA	Tomb Raider: Anniv.	Crystal	Action	2007
+534307EC	Tomb Raider Underworld	Crystal	Action	2008
+534307F6	Batman: Arkham Asylum	Rocksteady Studios	Action	2009
+534307F8	Kane & Lynch 2	IO Interactive	Action	2010
+5343080B	Batman: AA GOTY	Rocksteady Studios	Action	2010
+534407FC	Way of the Samurai 3	Acquire Corp.	Action	
+534507D1	Football Manager 2006	Sports Interactive	Strategy	2006
+534507D2	Condemned	Monolith Productions, Inc.	Action	2005
+534507D4	Chromehounds	FROM SOFTWARE	Action	2006
+534507D5	Full Auto	Pseudo Interactive	Action	2006
+534507D6	SONIC THE HEDGEHOG	Sega	Action	2006
+534507DD	The Club	Bizarre Creations	Shooter	2008
+534507E0	Viking	The Creative Assembly	Action	2008
+534507E1	Virtua Tennis 3	Sumo Digital	Sports	2007
+534507E3	Phantasy Star Universe	Sonic	Role Playing	2006
+534507E5	Golden Axe:Beast Rider	Secret Level	Action	2008
+534507E6	SEGA Rally	Sega	Racing	2007
+534507ED	The Golden Compass	Shiny	Action	2007
+534507EE	Virtua Fighter 5	Sega	Fighting	2007
+534507F0	Universe at War	Petroglyph	Action	
+534507F1	The Incredible Hulk	Edge of Reality	Action	2008
+534507F2	Iron Man	Secret Level	Action	2008
+534507F4	Beijing 2008	Eurocom	Sports	2008
+534507F5	SEGA Superstars Tennis	Sumo Digital	Sports	2008
+53450806	Stormrise	Creative Assembly	Action	2009
+5345080C	Aliens Colonial Marines	Gearbox Software	Shooter	2013
+5345080E	Alpha Protocol	Obsidian Entertainment	Action	2010
+53450810	Sonic's UGC	Backbone Entertainment	Other	2009
+53450812	SONIC UNLEASHED	Sega	Action	2008
+53450813	BAYONETTA	Platin	Action	2010
+53450814	Virtua Tennis 2009	Sumo Digital	Sports	2009
+53450815	Sonic & SEGA Racing	Sumo Digital	Racing	2010
+5345081A	Vancouver 2010	Eurocom	Racing	2010
+53450825	SEGA MEGA DRIVE UC	Backbone Entertainment	Other	
+5345082A	Aliens vs Predator	Rebellion	Shooter	2003
+53450832	End of Eternity	tri-Ace	Role Playing	
+53450836	Iron Man 2	Sega	Action	
+53450839	Resonance of Fate	tri-Ace	Role Playing	2010
+5345083F	ANARCHY REIGNS	Platin	Action	2012
+53450841	VANQUISH	Platin	Shooter	2010
+53450843	London 2012	Sega	Sports	2012
+53450845	Thor: God of Thunder	Liquid Entertainment, LLC	Action	
+53450846	Rise of Nightmares	Sega	Action	
+53450848	Sonic Generations	Sega	Action	2011
+5345084D	SONIC FREE RIDERS	Sonic	Racing	2010
+53450857	Virtua Tennis 4	Sega	Sports	
+53450858	Captain America: Super Soldier	Next Level Games	Action	
+5345085A	Dreamcast Collection	Sega	Action	
+5345085C	BINARY DOMAIN	Sega	Shooter	2012
+5345085D	Sonic & All-Stars Racing Transformed	Sumo Digital	Racing	2012
+534A07D1	Williams Pinball Classics	FarSight Studios	Action	
+534E07D2	KOF XII	SNK Playmore	Fighting	2009
+534E07D5	SAMURAI SHOWDOWN SEN	SNK Playmore	Fighting	2010
+534E07DC	THE KING OF FIGHTERS XIII	SNK Playmore	Fighting	2011
+535007D4	Two Worlds	Reality Pump	Role Playing	2007
+535007DF	X-Blades	Gaijin Entertainment	Action	2008
+535007ED	Phantom Breaker	MAGES.	Fighting	2012
+535107D2	PlayOnline Viewer	SQUARE ENIX	Other	
+535107D4	PROJECT SYLPHEED	Game Arts	Shooter	2007
+535107D5	FINAL FANTASY XI	SQUARE ENIX	Role Playing	2006
+535107DA	The Last Remnant	SQUARE ENIX	Role Playing	2008
+535107DB	Infinite Undiscovery	tri-Ace	Role Playing	2008
+535107DD	Star Ocean: TLH	SQUARE ENIX	Role Playing	2009
+535107E3	Supreme Commander 2	Gas Powered Games	Strategy	2010
+535107E4	FINAL FANTASY XIII	SQUARE ENIX	Role Playing	2010
+535107E8	NIER	cavia	Action	2010
+535107E9	Front Mission Evolved	Double Helix	Shooter	2010
+535107F1	Mindjack	feel plus	Shooter	
+535107F5	Dungeon Siege 3	Obsidian Entertainment	Action	
+535107FA	DEUS EX: HUMAN REVOLUTION	Eidos	Action	2010
+53510802	Tomb Raider	Crystal	Action	2013
+53510804	Hitman: Absolution	IO Interactive	Action	2012
+53510806	FINAL FANTASY XIII-2	SQUARE ENIX	Role Playing	2012
+53510811	Sleeping Dogs	United Front Games	Action	2012
+544307D1	DEAD OR ALIVE 4	Team Ninja	Fighting	2005
+544307D2	DEAD OR ALIVE Xtreme 2	Team Ninja	Sports	2006
+544307D5	NINJA GAIDEN 2	Tecmo	Action	2009
+544307DB	QUANTUM THEORY	Tecmo	Action	
+544307DC	QUANTUM THEORY	Tecmo	Action	
+545107D1	Saints Row	Volition	Action	2006
+545107D2	The Outfit	Relic Entertainment	Action	2006
+545107D4	MotoGP 06	Climax Racing Ltd	Racing	2006
+545107D8	Frontlines:Fuel of War	Kaos Studios	Shooter	2008
+545107DA	Conan	Nihilistic Software	Action	2007
+545107DE	MX vs. ATV: Untamed	Rainbow	Racing	2007
+545107E0	Smackdown vs RAW 2007	YUKE'S CO., LTD.	Action	2006
+545107E1	Avatar: TLA: TBE	THQ	Action	2007
+545107E6	Darksiders	Vigil Games	Action	2010
+545107EA	Cars	Rainbow	Family	2006
+545107EF	BAJA: Edge of Control	2XL Games, Inc.	Racing	2008
+545107F1	Ratatouille	Heavy Iron	Action	2008
+545107F4	Stuntman: Ignition	Paradigm Entertainment	Action	2007
+545107F6	MotoGP 07	Climax Racing Ltd	Racing	2007
+545107FC	Saints Row 2	Volition	Action	2008
+545107FE	DAH! Path of the Furon	Sandblast Games	Action	2008
+54510801	Cars: Mater-National	Rainbow	Family	2008
+5451080B	SmackDown vs RAW 2008	YUKE'S CO., LTD.	Action	2007
+54510824	WALLE	Heavy Iron	Action	2008
+54510826	SmackDown vs. RAW 2009	YUKE'S CO., LTD.	Action	2008
+54510829	MX vs ATV Reflex	Rainbow	Racing	2009
+5451082A	UFC 2009 Undisputed	YUKE'S Co.,Ltd.	Fighting	2009
+5451082C	WarhammerÂ® 40,000Â®: Space MarineÂ®	Relic Entertainment	Action	2011
+54510835	WoO: Sprint Cars	Big Ant Studios	Racing	2010
+54510838	WWE Legends	YUKE'S CO., LTD.	Action	2009
+54510839	DisneyÂ·Pixar UP	Heavy Iron	Action	2009
+5451083B	50 Cent: BotS	Swordfish Studios	Action	2009
+54510840	5th Grader: Game Time	ImaginEngine	Puzzle	
+54510842	Metro 2033	4A-Games	Action	2010
+54510844	SmackDown vs. RAW 2010	YUKE'S CO., LTD.	Action	2009
+54510846	Homefront	Kaos Studios	Action	
+54510848	Cars: Race-O-Rama	Incinerator Studios	Family	2009
+54510850	SpongeBob: Truth-Sq.	Heavy Iron	Action	2009
+54510851	UFC Undisputed 2010	YUKE'S Co.,Ltd.	Fighting	2010
+54510859	The Biggest Loser: Ultimate Workout	Blitz Games	Family	
+5451085B	UFC Personal Trainer	Heavy Iron	Fighting	
+5451085C	MegaMind: Ultimate Showdown	THQ	Action	2010
+5451085D	WWE Smackdown vs. Raw 2011	YUKE'S CO., LTD.	Fighting	
+5451085E	Fantastic Pets	Blitz Games	Family	2011
+5451085F	Red Faction: Armageddon	Volition	Action	2011
+54510860	Super Hero Squad: TIG	Griptonite	Action	
+54510865	de Blob 2	Bluetongue Entertainment	Action	
+54510866	WWEÂ® All Stars	THQ	Fighting	
+54510869	YOU DONT KNOW JACKÂ®	Jellyvision	Other	
+5451086B	Deepak Chopras Leela	Curious Pictures	Other	2011
+5451086D	Saints RowÂ®: The Third	Volition	Action	2011
+54510873	The Penguins of Madagascar	Griptonite	Action	
+54510874	Kung Fu Panda 2	Griptonite	Action	
+54510875	Rio	Eurocom	Action	
+5451087B	MX vs. ATV Alive	THQ	Racing	2011
+5451087D	UFC Undisputed 3	Yukes	Fighting	2012
+5451088B	Puss in Boots	Blitz Game Studios	Action	2011
+5451088C	Dance Paradise	Smack Down Production	Music	
+54510890	WWE '12	YUKE'S CO., LTD.	Fighting	2011
+54510896	Darksiders II	Vigil Games	Action	2012
+54510899	uDraw Studio: Instant Artist	Pipeworks	Family	2011
+5451089B	Marvel Super Hero Squad: Comic Combat	Griptonite	Action	
+5451089C	Pictionary: Ultimate Edition	Page44	Puzzle	2011
+5451089D	SpongeBob's Surf & Skate Roadtrip	Blitz Games	Sports	2011
+5451089E	Metro: Last Light	4A Games	Shooter	2012
+545108AE	Jeopardy!	Pipeworks	Family	2012
+545108AF	Wheel of Fortune	Pipeworks	Family	2012
+545108B1	South Park: The Stick of Truth	Obsidian Entertainment	Role Playing	2013
+545108B4	WWE '13	Yuke's	Fighting	2012
+545407D2	College Hoops 2K6	Visual Concepts	Sports	2006
+545407D3	MLB 2K6	Kush	Sports	2006
+545407D4	Amped 3	Indie Built	Action	2005
+545407D5	Top Spin 2	PAM Development	Sports	2006
+545407D8	BioShock	2K Boston, 2K Austraila	Action	2007
+545407DC	Prizefighter	VenomGames	Sports	2008
+545407DD	XCOM	2K Marin	Shooter	
+545407DF	Rockstar Table Tennis	Rockstar San Diego	Family	2006
+545407E0	Prey	2K Games (Europe)	Action	2006
+545407E2	NBA 2K6	Visual Concepts	Sports	2005
+545407E3	NHL 2K6	Kush	Sports	2005
+545407E4	The BIGS	Blue Castle Games	Sports	2007
+545407E5	Civilization Revolution	Firaxis Games	Strategy	2008
+545407E6	Mafia II	2K Czech	Action	2010
+545407E7	Borderlands	Gearbox Software	Shooter	2009
+545407EB	NHL 2K7	Kush	Sports	2006
+545407EE	The Darkness	Starbreeze	Action	2007
+545407EF	NBA 2K7	Visual Concepts	Sports	2006
+545407F1	College Hoops 2K7	Visual Concepts	Sports	2006
+545407F2	GTA IV	Rockstar North	Action	2008
+545407F8	Midnight Club: LA	Rockstar San Diego	Action	2008
+545407FA	MLB 2K7	Kush	Sports	2007
+545407FF	Top Spin 3	PAM Development	Sports	2008
+54540807	All Pro Football 2K8	Take 2 Interactive	Sports	2007
+54540809	NHL 2K8	Kush	Sports	2007
+5454080C	NBA 2K8	Visual Concepts	Sports	2007
+54540817	MLB 2K8	2K Los Angeles	Sports	2008
+54540818	College Hoops 2K8	Visual Concepts	Sports	2007
+5454081A	Bully Scholarship Ed.	MAD	Action	2008
+54540829	NBA 2K9	Visual Concepts	Sports	2008
+5454082B	Red Dead Redemption	Rockstar San Diego	Action	2010
+5454082D	BioShock 2	2K Marin	Shooter	2010
+5454082E	NHL 2K9	Visual Concepts	Sports	2008
+5454082F	MLBÂ® Front Office Mgr	Blue Castle Games	Strategy	2009
+54540830	The BIGS 2	Blue Castle Games	Sports	2009
+54540842	MLB 2K9	2K Novato	Sports	2009
+54540843	Spec Ops: The Line	Yager	Shooter	2012
+5454084E	Duke Nukem Forever	Gearbox Software	Shooter	2011
+54540852	NBA 2K10	Visual Concepts	Sports	2009
+54540853	NHL 2K10	Visual Concepts	Sports	2009
+54540855	MLB 2K10	Visual Concepts	Sports	2010
+54540859	Top Spin 4	2K Czech	Strategy	
+5454085D	BioShock Infinite	Irrational Games	Shooter	2013
+54540861	BioShock 2	2K Marin	Action	2010
+5454086B	Max Payne 3	Rockstar Studios	Action	2012
+5454086C	L.A. Noire	Team Bondi	Action	
+5454087A	NBA 2K11	Visual Concepts	Sports	2010
+5454087C	Borderlands 2	Gearbox Software	Role Playing	2012
+54540882	XCOMÂ®: Enemy Unknown	Firaxis Games	Action	2012
+54540883	Nicktoons MLB	High Voltage Software	Family	2011
+5454088D	The Darkness II	Digital Extremes	Shooter	2012
+5454088E	MLB 2K11	Visual Concepts	Family	
+54540890	Carnival GamesÂ®: MSMD	Cat Daddy	Family	2011
+54540894	NBA 2K12	Visual Concepts	Sports	2011
+54540895	Nickelodeon Dance	High Voltage Software	Family	2011
+54540899	Let's Cheer!	Cat Daddy	Family	2011
+5454089E	MLB 2K12	Visual Concepts	Strategy	2012
+545408A2	NBA 2K13	Visual Concepts	Strategy	2012
+545607D3	Dance Central	Harmonix Music Systems	Music	2010
+545607D5	Rock Band Music Store	Harmonix	Other	2010
+545A07D1	Deathsmiles	Cave	Shooter	
+545A07D3	Akai Katana	Cave	Shooter	2012
+554F07D3	Way of the Samurai 3	Acquire Corp.	Action	2009
+554F07D4	Rock of the Dead	Epicenter Studios, LLC.	Action	2010
+555307D3	King Kong	Ubisoft	Action	2005
+555307D4	Assassin's Creed	Ubisoft	Action	2007
+555307D5	TC's GRAW	Ubisoft	Action	2006
+555307D6	TC's RainbowSix Vegas	Ubisoft	Shooter	2006
+555307D7	TC's SC Double Agent	Ubisoft	Action	2006
+555307DB	Blazing Angels	Ubisoft	Action	2006
+555307DC	FC Instincts Predator	Ubisoft	Action	2006
+555307E0	TC's EndWar	Ubisoft	Strategy	2008
+555307E5	Naruto Rise Of A Ninja	Ubisoft	Fighting	2007
+555307E6	Enchanted Arms	FROM SOFTWARE	Role Playing	2006
+555307E8	Open Season	Ubisoft	Action	2006
+555307EA	Brothers in Arms: HH	Gearbox Software	Action	2008
+555307F0	TC's GRAW2	Ubisoft	Action	2010
+555307F3	Rayman Raving Rabbids	Ubisoft	Family	2007
+555307F6	R.U.S.E.	Eugen Systems	Strategy	2010
+555307F8	TMNT	Ubisoft	Action	2007
+555307FA	Call of Juarez	Techland	Action	2011
+555307FB	Pure Futbol	Action Pants Inc.	Sports	
+555307FE	Blazing Angels 2	Ubisoft	Action	2007
+55530801	Beowulf	Ubisoft	Action	2007
+55530804	DMMM:Elements	Ubisoft	Action	2008
+55530808	AA: True Soldiers	High Voltage Software	Action	2007
+55530809	CSI-Hard Evidence	Telltale Games	Action	2007
+5553080B	SplinterCellConviction	Ubisoft	Action	2010
+5553080C	Prince of Persia	Ubisoft	Action	2008
+5553080F	Lost Via Domus	Ubisoft	Action	2008
+55530810	Far CryÂ® 2	Ubisoft	Shooter	
+55530816	TCs H.A.W.X	Ubisoft	Action	2009
+5553081C	Call of Juarez 2	Techland	Shooter	2009
+55530825	Naruto The Broken Bond	Ubisoft	Action	2008
+5553082F	Shaun White Skateboarding	Ubisoft	Sports	
+55530833	Ghost Recon: Future Soldier	Ubisoft	Shooter	2012
+55530836	Cloudy with a...	Ubisoft	Action	
+5553083B	Assassin's Creed II	Ubisoft	Action	2009
+5553083C	Cameron's Avatar	Ubisoft	Action	2009
+5553083E	Prince of Persia The Forgotten Sands	Ubisoft	Action	2010
+5553083F	CSI: Deadly Intent	Telltale Games	Action	2009
+55530841	Heroes Over Europe	Transmission Games	Other	2009
+55530848	Tom Clancys H.A.W.X.Â® 2	Ubisoft	Racing	2010
+55530849	CSI: Fatal Conspiracy	Telltale Games	Other	
+5553084C	Child of Eden	Q ENTERTAINMENT	Music	2011
+5553084E	Fighters Uncaged	AMA Studios	Action	2010
+5553084F	Your Shape : Fitness Evolved	Ubisoft	Sports	
+55530850	Motionsports	Ubisoft	Sports	
+55530851	Michael Jackson The Experience	Ubisoft	Music	2011
+5553085D	Assassin's Creed Brotherhood	Ubisoft	Action	
+5553086B	PowerUp Heroes	Ubisoft	Fighting	2012
+55530871	The Adventures of Tintin	Ubisoft	Action	2011
+55530873	Rocksmith	Ubisoft	Music	2011
+55530874	Call Of Juarez : The Cartel	Techland	Shooter	2011
+55530877	Just Dance Kids 2	Ubisoft	Family	
+55530879	Assassin's Creed Revelations	Ubisoft	Action	2011
+5553087E	Driver San Francisco	Ubisoft	Action	2011
+5553087F	Family FeudÂ®	Ludia	Family	
+55530880	The Price Is RightÂ®	Ludia	Family	2011
+55530881	NCIS Game	Ubisoft	Action	2011
+55530882	Raving Rabbids: A&K	Ubisoft	Other	2011
+55530883	Who Wants To Be A Millionaire	Ludia	Family	
+55530884	RaymanÂ® Origins	Ubisoft	Family	2012
+55530886	Your Shape Fitness Evolved 2012	Ubisoft	Other	
+55530887	MotionSports: Adrenaline	Ubisoft	Sports	2011
+55530888	Just Dance 3	Ubisoft	Family	2011
+55530889	My Self Defence Coach	Ubisoft	Educational	2012
+5553088C	Far Cry 3	Ubisoft	Shooter	2012
+5553088D	Black Eyed Peas Experience	Ubisoft	Music	
+555308AD	Marvel Avengers: Battle for Earth	Ubisoft	Kinect	2012
+555308AE	Assassin's CreedÂ® III	Ubisoft	Action	2012
+555308B2	Just Dance Greatest Hits	Ubisoft	Family	2012
+555308B3	JD Disney Party	Land Ho!	Music	2012
+555308B5	Just DanceÂ® 4	Ubisoft	Music	2012
+555308B6	Tom Clancy's Splinter Cell Blacklist	Ubisoft	Shooter	
+563307D1	Country Dance All Stars	High Voltage Software	Music	2012
+564707D1	Ski-Doo Challenge	Coldwood Interactive	Action	2009
+564707D3	RAIDEN FIGHTERS ACES	GULTI CO.,LTD.	Shooter	2009
+564707D4	Darkest Of Days	8monkey / Third Wave Games	Action	2009
+565507D4	The Bourne Conspiracy	High Moon Studios	Action	2008
+565507D9	F.E.A.R.	Day 1 Studios	Action	2006
+565507DA	TimeShift	Saber Interactive	Shooter	2007
+565507E0	Eragon	Stormfront Studios	Action	2006
+565507E4	Crash Of The Titans	Radical	Platformer	2007
+565507E6	Spiderwick Chronicles	Stormfront Studios	Action	2008
+565507F9	Legend of Spyro	Etranges Libellules	Action	2008
+565507FA	Crash Mind Over Mutant	Radical	Platformer	2008
+565707D0	Lollipop Chainsaw	Grasshopper Manufacture	Action	2012
+574207E7	Harry Potter and the Deathly HallowsTM	Disruptive Publishers	Action	
+575207D2	Looney Tunes: AA	RedTribe	Family	2007
+575207D3	F.E.A.R. 2	Monolith Productions, Inc.	Shooter	2009
+575207D7	LEGO Batman	Traveller's Tales	Action	2008
+575207DA	WANTED:Weapons of Fate	GRIN	Action	2009
+575207E6	LEGOÂ® Harry Potter	Traveller's Tales	Action	2010
+575207E9	Green Lantern	Double Helix	Action	
+575207EF	The Lord of the Rings: War in the North	Snowblind Studios	Action	2011
+575207F0	LEGO Rock Band	Harmonix Music Systems	Music	2009
+575207F1	LOTG	Krome Studios	Action	
+575207F2	WtWTA	Griptonite	Action	2009
+575207FD	Mortal Kombat	NetherRealm Studios	Fighting	2011
+57520800	F.E.A.R. 3	Day 1 Studios	Shooter	2011
+57520801	Game Party In Motion	FarSight Studios	Family	2010
+57520802	Batman: Arkham City	Rocksteady Studios	Action	2011
+5752080D	Happy Feet Two: The Videogame	KMMG Studios	Action	2011
+57520812	LEGOÂ® Harry Potter 2	TT Games	Action	2011
+57520817	LEGOÂ® Batman 2	TT Games	Action	2012
+5752081D	LEGOÂ® Lord of the Rings	TT Games	Action	2012
+57520824	The Witcher 2: Assassins of Kings	CD Projekt RED	Action	2012
+57520826	Harry Potter for Kinect	Eurocom	Kinect	2012
+57520829	Injustice: Gods Among Us	NetherRealm Studios	Fighting	
+584108A1	Golf: Tee It Up!	Housemarque	Sports	2008
+584108A4	SuperStreetFighter2THD	Backbone Entertainment	Classics	2008
+584108A5	Omega Five	NATSUME	Action	2008
+584108A7	EXIT	Taito	Action	2007
+584108A8	Vigilante 8 Arcade	Isopod Labs	Action	2008
+584108AA	1942: Joint Strike	Backbone Entertainment	Action	2008
+584108AB	WOTB: Commando 3	Backbone Entertainment	Action	2008
+584108AC	Happy Tree Friends	Stainless Games	Puzzle	2008
+584108AD	R-Type Dimensions	Tozai Games / SouthEnd I...	Shooter	2010
+584108AE	Brain Challenge	Gameloft	Educational	2009
+584108B3	Rez HD	Q ENTERTAINMENT	Shooter	2010
+584108B4	MLBÂ® Stickball	GAIA	Sports	2008
+584108B7	Castle Crashers	The Behemoth	Action	2010
+584108B8	Go! Go! Break Steady	Little Boy Games	Music	2010
+584108BB	Galaga Legions	Namco	Action	2008
+584108BC	Mr. DRILLER Online	Namco	Action	2008
+584108BE	Schizoid	Torpex Games	Action	2010
+584108C2	The Maw	Twisted Pixel Games	Action	2010
+584108C3	Assault Heroes 2	Wanako Games	Action	2008
+584108C7	Shrek-n-Roll	Backbone Entertainment	Family	2007
+584108C8	Quake Arena Arcade	id Software	Action	
+58410B39	Backbreaker Vengeance	NaturalMotion Games	Action	2011
+58410B3A	I Am Alive	Ubisoft	Action	2012
+58410B3C	Diabolical Pitch	Grasshopper Manufacture	Action	2012
+58410B3D	HALF-MINUTE HERO -Super Mega Neo Climax-	Marvelous Entertainment ...	Action	2011
+58410B3E	Star Raiders	Incinerator Studios	Action	
+58410B3F	Magic 2012	Wizards of the Coast LLC...	Strategy	2010
+58410B41	Zombie Driver HD	EXOR Studios	Action	2012
+58410B42	Battle: Los Angeles	Live Action Studios	Action	
+58410B45	Section 8Â®: Prejudice	TimeGate Studios	Action	2011
+58410B47	Apples to Apples	ImaginEngine	Puzzle	2011
+58410B48	Dead Block	Candygun Games UG	Action	2011
+58410B49	SkyDrift	Digital Reality	Racing	
+58410B4A	Bang Bang Racing	Digital Reality	Racing	2012
+58410B52	WarhammerÂ® 40,000Â®: Kill Team	THQ	Action	
+58410B5A	Awesomenauts	Ronimo Games	Platformer	2012
+58410B5C	Deadliest Warrior: Legends	Pipeworks	Fighting	2011
+58410B5D	Burnout Crash!	Criterion Games	Action	
+584807D7	Photo Party	Microsoft	Family	
+584807E1	Facebook	Microsoft	Other	
+584807E3	Last.fm	Microsoft	Other	
+58480800	Xbox LIVE Labs	Xbox LIVE	Other	
+58480812	Build A Buddy	Good Science Studio	Kinect	
+58480813	Bobble Head	Good Science Studio	Kinect	
+58480814	Kinect Me	Good Science Studio	Kinect	
+58480816	Kinect Sparkler	Smoking Gun Inc.	Kinect	
+58480817	Kinect Googly Eyes	Good Science Studio	Kinect	
+58480818	Battle Stuff	Smoking Gun Interactive	Kinect	
+5848081A	Avatar Kinect	Good Science Studio	Kinect	
+5848081B	Air Band	Relentless Software	Kinect	
+5848081D	Mutation Station	Relentless Software	Kinect	2011
+5848081E	Musical Feet	Smoking Gun Interactive	Kinect	2011
+5848081F	Junk Fu	Wahoo Studios	Kinect	2012
+584B083A	Xbox Beta	Microsoft	Other	
+584B083E	Xbox 360 Team	Microsoft	Other	
+584C07D8	E3 2007	Xbox LIVE	Other	
+585407D3	E3 2008	Xbox Console Manufacturi...	Other	
+585407D9	Summer of Arcade 2012	Microsoft	Other	
+58570879	Wal-Mart Gamecenter	Wal-Mart Gamecenter	Family	
+58570997	Your Dungeon My Dragon	Toyota	Other	
+5857099A	Turtle Beach ACR Themes and Pics	Turtle Beach Headsets	Other	
+5857099B	YSL L'Homme Libre Themes and Pics	YSL L'Homme Libre	Other	
+5857099E	Chevrolet Sonic Kinect	Chevrolet Sonic	Other	
+58580815	E3 2009	Xbox LIVE	Other	
+58580822	Project Natal	Microsoft	Platformer	
+58580833	Block Party	Xbox LIVE	Other	
+5858083B	Verizon Alan Wake	Remedy Entertainment	Action	
+5858083C	Old Spice	Old Spice	Family	
+5858083F	E3 2010	Xbox LIVE	Other	
+58580843	Spartacus: Blood and Sand	Starz Entertainment, LLC	Action	
+5858084A	Harry Potter and the Deathly Hallows	Warner Bros.	Action	
+5858084B	Kinect for Xbox 360	Xbox LIVE	Family	2010
+5858085F	Disney Classics	Disney Interactive Studios	Other	
+58580869	E3 2011	Microsoft	Other	
+58580879	Dumbo	Disney Interactive Studios	Other	
+58580887	Fast Five	Xbox LIVE	Other	
+5858088A	Jurassic Park	Xbox LIVE	Other	
+58580891	Transformers Dark of the Moon	Xbox LIVE	Other	
+594F07D1	YoostarÂ®2	Blitz Games	Family	2011
+594F07D7	Yoostar On MTV	Blitz Games	Kinect	2011
+5A4507D1	Battle vs Chess	Targem Games	Card	
+5A4507DA	Two Worlds II	Reality Pump	Role Playing	2010
+5A5007D1	Minute To Win It	SDP Games	Family	2012
