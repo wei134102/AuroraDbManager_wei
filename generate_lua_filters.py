@@ -14,25 +14,6 @@ class Xbox360LuaGenerator:
     def __init__(self):
         self.games_data = []
         self.translations = {}
-        self.category_mappings = {
-            'Action': 'ActionGames',
-            'Shooter': 'FirstPersonShooters', 
-            'Fighting': 'Fighters',
-            'Sports': 'SportsGames',
-            'Racing': 'RacingGames',
-            'Role Playing': 'RPGGames',
-            'Strategy': 'StrategyGames',
-            'Music': 'MusicGames',
-            'Family': 'FamilyGames',
-            'Platformer': 'PlatformerGames',
-            'Puzzle': 'PuzzleGames',
-            'Racing': 'RacingGames',
-            'Flight': 'FlyingGames',
-            'Kinect': 'KinectGames',
-            'Arcade': 'ArcadeStyle',
-            'Other': 'OtherGames',
-            '': 'UnknownGames'
-        }
         
     def load_translations(self, translations_file):
         """加载游戏翻译数据"""
@@ -111,27 +92,26 @@ class Xbox360LuaGenerator:
         return categories
     
     def generate_lua_file(self, category, games, output_dir):
-        """生成Lua分类文件"""
+        """生成Lua分类文件 - 使用原始分类名称作为文件名和内容"""
         if not games:
             return
-        
+
         # 直接使用原始分类名称
         file_name = f"{category}.lua"
         file_path = os.path.join(output_dir, file_name)
-        
+
         # 生成Lua内容 - 使用原始分类名称
-        lua_content = f"""GameListFilterCategories.User["{category}"] = function(Content)
-return ("""
-        
+        lua_content = f"GameListFilterCategories.User[\"{category}\"] = function(Content)\nreturn ("
+
         # 添加游戏Title ID
         for i, game in enumerate(games):
             if i == 0:
                 lua_content += f"Content.TitleId == {game['hex_id']}"
             else:
                 lua_content += f"\nor Content.TitleId == {game['hex_id']}"
-        
+
         lua_content += "\n)\nend\n"
-        
+
         try:
             with open(file_path, 'w', encoding='utf-8') as f:
                 f.write(lua_content)
@@ -169,20 +149,38 @@ return ("""
         print(f"\nLua文件生成完成！文件保存在: {output_dir}")
     
     def extract_categories_to_genres(self, xbox360_file, xboxlive_file, genres_file):
-        """第一步：提取所有分类到genres.txt文件"""
+        """第一步：提取所有分类到genres.txt文件，并翻译对应的中文名称"""
         categories = set()
-        
+        translations = {
+            'Action': '动作',
+            'Shooter': '射击',
+            'Fighting': '格斗',
+            'Sports': '体育',
+            'Racing': '赛车',
+            'Role Playing': '角色扮演',
+            'Strategy': '策略',
+            'Music': '音乐',
+            'Family': '家庭',
+            'Platformer': '平台',
+            'Puzzle': '益智',
+            'Flight': '飞行',
+            'Kinect': '体感',
+            'Arcade': '街机',
+            'Other': '其他',
+            'Unknown': '未知'
+        }
+
         # 解析xbox360.txt
         if os.path.exists(xbox360_file):
             try:
                 with open(xbox360_file, 'r', encoding='utf-8') as f:
                     lines = f.readlines()
-                
+
                 for line in lines[1:]:  # 跳过标题行
                     line = line.strip()
                     if not line:
                         continue
-                    
+
                     parts = line.split('\t')
                     if len(parts) > 3:  # 第4个元素是分类（索引3）
                         category = parts[3].strip()
@@ -190,18 +188,18 @@ return ("""
                             categories.add(category)
             except Exception as e:
                 print(f"解析xbox360.txt失败: {e}")
-        
+
         # 解析xbox360live.txt
         if xboxlive_file and os.path.exists(xboxlive_file):
             try:
                 with open(xboxlive_file, 'r', encoding='utf-8') as f:
                     lines = f.readlines()
-                
+
                 for line in lines[1:]:  # 跳过标题行
                     line = line.strip()
                     if not line:
                         continue
-                    
+
                     parts = line.split('\t')
                     if len(parts) > 3:  # 第4个元素是分类（索引3）
                         category = parts[3].strip()
@@ -211,18 +209,19 @@ return ("""
                 print(f"解析xbox360live.txt失败: {e}")
         elif xboxlive_file:
             print(f"警告: 找不到文件 {xboxlive_file}, 将只处理xbox360.txt")
-        
+
         # 保存分类到genres.txt文件
         try:
             with open(genres_file, 'w', encoding='utf-8') as f:
                 f.write("Xbox 360游戏分类列表\n")
                 f.write("=" * 30 + "\n")
                 for category in sorted(categories):
-                    f.write(f"{category}\n")
+                    translated_name = translations.get(category, '未翻译')
+                    f.write(f"{category} | {translated_name}\n")
             print(f"✓ 已提取 {len(categories)} 个分类到 {genres_file}")
         except Exception as e:
             print(f"保存分类文件失败: {e}")
-        
+
         return categories
 
     def generate_statistics(self, categories, output_dir):
