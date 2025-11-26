@@ -4,7 +4,8 @@
         xmlns:views="clr-namespace:AuroraDbManager.Views"
         Title="Aurora Database Manager V2.0 · 2025 b站：86年复古游戏厅"
         Height="768" Width="1180"
-        Background="{StaticResource WindowGradientBrush}">
+        Background="{StaticResource WindowGradientBrush}"
+        Closing="MainWindow_OnClosing">
     <Grid Margin="24">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -51,6 +52,9 @@
                 </TabItem>
                 <TabItem Header="FTP客户端">
                     <views:FtpClientView x:Name="FtpClientView"/>
+                </TabItem>
+                <TabItem Header="游戏目录管理">
+                    <views:GameDirectoryManagerView x:Name="GameDirectoryManagerView"/>
                 </TabItem>
             </TabControl>
         </Border>

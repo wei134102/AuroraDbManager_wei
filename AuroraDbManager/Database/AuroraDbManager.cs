@@ -807,6 +807,35 @@ namespace AuroraDbManager.Database
         /// <param name="searchTerm">搜索词</param>
         /// <param name="searchType">搜索类型："all"-全部，"title"-英文标题，"title_cn"-中文标题，"titleid"-标题ID</param>
         /// <returns>匹配的游戏列表</returns>
+        /// <summary>
+        /// 关闭所有数据库连接
+        /// </summary>
+        public void CloseAllConnections()
+        {
+            try
+            {
+                if (_content != null && _content.State == ConnectionState.Open)
+                {
+                    _content.Close();
+                    _content.Dispose();
+                    _content = null;
+                    OnPropertyChanged("IsContentOpen");
+                }
+                
+                if (_settings != null && _settings.State == ConnectionState.Open)
+                {
+                    _settings.Close();
+                    _settings.Dispose();
+                    _settings = null;
+                    OnPropertyChanged("IsSettingsOpen");
+                }
+            }
+            catch (Exception ex)
+            {
+                App.SaveException(ex);
+            }
+        }
+        
         public List<XboxGameItem> SearchXboxGames(string dbPath, string searchTerm, string searchType = "all")
         {
             var games = new List<XboxGameItem>();

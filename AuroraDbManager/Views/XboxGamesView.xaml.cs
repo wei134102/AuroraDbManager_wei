@@ -75,7 +75,7 @@ namespace AuroraDbManager.Views
         {
             if (string.IsNullOrEmpty(SearchTextBox.Text))
             {
-                SearchTextBox.Text = "输入游戏标题ID、英文标题或中文标题进行搜索...";
+                SearchTextBox.Text = "";
             }
         }
 

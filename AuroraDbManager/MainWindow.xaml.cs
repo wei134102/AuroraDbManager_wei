@@ -80,6 +80,27 @@ namespace AuroraDbManager {
         }
 
         private void Exit_OnClick(object sender, RoutedEventArgs e) { Close(); }
+        
+private void MainWindow_OnClosing(object sender, CancelEventArgs e)
+{
+    // 关闭所有数据库连接，防止进程残留
+    try
+    {
+        if (App.DbManager != null)
+        {
+            App.DbManager.CloseAllConnections();
+        }
+    }
+    catch (Exception ex)
+    {
+        App.SaveException(ex);
+    }
+    finally
+    {
+        // 确保应用程序完全退出
+        Application.Current.Shutdown();
+    }
+}
 
         private void MainTabControl_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
             if(e.AddedItems.Count > 0) {
@@ -102,7 +123,10 @@ namespace AuroraDbManager {
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
 
+            // 创建要显示的视图
             var xboxGamesView = new XboxGamesView();
+
+            // 将视图设置为窗口内容
             xboxGamesWindow.Content = xboxGamesView;
             
             xboxGamesWindow.Show();

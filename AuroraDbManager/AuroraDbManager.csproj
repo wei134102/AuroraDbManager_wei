@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net48</TargetFramework>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>AuroraDbManager</AssemblyName>
     <RootNamespace>AuroraDbManager</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
