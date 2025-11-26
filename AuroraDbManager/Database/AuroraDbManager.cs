@@ -805,9 +805,9 @@ namespace AuroraDbManager.Database
         /// </summary>
         /// <param name="dbPath">数据库文件路径</param>
         /// <param name="searchTerm">搜索词</param>
-        /// <param name="searchInChinese">是否在中文标题中搜索</param>
+        /// <param name="searchType">搜索类型："all"-全部，"title"-英文标题，"title_cn"-中文标题，"titleid"-标题ID</param>
         /// <returns>匹配的游戏列表</returns>
-        public List<XboxGameItem> SearchXboxGames(string dbPath, string searchTerm, bool searchInChinese = false)
+        public List<XboxGameItem> SearchXboxGames(string dbPath, string searchTerm, string searchType = "all")
         {
             var games = new List<XboxGameItem>();
             
@@ -817,10 +817,34 @@ namespace AuroraDbManager.Database
                 {
                     connection.Open();
                     
-                    string columnName = searchInChinese ? "Title_cn" : "Title";
-                    using (var command = new SQLiteCommand($"SELECT * FROM ContentItems WHERE {columnName} LIKE @searchTerm", connection))
-                    {
-                        command.Parameters.AddWithValue("@searchTerm", $"%{searchTerm}%");
+                    string query = string.Empty;
+                    
+                    switch (searchType)
+            {
+                case "title":
+                    // 英文标题搜索 - 模糊匹配
+                    query = "SELECT * FROM ContentItems WHERE Title LIKE @searchTerm";
+                    break;
+                case "title_cn":
+                    // 中文标题搜索 - 模糊匹配
+                    query = "SELECT * FROM ContentItems WHERE Title_cn LIKE @searchTerm";
+                    break;
+                case "titleid":
+                    // 标题ID搜索 - 模糊匹配
+                    query = "SELECT * FROM ContentItems WHERE TitleId LIKE @searchTerm";
+                    break;
+                default:
+                    // 全部搜索 - 匹配标题ID、英文标题或中文标题
+                    query = @"SELECT * FROM ContentItems 
+                              WHERE TitleId LIKE @searchTerm OR 
+                                    Title LIKE @searchTerm OR 
+                                    Title_cn LIKE @searchTerm";
+                    break;
+            }
+            
+            using (var command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@searchTerm", $"%{searchTerm}%");
                         
                         using (var reader = command.ExecuteReader())
                         {

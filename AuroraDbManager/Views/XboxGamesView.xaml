@@ -28,10 +28,16 @@
                 <ToolBar Grid.Row="0" Height="52" Style="{StaticResource ModernToolBarStyle}" Padding="16,8">
                     <TextBox x:Name="SearchTextBox" Width="300" Margin="0,0,10,0" 
                              VerticalContentAlignment="Center"
-                             Tag="输入游戏名称进行搜索..."/>
-                    <CheckBox x:Name="SearchChineseCheckBox" Content="在中文标题中搜索" 
-                              VerticalAlignment="Center" Margin="0,0,10,0"
-                              Checked="SearchOptionsChanged" Unchecked="SearchOptionsChanged"/>
+                             TextChanged="SearchTextBox_TextChanged"
+                             Tag="输入游戏名称、ID或标题ID进行搜索..."/>
+                    <ComboBox x:Name="SearchTypeComboBox" Width="120" Margin="0,0,10,0"
+                              VerticalAlignment="Center"
+                              SelectionChanged="SearchOptionsChanged">
+                        <ComboBoxItem Content="全部" Tag="all" IsSelected="True"/>
+                        <ComboBoxItem Content="标题ID" Tag="titleid"/>
+                        <ComboBoxItem Content="英文标题" Tag="title"/>
+                        <ComboBoxItem Content="中文标题" Tag="title_cn"/>
+                    </ComboBox>
                     <Button x:Name="BrowseDbButton" Content="浏览数据库..." 
                             Click="BrowseDbButton_Click" Margin="0,0,10,0"
                             Style="{StaticResource ModernButtonStyle}"/>
@@ -52,6 +58,8 @@
                         <DataGridTextColumn Header="开发商" Binding="{Binding Developer}" Width="160"/>
                         <DataGridTextColumn Header="发行商" Binding="{Binding Publisher}" Width="160"/>
                         <DataGridTextColumn Header="平台" Binding="{Binding Platform}" Width="120"/>
+                        <DataGridTextColumn Header="分类" Binding="{Binding Category}" Width="120"/>
+                        <DataGridTextColumn Header="年份" Binding="{Binding Year}" Width="80"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

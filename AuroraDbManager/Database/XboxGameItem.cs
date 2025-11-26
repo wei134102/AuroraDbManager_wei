@@ -132,5 +132,31 @@ namespace AuroraDbManager.Database {
                 Changed = true;
             }
         }
+
+        /// <summary>
+        /// 分类
+        /// </summary>
+        public string Category {
+            get {
+                return DataRow["Category"]?.ToString() ?? string.Empty;
+            }
+            set {
+                DataRow["Category"] = value;
+                Changed = true;
+            }
+        }
+
+        /// <summary>
+        /// 年份
+        /// </summary>
+        public string Year {
+            get {
+                return DataRow["Year"]?.ToString() ?? string.Empty;
+            }
+            set {
+                DataRow["Year"] = value;
+                Changed = true;
+            }
+        }
     }
 }

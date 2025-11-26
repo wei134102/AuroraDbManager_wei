@@ -75,7 +75,7 @@ namespace AuroraDbManager.Views
         {
             if (string.IsNullOrEmpty(SearchTextBox.Text))
             {
-                SearchTextBox.Text = "输入游戏名称进行搜索...";
+                SearchTextBox.Text = "输入游戏标题ID、英文标题或中文标题进行搜索...";
             }
         }
 
@@ -150,7 +150,7 @@ namespace AuroraDbManager.Views
             string searchTerm = SearchTextBox.Text;
             
             // 如果是占位符文本，则不进行搜索
-            if (searchTerm == "输入游戏名称进行搜索...")
+            if (searchTerm == "输入游戏标题ID、英文标题或中文标题进行搜索...")
             {
                 GamesDataGrid.ItemsSource = _allGames;
                 return;
@@ -164,8 +164,12 @@ namespace AuroraDbManager.Views
             }
             else
             {
+                // 获取选中的搜索类型
+                ComboBoxItem selectedItem = SearchTypeComboBox.SelectedItem as ComboBoxItem;
+                string searchType = selectedItem?.Tag?.ToString() ?? "all";
+                
                 // 执行搜索
-                var searchResults = _dbManager.SearchXboxGames(_currentDbPath, searchTerm, SearchChineseCheckBox.IsChecked == true);
+                var searchResults = _dbManager.SearchXboxGames(_currentDbPath, searchTerm, searchType);
                 GamesDataGrid.ItemsSource = searchResults;
                 GameCountTextBlock.Text = $"搜索结果: {searchResults.Count} / {_allGames.Count}";
             }

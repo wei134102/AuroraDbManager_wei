@@ -13,7 +13,9 @@ def create_content_table(cursor):
             Developer TEXT,
             Publisher TEXT,
             Platform TEXT,
-            FolderTitle TEXT
+            FolderTitle TEXT,
+            Category TEXT,
+            Year TEXT
         )
     ''')
 
@@ -41,16 +43,18 @@ def import_xbox_games_to_db():
         try:
             cursor.execute('''
                 INSERT INTO ContentItems 
-                (TitleId, Title, Title_cn, Developer, Publisher, Platform, FolderTitle)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                (TitleId, Title, Title_cn, Developer, Publisher, Platform, FolderTitle, Category, Year)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
             ''', (
-                game.get('TitleID', ''),
+                game.get('Title ID', ''),
                 game.get('Title', ''),
                 game.get('Title_cn', ''),
                 game.get('Developer', ''),
                 game.get('Publisher', ''),
                 game.get('Platform', ''),
-                game.get('Folder Title', '')
+                game.get('Folder Title', ''),
+                game.get('Category', ''),
+                game.get('Year', '')
             ))
             inserted_count += 1
         except Exception as e:
@@ -73,16 +77,18 @@ def query_sample_data():
     cursor = conn.cursor()
     
     # 查询前10个游戏
-    cursor.execute('SELECT Title, Title_cn, Platform FROM ContentItems LIMIT 10')
+    cursor.execute('SELECT Title, Title_cn, Platform, Category, Year FROM ContentItems LIMIT 10')
     results = cursor.fetchall()
     
     print("\n数据库中的示例数据:")
-    print("=" * 50)
-    for title, title_cn, platform in results:
+    print("=" * 60)
+    for title, title_cn, platform, category, year in results:
         print(f"英文标题: {title}")
         print(f"中文标题: {title_cn}")
         print(f"平台: {platform}")
-        print("-" * 30)
+        print(f"分类: {category}")
+        print(f"年份: {year}")
+        print("-" * 40)
     
     # 统计信息
     cursor.execute('SELECT COUNT(*) FROM ContentItems')
@@ -91,10 +97,20 @@ def query_sample_data():
     cursor.execute('SELECT COUNT(*) FROM ContentItems WHERE Title_cn != Title')
     translated_count = cursor.fetchone()[0]
     
+    cursor.execute('SELECT COUNT(*) FROM ContentItems WHERE Category IS NOT NULL AND Category != ""')
+    category_count = cursor.fetchone()[0]
+    
+    cursor.execute('SELECT COUNT(*) FROM ContentItems WHERE Year IS NOT NULL AND Year != ""')
+    year_count = cursor.fetchone()[0]
+    
     print(f"\n数据库统计:")
     print(f"总游戏数: {total_count}")
     print(f"已翻译游戏数: {translated_count}")
     print(f"翻译覆盖率: {translated_count/total_count*100:.2f}%")
+    print(f"含分类信息游戏数: {category_count}")
+    print(f"分类信息覆盖率: {category_count/total_count*100:.2f}%")
+    print(f"含年份信息游戏数: {year_count}")
+    print(f"年份信息覆盖率: {year_count/total_count*100:.2f}%")
     
     conn.close()
 
