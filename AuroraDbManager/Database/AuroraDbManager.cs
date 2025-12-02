@@ -771,22 +771,22 @@ namespace AuroraDbManager.Database
                 using (var connection = new SQLiteConnection($"Data Source={dbPath};Version=3;"))
                 {
                     connection.Open();
-                    
+
+                    // 统一将标题ID转换为小写，匹配数据库中存储的格式
+                    var normalizedTitleId = titleId?.ToLowerInvariant();
+
                     using (var command = new SQLiteCommand("SELECT * FROM ContentItems WHERE TitleId = @titleId LIMIT 1", connection))
                     {
-                        command.Parameters.AddWithValue("@titleId", titleId);
-                        
+                        command.Parameters.AddWithValue("@titleId", normalizedTitleId);
+
                         using (var reader = command.ExecuteReader())
                         {
-                            if (reader.Read())
+                            var table = new DataTable();
+                            table.Load(reader);
+
+                            if (table.Rows.Count > 0)
                             {
-                                var table = new DataTable();
-                                table.Load(reader);
-                                
-                                if (table.Rows.Count > 0)
-                                {
-                                    return new XboxGameItem(table.Rows[0]);
-                                }
+                                return new XboxGameItem(table.Rows[0]);
                             }
                         }
                     }
@@ -796,7 +796,7 @@ namespace AuroraDbManager.Database
             {
                 OnStatusUpdate(new StatusEventArgs($"查找游戏时出错: {ex.Message}"));
             }
-            
+
             return null;
         }
 
