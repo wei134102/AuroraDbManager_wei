@@ -58,10 +58,10 @@ namespace AuroraDbManager.Views
         private void InitializeFtpClient()
         {
             _ftpClient = new FtpClient();
-            _ftpClient.ConnectTimeout = 10000; // 连接超时 10 秒
-            _ftpClient.ReadTimeout = 10000;    // 读取超时 10 秒
-            // DataConnectionTimeout 在您的库版本中不受支持，已移除
-            _ftpClient.Encoding = Encoding.UTF8; // 默认使用 UTF8 编码，如果 Xbox 使用 GBK，请改为 Encoding.GetEncoding("GBK")
+            _ftpClient.ConnectTimeout = 15000; // 连接超时 15 秒（Xbox 360可能响应较慢）
+            _ftpClient.ReadTimeout = 15000;    // 读取超时 15 秒
+            _ftpClient.DataConnectionType = FtpDataConnectionType.PASV; // 使用被动模式（Xbox 360通常需要）
+            _ftpClient.Encoding = Encoding.ASCII; // Xbox 360 FTP通常使用ASCII编码
             _ftpClient.ValidateCertificate += (control, evt) => { evt.Accept = true; }; // 接受所有证书，用于 FTPS
         }
 
@@ -177,9 +177,12 @@ namespace AuroraDbManager.Views
 
         private async Task PopulateRemoteTreeView(string path) // Changed to private
         {
-            _remoteFileSystemItems.Clear(); // Clear the bound collection
-            _selectedRemoteItem = null;
-            UpdateRemotePreview(null);
+            await Dispatcher.InvokeAsync(() =>
+            {
+                _remoteFileSystemItems.Clear(); // Clear the bound collection
+                _selectedRemoteItem = null;
+                UpdateRemotePreview(null);
+            });
             if (!_ftpClient.IsConnected)
             {
                 StatusTextBlock.Text = "未连接到FTP服务器。";
@@ -189,8 +192,9 @@ namespace AuroraDbManager.Views
             try
             {
                 StatusTextBlock.Text = $"正在加载远程目录: {path}...";
+                System.Diagnostics.Debug.WriteLine($"[FTP] 开始加载目录: {path}");
                 var listing = await Task.Run(() => _ftpClient.GetListing(path));
-                
+                System.Diagnostics.Debug.WriteLine($"[FTP] 成功获取文件列表，数量: {listing.Length}");
                 string displayFolderName = path == "/" ? "/" : Path.GetFileName(path.TrimEnd('/'));
                 if (string.IsNullOrEmpty(displayFolderName)) displayFolderName = path; // Fallback for root or weird paths
 
@@ -216,28 +220,51 @@ namespace AuroraDbManager.Views
 
                 foreach (var item in listing.OrderByDescending(x => x.Type == FtpFileSystemObjectType.Directory).ThenBy(x => x.Name))
                 {
+                    System.Diagnostics.Debug.WriteLine($"[FTP] 文件/目录: {item.Name}, FullName: {item.FullName}");
+                    
+                    // 修复：FTP库返回的FullName不可靠，手动拼接正确路径
+                    string itemFullPath;
+                    if (path == "/")
+                    {
+                        itemFullPath = "/" + item.Name;
+                    }
+                    else
+                    {
+                        itemFullPath = path.TrimEnd('/') + "/" + item.Name;
+                    }
+                    System.Diagnostics.Debug.WriteLine($"[FTP] 修正后路径: {itemFullPath}");
+                    
                     var fsItem = new FileSystemItem
                     {
                         Name = item.Name,
-                        FullPath = item.FullName,
+                        FullPath = itemFullPath,  // ← 使用修正后的完整路径
                         IsDirectory = item.Type == FtpFileSystemObjectType.Directory,
                         Icon = item.Type == FtpFileSystemObjectType.Directory ? GetFolderIcon() : GetFileIcon(),
                         Size = item.Size,
                         Modified = item.Modified == DateTime.MinValue ? (DateTime?)null : item.Modified
                     };
-                    rootItem.Children.Add(fsItem); // Add to children of FileSystemItem
+                    rootItem.Children.Add(fsItem); // ← 直接添加，不要在循环里刷新UI
                 }
-                _remoteFileSystemItems.Add(rootItem); // Add to the bound collection
+
+                // 在UI线程中添加新数据并强制刷新（移到循环外）
+                await Dispatcher.InvokeAsync(() =>
+                {
+                    _remoteFileSystemItems.Add(rootItem);
+                    RemoteTreeView.Items.Refresh(); // ← 只在最后刷新一次
+                });
 
                 _currentRemotePath = path; // Update current remote path
                 RemotePathTextBox.Text = path;
                 StatusTextBlock.Text = $"远程目录加载完成: {path}";
+                System.Diagnostics.Debug.WriteLine($"[FTP] 目录加载完成，当前路径: {_currentRemotePath}");
                 UpdateRemotePreview(null);
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"[FTP] 加载目录失败: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"[FTP] 堆栈跟踪: {ex.StackTrace}");
                 StatusTextBlock.Text = $"加载远程文件失败: {ex.Message}";
-                MessageBox.Show($"加载远程文件失败: {ex.Message}", "FTP错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"加载远程文件失败: {ex.Message}\n\n详细信息：{ex.StackTrace}", "FTP错误", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
