@@ -442,7 +442,7 @@ namespace AuroraDbManager.Views
             long totalSelectedSize = selectedSourceSize + selectedDestinationSize;
             
             string sizeText = FormatBytes(totalSelectedSize);
-            StatusTextBlock.Text = $"已选中 {selectedSourceCount + selectedDestinationCount} 个游戏，总容量 {sizeText}";
+            StatusTextBlock.Text = $"源目录已选中 {selectedSourceCount} 个游戏，总容量 {FormatBytes(selectedSourceSize)}  |  目标目录已选中 {selectedDestinationCount} 个游戏，总容量 {FormatBytes(selectedDestinationSize)}";
         }
 
         /// <summary>
@@ -534,16 +534,22 @@ namespace AuroraDbManager.Views
                         continue;
                     }
 
-                    // 复制目录
+                    // 复制目录（带实时进度）
                     StatusTextBlock.Text = $"正在复制 {game.GameId}...";
-                    await Task.Run(() => CopyDirectory(sourceGamePath, destinationGamePath));
-                    
+                    await Task.Run(() => CopyDirectory(sourceGamePath, destinationGamePath, bytes =>
+                    {
+                    copiedSize += bytes;
+                    var innerProgressText = FormatBytes(copiedSize) + "/" + FormatBytes(totalSize);
+                    Dispatcher.Invoke(new Action(() =>
+                    StatusTextBlock.Text = $"已复制 {copiedCount}/{selectedGames.Count} 个游戏（{innerProgressText}, {((totalSize > 0) ? (copiedSize * 100.0 / totalSize) : 0):0.0}%）"
+                    ));
+                    }));
+        
                     copiedCount++;
-                    copiedSize += game.Size;
-                    
-                    // 更新进度
+        
+                    // 完成一个游戏后再刷新一次进度
                     string progressText = FormatBytes(copiedSize) + "/" + FormatBytes(totalSize);
-                    StatusTextBlock.Text = $"已复制 {copiedCount}/{selectedGames.Count} 个游戏 ({progressText})";
+                    StatusTextBlock.Text = $"已复制 {copiedCount}/{selectedGames.Count} 个游戏（{progressText}, {((totalSize > 0) ? (copiedSize * 100.0 / totalSize) : 0):0.0}%）";
                 }
 
                 StatusTextBlock.Text = $"复制完成，共复制 {copiedCount} 个游戏";
@@ -569,23 +575,33 @@ namespace AuroraDbManager.Views
         /// </summary>
         /// <param name="sourceDir">源目录</param>
         /// <param name="destinationDir">目标目录</param>
-        private void CopyDirectory(string sourceDir, string destinationDir)
+        private void CopyDirectory(string sourceDir, string destinationDir, Action<long> progressCallback)
         {
             // 创建目标目录
             Directory.CreateDirectory(destinationDir);
 
-            // 复制文件
+            // 复制文件（带进度）
             foreach (string file in Directory.GetFiles(sourceDir))
             {
                 string destFile = Path.Combine(destinationDir, Path.GetFileName(file));
-                File.Copy(file, destFile, true);
+                using (var sourceStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var destStream = new FileStream(destFile, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    byte[] buffer = new byte[1024 * 1024];
+                    int bytesRead;
+                    while ((bytesRead = sourceStream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        destStream.Write(buffer, 0, bytesRead);
+                        progressCallback?.Invoke(bytesRead);
+                    }
+                }
             }
 
             // 复制子目录
             foreach (string directory in Directory.GetDirectories(sourceDir))
             {
                 string destDirectory = Path.Combine(destinationDir, Path.GetFileName(directory));
-                CopyDirectory(directory, destDirectory);
+                CopyDirectory(directory, destDirectory, progressCallback);
             }
         }
 
